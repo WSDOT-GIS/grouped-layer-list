@@ -1,0 +1,22 @@
+html, body, #map, #container {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+#container {
+    display: grid;
+    grid-template-columns: auto 1fr;
+}
+
+#layerListToggleButton {
+    position: absolute;
+    box-sizing: content-box;
+    top: 6rem;
+    left: 1.3rem;
+    z-index: 1;
+}
+
+.esriLayerList.hidden {
+    display: none;
+}

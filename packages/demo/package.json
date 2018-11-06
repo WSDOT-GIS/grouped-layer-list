@@ -1,0 +1,25 @@
+{
+  "name": "demo",
+  "version": "0.0.1",
+  "description": "demo",
+  "main": "main.js",
+  "scripts": {
+    "clean": "rm dist/main.js",
+    "watch": "webpack -d --mode production --watch",
+    "build-dev": "webpack -d --mode development",
+    "build-prod": "webpack -p --mode production"
+  },
+  "author": "",
+  "private": true,
+  "license": "Unlicense",
+  "dependencies": {
+    "@wsdot/grouped-layer-list": "^0.0.1"
+  },
+  "devDependencies": {
+    "@types/arcgis-js-api": "3",
+    "source-map": "^0.7.3",
+    "ts-loader": "^5.3.0",
+    "webpack": "^4.25.1",
+    "webpack-cli": "^3.1.2"
+  }
+}
