@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "clean": "rm dist/main.js",
-    "watch": "webpack -d --mode production --watch",
+    "watch": "webpack -p --mode production --watch",
     "build-dev": "webpack -d --mode development",
     "build-prod": "webpack -p --mode production"
   },

@@ -9,6 +9,10 @@ html, body, #map, #container {
     grid-template-columns: auto 1fr;
 }
 
+#container > div:first-child {
+    overflow: auto;
+}
+
 #layerListToggleButton {
     position: absolute;
     box-sizing: content-box;

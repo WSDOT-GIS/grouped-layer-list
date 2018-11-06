@@ -9,6 +9,7 @@
   "types": "dist/main.d.ts",
   "scripts": {
     "prepare": "tsc",
+    "watch": "tsc -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
