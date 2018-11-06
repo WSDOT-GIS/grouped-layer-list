@@ -1,3 +1,22 @@
+Grouped Layer List
+------------------
+
+For [ArcGIS API for JavaScript version 3.X], an extension of [LayerList] which will allow group headings to be added via CSS. (The [LayerList of V4][LayerListV4] already supports grouping.)
+
+[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
+
+## Usage
+
+### Install package
+
+Install the `@wsdot/grouped-layer-list` package along with other requirements.
+
+```sh
+npm install -sd @wsdot/grouped-layer-list @types/arcgis-js-api@3 typescript tslint webpack webpack-cli ts-loader source-map
+```
+
+### src/main.ts
+```typescript
 // import modules
 import GroupedLayerList, {
   convertLayer,
@@ -5,15 +24,9 @@ import GroupedLayerList, {
   LayerPropGroups
 } from "@wsdot/grouped-layer-list";
 import arcgisUtils from "esri/arcgis/utils";
-import esriConfig from "esri/config";
-
-esriConfig.defaults.io.httpsDomains.push("wsdot.wa.gov");
-esriConfig.defaults.io.corsEnabledServers.push(
-  "wsdot.wa.gov",
-  "data.wsdot.wa.gov"
-);
 
 // Define groupings. This object defines the layer order as well.
+// Array items should correspond to layer titles defined in your AGOL map.
 const groupings: LayerPropGroups = {
   Transportation: [
     "Rail",
@@ -69,3 +82,9 @@ arcgisUtils
   .catch((err: Error) => {
     console.error("map creation error", err);
   });
+
+```
+
+[ArcGIS API for JavaScript version 3.X]:https://developers.arcgis.com/javascript/3
+[LayerList]:https://developers.arcgis.com/javascript/3/jsapi/layerlist-amd.html
+[LayerListV4]:https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-LayerList.html
