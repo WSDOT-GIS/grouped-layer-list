@@ -25,6 +25,9 @@
   ],
   "author": "WSDOT",
   "license": "Unlicense",
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "@types/arcgis-js-api": "^3.26.0",
     "prettier": "^1.14.3",
@@ -35,5 +38,6 @@
   },
   "dependencies": {
     "tslib": "^1.9.3"
-  }
+  },
+  "gitHead": "a0358414946ba90d6d19e256df54e46914fd92f7"
 }
