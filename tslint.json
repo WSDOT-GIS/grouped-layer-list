@@ -5,6 +5,9 @@
         "tslint-plugin-prettier",
         "tslint-config-prettier"
     ],
+    "linterOptions": {
+        "exclude": ["**/dist/*"]
+    },
     "jsRules": {},
     "rules": {
         "prettier": true,

@@ -2,13 +2,14 @@
   "name": "@wsdot/grouped-layer-list",
   "version": "0.0.3",
   "description": "ArcGIS API v3 Layer List with added categorization ability",
+  "module": "dist/main",
   "main": "dist/main.js",
+  "types": "dist/main.d.ts",
   "files": [
     "dist/*"
   ],
-  "types": "dist/main.d.ts",
   "scripts": {
-    "prepare": "tsc",
+    "prepare": "node scripts/prepare.js",
     "watch": "tsc -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -30,14 +31,15 @@
   },
   "devDependencies": {
     "@types/arcgis-js-api": "^3.26.0",
-    "prettier": "^1.14.3",
+    "@types/node": "^10.12.9",
+    "prettier": "^1.15.2",
     "tslint": "^5.11.0",
-    "tslint-config-prettier": "^1.15.0",
+    "tslint-config-prettier": "^1.16.0",
     "tslint-plugin-prettier": "^2.0.1",
     "typescript": "^3.1.6"
   },
+  "gitHead": "dded477adda0d133890783a0b3f4fabeaa7ba0ff",
   "dependencies": {
-    "tslib": "^1.9.3"
-  },
-  "gitHead": "a0358414946ba90d6d19e256df54e46914fd92f7"
+    "@wsdot/layer-metadata-soe-client": "^3.0.0-beta.0"
+  }
 }

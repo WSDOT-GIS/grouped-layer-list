@@ -51,6 +51,7 @@ arcgisUtils
 
     // Convert operational layers from the format returned by the createMap function
     // To the format needed by the LayerList constructor.
+    // const layers = arcgisUtils.getLayerList(evt) as LayerListOperationalLayer[];
     const layers = itemInfo.itemData.operationalLayers.map(convertLayer);
 
     // Create the layer list.
@@ -59,10 +60,12 @@ arcgisUtils
         groups: groupings,
         groupProperty: "title",
         map,
+        metadata: true,
         layers
       },
       "layerList"
     );
+
     layerList.startup();
   })
   // Handle errors from CreateMap function.

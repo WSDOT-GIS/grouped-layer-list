@@ -1,10 +1,11 @@
-/// <reference lib="es6" />
-
 import { LayerListOptions } from "esri";
 import LayerList from "esri/dijit/LayerList";
 import ArcGISDynamicMapServiceLayer from "esri/layers/ArcGISDynamicMapServiceLayer";
 import Layer from "esri/layers/layer";
 import EsriMap from "esri/map";
+import { addMetadataTabs } from "./metadataUtils";
+
+export { addMetadataTabs };
 
 export interface OperationalLayerCommon {
   id?: string;
@@ -14,15 +15,26 @@ export interface OperationalLayerCommon {
   visibility?: boolean;
 }
 
+/**
+ * Operational layer property from the returned object of a createMap operation.
+ */
 export interface CreateMapOperationalLayer extends OperationalLayerCommon {
   [key: string]: any;
+  /** A collection of errors that were encountered when adding the layer to the map. */
   errors: Error[];
+  /** "esri/layers/layer" object. */
   layerObject: Layer;
+  /** The type of layer. */
   layerType: string;
+  /** Resource information */
   resourceInfo: any;
+  /** layer URL */
   url: string;
 }
 
+/**
+ * Defines a map layer for a layer list.
+ */
 export interface LayerListOperationalLayer extends OperationalLayerCommon {
   /** Optional 	Custom button node that will appear within the layer title. */
   button?: Node | string;
@@ -71,6 +83,8 @@ export interface GroupedLayerListOptions extends LayerListOptions {
   groups: LayerPropGroups;
   groupProperty: "id" | "title";
   throwOnGroupNotFound?: boolean;
+  metadata?: boolean;
+  metadataFormatterPage?: string | null;
 }
 
 /**
@@ -231,5 +245,9 @@ export default class GroupedLayerList extends LayerList {
       styleNode.textContent = cssText;
       document.head!.appendChild(styleNode);
     });
+
+    if (options.metadata) {
+      addMetadataTabs(this, options.metadataFormatterPage || undefined);
+    }
   }
 }
