@@ -13,8 +13,7 @@
   "private": true,
   "license": "Unlicense",
   "dependencies": {
-    "@wsdot/grouped-layer-list": "^0.0.3",
-    "@wsdot/layer-metadata-soe-client": "^3.0.0-beta.0"
+    "@wsdot/grouped-layer-list": "^0.0.3"
   },
   "devDependencies": {
     "@types/arcgis-js-api": "3",

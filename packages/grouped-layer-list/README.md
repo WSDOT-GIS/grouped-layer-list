@@ -11,7 +11,7 @@ For [ArcGIS API for JavaScript version 3.X], an extension of [LayerList] which w
 
 Install the `@wsdot/grouped-layer-list` package along with other requirements.
 
-```sh
+```console
 npm install -sd @wsdot/grouped-layer-list @types/arcgis-js-api@3 typescript tslint webpack webpack-cli ts-loader source-map
 ```
 
