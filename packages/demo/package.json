@@ -1,6 +1,6 @@
 {
   "name": "demo",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "demo",
   "main": "main.js",
   "scripts": {
@@ -13,7 +13,7 @@
   "private": true,
   "license": "Unlicense",
   "dependencies": {
-    "@wsdot/grouped-layer-list": "^0.0.3"
+    "@wsdot/grouped-layer-list": "^0.0.4"
   },
   "devDependencies": {
     "@types/arcgis-js-api": "3",
