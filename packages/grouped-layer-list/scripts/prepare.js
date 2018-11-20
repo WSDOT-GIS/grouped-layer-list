@@ -16,6 +16,8 @@ function execPromise(command) {
 
 (async () => {
   await execPromise("tsc --target es2015 --module es2015 --declaration");
-  await fs.promises.rename("dist/main.js", "dist/main.mjs");
+  for (const fn of ["main", "metadataUtils"]) {
+    await fs.promises.rename(`dist/${fn}.js`, `dist/${fn}.mjs`)
+  }
   await execPromise("tsc --target es5 --module commonjs");
 })();

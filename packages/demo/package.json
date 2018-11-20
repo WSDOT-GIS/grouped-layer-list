@@ -4,6 +4,7 @@
   "description": "demo",
   "main": "main.js",
   "scripts": {
+    "prepare": "npm run build-prod",
     "clean": "rm dist/main.js",
     "watch": "webpack -p --mode production --watch",
     "build-dev": "webpack -d --mode development",
