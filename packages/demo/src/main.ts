@@ -1,11 +1,11 @@
-// import modules
 import GroupedLayerList, {
   convertLayer,
   CreateMapEvent,
-  LayerPropGroups
+  getGroupsFromCreateMapItem
 } from "@wsdot/grouped-layer-list";
 import arcgisUtils from "esri/arcgis/utils";
 import esriConfig from "esri/config";
+import { createLayerLink, setOperationalLayers } from "./searchUtils";
 
 esriConfig.defaults.io.httpsDomains.push("wsdot.wa.gov");
 esriConfig.defaults.io.corsEnabledServers.push(
@@ -13,34 +13,33 @@ esriConfig.defaults.io.corsEnabledServers.push(
   "data.wsdot.wa.gov"
 );
 
-// Define groupings. This object defines the layer order as well.
-const groupings: LayerPropGroups = {
-  Transportation: [
-    "Rail",
-    "State Routes",
-    "Interchange Drawings",
-    "Functional Class"
-  ],
-  "Political Boundaries": [
-    "Region Boundaries",
-    "Maintenance Areas",
-    "Tribal Lands",
-    "Township / Section",
-    "Regional Transportation Planning (RTPO)",
-    "Metro Planning Areas",
-    "Legislative Districts",
-    "County Boundaries",
-    "Congressional Districts",
-    "City Limits",
-    "Urban Areas"
-  ]
-};
+/**
+ * Gets the map ID from URL search parameter. Returns a default value
+ * if there is no webmap URL search parameter.
+ */
+function getMapIDFromUrl() {
+  const defaultMapId = "d2666674071e4263ac344046f09b7599";
+  const re = /\bwebmap=([a-f0-9]+)\b/i;
+  const match = location.search ? location.search.match(re) : null;
+  if (!match) {
+    return defaultMapId;
+  }
+  // groupings = {};
+  return match[1];
+}
+
+// Set default map ID.
+// Override default map ID if one is defined in URL search params.
+const mapId = getMapIDFromUrl();
 
 // Create the map using AGOL webmap.
 arcgisUtils
-  .createMap("d2666674071e4263ac344046f09b7599", "map")
+  .createMap(mapId, "map")
   .then((evt: CreateMapEvent) => {
     const { map, itemInfo, errors } = evt;
+
+    // get the groupings defined in ArcGIS Online webmap item.
+    const groupings = getGroupsFromCreateMapItem(itemInfo) || undefined;
 
     // If there were errors creating the map, write them to the console.
     if (errors && errors.length > 0) {
@@ -61,10 +60,25 @@ arcgisUtils
         groupProperty: "title",
         map,
         metadata: true,
-        layers
+        layers,
+        throwOnGroupNotFound: false
       },
       "layerList"
     );
+
+    createLayerLink(layerList);
+
+    const urlSupported = window.URL && window.URLSearchParams && window.history;
+
+    if (urlSupported) {
+      layerList.on("load", () => {
+        const url = new URL(location.href);
+        const { searchParams } = url;
+        if (searchParams) {
+          setOperationalLayers(searchParams, layerList);
+        }
+      });
+    }
 
     layerList.startup();
   })

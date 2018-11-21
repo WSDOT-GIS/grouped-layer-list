@@ -1,12 +1,20 @@
-import { LayerListOptions } from "esri";
+/**
+ * Exposes GroupLayerList class and related functions.
+ */
+
+/**
+ * @ignore import modules
+ */
+import { Handle, LayerListOptions } from "esri";
 import LayerList from "esri/dijit/LayerList";
 import ArcGISDynamicMapServiceLayer from "esri/layers/ArcGISDynamicMapServiceLayer";
 import Layer from "esri/layers/layer";
 import EsriMap from "esri/map";
 import { addMetadataTabs } from "./metadataUtils";
 
-export { addMetadataTabs };
-
+/**
+ * Properties that operational layers have in common.
+ */
 export interface OperationalLayerCommon {
   id?: string;
   /** Optional 	The title of the layer. */
@@ -54,20 +62,80 @@ export interface LayerListOperationalLayer extends OperationalLayerCommon {
   showSubLayers?: boolean;
 }
 
-export interface CreateMapEvent {
-  clickEventHandle: any;
-  clickEventListener: (...args: any[]) => any;
-  errors: Error[];
-  itemInfo: {
-    item: any;
-    itemData: {
-      [key: string]: any;
-      operationalLayers: CreateMapOperationalLayer[];
+/**
+ * Application properties section of an ArcGIS Online webmap.
+ * @see https://developers.arcgis.com/web-map-specification/objects/applicationProperties/
+ */
+export interface ApplicationProperties {
+  [key: string]: any;
+  /** properties related to viewing (as opposed to editing, etc.) */
+  viewing: {
+    [key: string]: any;
+    /**
+     * layer grouping property created for use with the GroupedLayerList.
+     * This is not part of Esri's standard
+     */
+    layerGrouping?: {
+      enabled: boolean;
+      groups: LayerPropGroups;
     };
   };
+}
+
+/**
+ * Item data retrieved from ArcGIS Online (or other portal).
+ */
+export interface ItemInfo {
+  /**
+   * ArcGIS Online item
+   * @see https://developers.arcgis.com/rest/users-groups-and-items/item.htm
+   */
+  item: any;
+  /**
+   * ArcGIS Online webmap
+   * @see https://developers.arcgis.com/web-map-specification/
+   */
+  itemData: {
+    [key: string]: any;
+    applicationProperties?: ApplicationProperties;
+    operationalLayers: CreateMapOperationalLayer[];
+  };
+}
+
+/**
+ * Gets layer group definition (if present) from a web map.
+ * @param itemInfo
+ */
+export function getGroupsFromCreateMapItem(itemInfo: ItemInfo) {
+  if (itemInfo.itemData.applicationProperties) {
+    const { applicationProperties } = itemInfo.itemData;
+    if (applicationProperties.viewing) {
+      const { viewing } = applicationProperties;
+      if (viewing.layerGrouping) {
+        const { layerGrouping } = viewing;
+        if (layerGrouping && layerGrouping.enabled && layerGrouping.groups) {
+          return layerGrouping.groups;
+        }
+      }
+    }
+  }
+  return null;
+}
+
+/**
+ * @see https://developers.arcgis.com/javascript/3/jsapi/esri.arcgis.utils-amd.html#createmap
+ */
+export interface CreateMapEvent {
+  clickEventHandle: Handle | undefined;
+  clickEventListener: (...args: any[]) => any | undefined;
+  errors: Error[];
+  itemInfo: ItemInfo;
   map: EsriMap;
 }
 
+/**
+ * Arrays of layers grouped by category names.
+ */
 export interface LayerGroups {
   [groupName: string]: Layer[];
 }
@@ -79,18 +147,38 @@ export interface LayerPropGroups {
   [groupName: string]: string[];
 }
 
+/**
+ * Options for the GroupedLayerList constructor
+ */
 export interface GroupedLayerListOptions extends LayerListOptions {
-  groups: LayerPropGroups;
-  groupProperty: "id" | "title";
+  /**
+   * Defines how layers are grouped. Property names are group names.
+   * Values correspond to either the title or id properties of operational layers.
+   */
+  groups?: LayerPropGroups;
+  /**
+   * Which property do the arrays in "groups" correpsond to: "id" or "title"?
+   */
+  groupProperty?: "id" | "title";
+  /**
+   * Set to true if you want to throw an exception when a referenced group cannot be found.
+   */
   throwOnGroupNotFound?: boolean;
+  /**
+   * Set to true to add the metadata tab to layers, false otherwise.
+   */
   metadata?: boolean;
+  /**
+   * Specify the metadata formatter page. Set to null to instead show unformatted metadata.
+   */
   metadataFormatterPage?: string | null;
 }
 
 /**
  * Converts the operational layer format returned from arcgis/utils.createMap to the
  * operation layer format expected by the LayerList constructor.
- * @param opLayer
+ * @param opLayer Operational layer object from arcgis/utils.createMap complete event.
+ * @returns Operational layer for use with the LayerList constructor.
  */
 export function convertLayer(
   opLayer: CreateMapOperationalLayer
@@ -124,6 +212,7 @@ export function convertLayer(
  * value will simply be ignored.
  * @throws ReferenceError thrown if titleGroups contains a value that has no
  * corresponding layer when throwOnValueNotFound is true.
+ * @yields {LayerListOperationalLayer}
  */
 function* enumerateLayersInGroupOrder(
   titleGroups: LayerPropGroups,
@@ -152,8 +241,8 @@ function* enumerateLayersInGroupOrder(
 }
 
 /**
- * Creates a mapping of layer titles to groups.
- * @param groups
+ * Creates a mapping of layer titles to group names.
+ * @param groups group definition object.
  */
 function createTitleToGroupMapping(groups: LayerPropGroups) {
   const mapping = new Map<string, string>();
@@ -171,7 +260,7 @@ function createTitleToGroupMapping(groups: LayerPropGroups) {
  * in a group.
  * @param srcNode the srcNode of a LayerList
  * @param groups Defines which layers are in which group.
- * @returns CSS text to be added to a <style> element to be added to the page <head>.
+ * @returns CSS text to be added to a style element to be added to the page head.
  */
 function addGroupHeadings(srcNode: Node | string, groups: LayerPropGroups) {
   // srcNode can be defined as either a node's "id" or the node itself.
@@ -201,7 +290,7 @@ function addGroupHeadings(srcNode: Node | string, groups: LayerPropGroups) {
     const label = li.querySelector("label");
     if (label) {
       const title = label.textContent!;
-      const groupName = mapping.get(title);
+      const groupName = mapping.get(title) || "Other";
       if (groupName !== previousGroupName) {
         const className = `layer-list-group-${groupNo}`;
         classToGroupNameMapping.set(className, groupName!);
@@ -227,25 +316,36 @@ function addGroupHeadings(srcNode: Node | string, groups: LayerPropGroups) {
  */
 export default class GroupedLayerList extends LayerList {
   constructor(options: GroupedLayerListOptions, srcNode: string | Node) {
-    // Change the layers' order to match the group object.
-    options.layers = Array(
-      ...enumerateLayersInGroupOrder(
-        options.groups,
-        options.layers,
-        options.groupProperty,
-        options.throwOnGroupNotFound
-      )
-    ).reverse();
+    // If options.groups is defined, sort the layers to match group definition
+    if (options.groups) {
+      const originLayers: LayerListOperationalLayer[] = options.layers;
+      const sortedLayers = new Array(
+        ...enumerateLayersInGroupOrder(
+          options.groups,
+          options.layers,
+          options.groupProperty,
+          options.throwOnGroupNotFound
+        )
+      );
+      // Append any layers that are not listed in the grouping object.
+      originLayers
+        .filter(l => !sortedLayers.includes(l))
+        .forEach(l => sortedLayers.push(l));
+
+      // Change the layers' order to match the group object.
+      options.layers = sortedLayers.reverse();
+    }
     super(options, srcNode);
 
-    this.on("load", evt => {
-      // Add group headers to the first layer's <li> using CSS :before pseudo-element.
-      const cssText = addGroupHeadings(srcNode, options.groups);
-      const styleNode = document.createElement("style");
-      styleNode.textContent = cssText;
-      document.head!.appendChild(styleNode);
-    });
-
+    if (options.groups) {
+      this.on("load", evt => {
+        // Add group headers to the first layer's <li> using CSS :before pseudo-element.
+        const cssText = addGroupHeadings(srcNode, options.groups!);
+        const styleNode = document.createElement("style");
+        styleNode.textContent = cssText;
+        document.head!.appendChild(styleNode);
+      });
+    }
     if (options.metadata) {
       addMetadataTabs(this, options.metadataFormatterPage || undefined);
     }

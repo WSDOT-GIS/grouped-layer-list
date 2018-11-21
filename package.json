@@ -2,6 +2,7 @@
   "name": "root",
   "private": true,
   "scripts": {
+    "prepare": "lerna bootstrap",
     "serve": "serve ./packages/demo"
   },
   "devDependencies": {

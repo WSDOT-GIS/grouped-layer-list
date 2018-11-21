@@ -16,17 +16,17 @@
         <div id="map"></div>
     </div>
     <script>
-        (function () {
+        (function (root) {
             var dojoConfig = {
                 packages: [
                     {
                         name: "app",
-                        location: location.href.replace(/(index.html)?$/, "").replace(/\/?$/, "") + "/dist"
+                        location: root.replace(/(index.html)?$/, "").replace(/\?+$/, "") + "/dist"
                     }
                 ]
             }
             window.dojoConfig = dojoConfig
-        }());
+        }(location.href.replace(/\?.+$/, "")));
     </script>
     <script src="https://js.arcgis.com/3.26/"></script>
     <script>require(["app"])</script>

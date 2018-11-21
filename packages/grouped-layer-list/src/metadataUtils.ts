@@ -58,8 +58,27 @@ export function addMetadataTabs(
           }
           const layerIndex = parseInt(this.dataset.layerIndex!, 10);
           const opLayer = layerList.layers[layerIndex!];
-          const tabContainer = getTabContainerFromCheckbox(this);
-          addMetadataTab(tabContainer, opLayer, layerIndex!, formatterPageUrl);
+          let tabContainer: Element | undefined;
+          try {
+            tabContainer = getTabContainerFromCheckbox(this);
+          } catch (err) {
+            // If its one of the sublayer checkboxes, a TypeError
+            // with be thrown.
+            // TODO: modify the querySelectorAll statement to be
+            // more specific so that only the parent level checkboxes
+            // are returned.
+            if (!(err instanceof TypeError)) {
+              throw err;
+            }
+          }
+          if (tabContainer) {
+            addMetadataTab(
+              tabContainer,
+              opLayer,
+              layerIndex!,
+              formatterPageUrl
+            );
+          }
         },
         {
           once: true,
@@ -101,19 +120,20 @@ async function addMetadataTab(
     return;
   }
 
-  const tabList = tabContainer.firstElementChild! as HTMLUListElement;
-  const tabs = tabContainer.children[1] as HTMLDivElement;
   const url = operationalLayer.layer.url;
 
+  // Check to see if metadata SOE is supported by the operational layer's service.
+  // If it is not supported, exit the function without adding the metadata tab.
   const metadataSupported = await detectLayerMetadataSupport(url);
   if (!metadataSupported) {
     return;
   }
 
+  // Get metadata URLs.
   const mdLinks = await getMetadataLinks(url);
 
+  // Create the list item that will act as the tab that the user clicks on
   const tabId = "metadata";
-
   const listItem = document.createElement("li");
   listItem.tabIndex = 0;
   listItem.dataset.tabId = tabId;
@@ -122,14 +142,20 @@ async function addMetadataTab(
   listItem.classList.add("esriTabMenuItem");
   listItem.textContent = "Metadata";
 
+  // Create the tab content panel div element that will be shown when the user
+  // clicks on the corresponding list item.
   const tab = document.createElement("div");
   tab.classList.add("esriTab", "metadata-panel");
   tab.setAttribute("role", "tabpanel");
   tab.dataset.tabId = tabId;
 
+  // Append the tab and panel to appropriate parent elements.
+  const tabList = tabContainer.firstElementChild! as HTMLUListElement;
+  const tabs = tabContainer.children[1] as HTMLDivElement;
   tabList.appendChild(listItem);
   tabs.appendChild(tab);
 
+  // Create the list of metadata links and add to tab panel.
   const ul = document.createElement("ul");
   ul.classList.add("layer-metadata-list");
   for (const name in mdLinks) {
