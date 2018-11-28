@@ -2,7 +2,6 @@
   "name": "@wsdot/grouped-layer-list",
   "version": "0.0.4",
   "description": "ArcGIS API v3 Layer List with added categorization ability",
-  "module": "dist/main",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
   "files": [
@@ -11,7 +10,7 @@
   "scripts": {
     "docs": "typedoc --theme markdown --out docs --readme none --excludePrivate --mode file",
     "prepublish": "npm run docs",
-    "prepare": "node scripts/prepare.js",
+    "prepare": "tsc",
     "watch": "tsc -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -47,7 +46,8 @@
     "typescript": "^3.1.6"
   },
   "dependencies": {
-    "@wsdot/layer-metadata-soe-client": "^3.0.0"
+    "@wsdot/layer-metadata-soe-client": "^3.0.0",
+    "tslib": "^1.9.3"
   },
   "bugs": {
     "url": "https://github.com/WSDOT-GIS/grouped-layer-list/issues"
