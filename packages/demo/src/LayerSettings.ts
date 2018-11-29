@@ -7,7 +7,6 @@ import ArcGISDynamicMapServiceLayer from "esri/layers/ArcGISDynamicMapServiceLay
 export interface ILayerSettings {
   visible?: boolean;
   visibleLayers?: number[];
-  opacity?: number;
 }
 
 /**
@@ -19,30 +18,26 @@ export class LayerSettings implements ILayerSettings {
    * @param str a value from a URLSearchParams.
    */
   public static parse(str: string): LayerSettings | null {
-    const re = /^((?:true)|(?:false))(?:;([\d,]+))?(?:;(\d+(?:\.\d+)?)%)?/;
+    const re = /^((?:true)|(?:false))(?:;([\d,]+))?/;
     const match = str.match(re);
     if (!match) {
       return null;
     }
 
-    const [, visibleStr, visibleLayersStr, opacityStr] = match;
+    const [, visibleStr, visibleLayersStr] = match;
     const visible = /(true)/i.test(visibleStr);
     const visibleLayers = visibleLayersStr
       ? visibleLayersStr.split(",").map(s => parseInt(s, 10))
       : undefined;
-    const opacity = opacityStr ? parseFloat(opacityStr) / 100 : undefined;
     return new LayerSettings({
       visible,
-      visibleLayers,
-      opacity
+      visibleLayers
     });
   }
   /** is the layer visible */
   public visible?: boolean;
   /** which sublayers are turned on */
   public visibleLayers?: number[];
-  // tslint:disable-next-line:variable-name
-  public opacity?: number;
 
   /**
    * Creates a new instance
@@ -52,8 +47,6 @@ export class LayerSettings implements ILayerSettings {
     if (options) {
       this.visible = options.visible;
       this.visibleLayers = options.visibleLayers;
-      this.opacity =
-        typeof options.opacity === "number" ? options.opacity : undefined;
     }
   }
   /**
@@ -82,9 +75,6 @@ export class LayerSettings implements ILayerSettings {
         this.visibleLayers
       );
     }
-    if (operationalLayer.showOpacitySlider && this.opacity != null) {
-      layer.setOpacity(this.opacity);
-    }
 
     if (refreshAbleLayer.resume) {
       refreshAbleLayer.resume();
@@ -101,9 +91,6 @@ export class LayerSettings implements ILayerSettings {
     output.push(`${this.visible}`);
     if (this.visibleLayers) {
       output.push(this.visibleLayers.join(","));
-    }
-    if (this.opacity != null) {
-      output.push(`${this.opacity * 100}%`);
     }
     return output.join(";");
   }

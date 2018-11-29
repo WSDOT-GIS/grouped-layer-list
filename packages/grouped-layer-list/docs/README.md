@@ -45,7 +45,7 @@
 
 **● defaultFormatterPage**: *"https://wsdot-gis.github.io/geospatial-metadata"* = "https://wsdot-gis.github.io/geospatial-metadata"
 
-*Defined in [metadataUtils.ts:8](https://github.com/WSDOT-GIS/grouped-layer-list/blob/7ac8b6c/packages/grouped-layer-list/src/metadataUtils.ts#L8)*
+*Defined in [metadataUtils.ts:8](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c2b0772/packages/grouped-layer-list/src/metadataUtils.ts#L8)*
 
 ___
 
@@ -57,7 +57,7 @@ ___
 
 ▸ **addGroupHeadings**(srcNode: * `Node` &#124; `string`*, groups: *[LayerPropGroups](interfaces/layerpropgroups.md)*): `string`
 
-*Defined in [main.ts:265](https://github.com/WSDOT-GIS/grouped-layer-list/blob/7ac8b6c/packages/grouped-layer-list/src/main.ts#L265)*
+*Defined in [main.ts:265](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c2b0772/packages/grouped-layer-list/src/main.ts#L265)*
 
 Adds group headings above the list item corresponding to the first layer in a group.
 
@@ -78,7 +78,7 @@ ___
 
 ▸ **addMetadataTab**(tabContainer: *`Element`*, operationalLayer: *[LayerListOperationalLayer](interfaces/layerlistoperationallayer.md)*, layerIndex: *`number`*, formatterPageUrl: *`string`*): `Promise`<`void`>
 
-*Defined in [metadataUtils.ts:110](https://github.com/WSDOT-GIS/grouped-layer-list/blob/7ac8b6c/packages/grouped-layer-list/src/metadataUtils.ts#L110)*
+*Defined in [metadataUtils.ts:110](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c2b0772/packages/grouped-layer-list/src/metadataUtils.ts#L110)*
 
 Adds the metadata tab to a layer's tab container after checking to see if the layer in question supports the LayerMetadata SOE.
 
@@ -100,7 +100,7 @@ ___
 
 ▸ **addMetadataTabs**(layerList: *`LayerList`*, formatterPageUrl?: *`string`*): `void`
 
-*Defined in [metadataUtils.ts:37](https://github.com/WSDOT-GIS/grouped-layer-list/blob/7ac8b6c/packages/grouped-layer-list/src/metadataUtils.ts#L37)*
+*Defined in [metadataUtils.ts:37](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c2b0772/packages/grouped-layer-list/src/metadataUtils.ts#L37)*
 
 Adds a "load" event handler to a layer list. When the layer list has loaded, A metadata tab will be added to each layers list item after its checkbox is clicked for the first time.
 
@@ -122,7 +122,7 @@ ___
 
 ▸ **convertLayer**(opLayer: *[CreateMapOperationalLayer](interfaces/createmapoperationallayer.md)*): [LayerListOperationalLayer](interfaces/layerlistoperationallayer.md)
 
-*Defined in [main.ts:183](https://github.com/WSDOT-GIS/grouped-layer-list/blob/7ac8b6c/packages/grouped-layer-list/src/main.ts#L183)*
+*Defined in [main.ts:183](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c2b0772/packages/grouped-layer-list/src/main.ts#L183)*
 
 Converts the operational layer format returned from arcgis/utils.createMap to the operation layer format expected by the LayerList constructor.
 
@@ -142,7 +142,7 @@ ___
 
 ▸ **createTitleToGroupMapping**(groups: *[LayerPropGroups](interfaces/layerpropgroups.md)*): `Map`<`string`, `string`>
 
-*Defined in [main.ts:247](https://github.com/WSDOT-GIS/grouped-layer-list/blob/7ac8b6c/packages/grouped-layer-list/src/main.ts#L247)*
+*Defined in [main.ts:247](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c2b0772/packages/grouped-layer-list/src/main.ts#L247)*
 
 Creates a mapping of layer titles to group names.
 
@@ -161,7 +161,7 @@ ___
 
 ▸ **enumerateLayersInGroupOrder**(titleGroups: *[LayerPropGroups](interfaces/layerpropgroups.md)*, layers: *[LayerListOperationalLayer](interfaces/layerlistoperationallayer.md)[]*, propertyName?: *`string`*, throwOnValueNotFound?: * `undefined` &#124; `false` &#124; `true`*): `IterableIterator`<[LayerListOperationalLayer](interfaces/layerlistoperationallayer.md)>
 
-*Defined in [main.ts:217](https://github.com/WSDOT-GIS/grouped-layer-list/blob/7ac8b6c/packages/grouped-layer-list/src/main.ts#L217)*
+*Defined in [main.ts:217](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c2b0772/packages/grouped-layer-list/src/main.ts#L217)*
 
 Enumerate through the layers in the order presented in the grouping object.
 *__throws__*: ReferenceError thrown if titleGroups contains a value that has no corresponding layer when throwOnValueNotFound is true.
@@ -186,7 +186,7 @@ ___
 
 ▸ **getGroupsFromCreateMapItem**(itemInfo: *[ItemInfo](interfaces/iteminfo.md)*):  `null` &#124; [LayerPropGroups](interfaces/layerpropgroups.md)
 
-*Defined in [main.ts:109](https://github.com/WSDOT-GIS/grouped-layer-list/blob/7ac8b6c/packages/grouped-layer-list/src/main.ts#L109)*
+*Defined in [main.ts:109](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c2b0772/packages/grouped-layer-list/src/main.ts#L109)*
 
 Gets layer group definition (if present) from a web map.
 
@@ -205,7 +205,7 @@ ___
 
 ▸ **getTabContainerFromCheckbox**(checkbox: *`HTMLInputElement`*): `Element`
 
-*Defined in [metadataUtils.ts:96](https://github.com/WSDOT-GIS/grouped-layer-list/blob/7ac8b6c/packages/grouped-layer-list/src/metadataUtils.ts#L96)*
+*Defined in [metadataUtils.ts:96](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c2b0772/packages/grouped-layer-list/src/metadataUtils.ts#L96)*
 
 Gets the tab container for the layer corresponding to the given checkbox
 
@@ -224,7 +224,7 @@ ___
 
 ▸ **wrapUrlWithFormatterPage**(metadataUrl: *`string`*, formatterPageUrl?: *`string`*): `string`
 
-*Defined in [metadataUtils.ts:15](https://github.com/WSDOT-GIS/grouped-layer-list/blob/7ac8b6c/packages/grouped-layer-list/src/metadataUtils.ts#L15)*
+*Defined in [metadataUtils.ts:15](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c2b0772/packages/grouped-layer-list/src/metadataUtils.ts#L15)*
 
 Creates a URL for a page that formats a metadata URL's XML into HTML.
 

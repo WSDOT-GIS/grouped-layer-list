@@ -39,7 +39,7 @@ Options for the GroupedLayerList constructor
 **● groupProperty**: * "id" &#124; "title"
 *
 
-*Defined in [main.ts:162](https://github.com/WSDOT-GIS/grouped-layer-list/blob/7ac8b6c/packages/grouped-layer-list/src/main.ts#L162)*
+*Defined in [main.ts:162](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c2b0772/packages/grouped-layer-list/src/main.ts#L162)*
 
 Which property do the arrays in "groups" correpsond to: "id" or "title"?
 
@@ -50,7 +50,7 @@ ___
 
 **● groups**: *[LayerPropGroups](layerpropgroups.md)*
 
-*Defined in [main.ts:158](https://github.com/WSDOT-GIS/grouped-layer-list/blob/7ac8b6c/packages/grouped-layer-list/src/main.ts#L158)*
+*Defined in [main.ts:158](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c2b0772/packages/grouped-layer-list/src/main.ts#L158)*
 
 Defines how layers are grouped. Property names are group names. Values correspond to either the title or id properties of operational layers.
 
@@ -88,7 +88,7 @@ ___
 **● metadata**: * `undefined` &#124; `false` &#124; `true`
 *
 
-*Defined in [main.ts:170](https://github.com/WSDOT-GIS/grouped-layer-list/blob/7ac8b6c/packages/grouped-layer-list/src/main.ts#L170)*
+*Defined in [main.ts:170](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c2b0772/packages/grouped-layer-list/src/main.ts#L170)*
 
 Set to true to add the metadata tab to layers, false otherwise.
 
@@ -100,7 +100,7 @@ ___
 **● metadataFormatterPage**: * `string` &#124; `null`
 *
 
-*Defined in [main.ts:174](https://github.com/WSDOT-GIS/grouped-layer-list/blob/7ac8b6c/packages/grouped-layer-list/src/main.ts#L174)*
+*Defined in [main.ts:174](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c2b0772/packages/grouped-layer-list/src/main.ts#L174)*
 
 Specify the metadata formatter page. Set to null to instead show unformatted metadata.
 
@@ -182,7 +182,7 @@ ___
 **● throwOnGroupNotFound**: * `undefined` &#124; `false` &#124; `true`
 *
 
-*Defined in [main.ts:166](https://github.com/WSDOT-GIS/grouped-layer-list/blob/7ac8b6c/packages/grouped-layer-list/src/main.ts#L166)*
+*Defined in [main.ts:166](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c2b0772/packages/grouped-layer-list/src/main.ts#L166)*
 
 Set to true if you want to throw an exception when a referenced group cannot be found.
 

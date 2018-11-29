@@ -91,11 +91,6 @@ export function createLayerLink(layerList: LayerList) {
     a.href = url.toString();
   });
 
-  // TODO: setup event handling for opacity slider.
-  // * For each operational layer...
-  //    * find opacity slider widget
-  //    * setup event handler on widget that updates layer opacity URL setting
-
   // Setup link click event. When link is clicked
   a.onclick = function(this, e) {
     const unsupportedMessage =

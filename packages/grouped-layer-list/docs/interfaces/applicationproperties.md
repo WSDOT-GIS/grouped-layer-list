@@ -30,7 +30,7 @@ Application properties section of an ArcGIS Online webmap.
 
 **● viewing**: *`object`*
 
-*Defined in [main.ts:72](https://github.com/WSDOT-GIS/grouped-layer-list/blob/7ac8b6c/packages/grouped-layer-list/src/main.ts#L72)*
+*Defined in [main.ts:72](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c2b0772/packages/grouped-layer-list/src/main.ts#L72)*
 
 properties related to viewing (as opposed to editing, etc.)
 

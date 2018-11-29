@@ -38,7 +38,7 @@ Operational layer property from the returned object of a createMap operation.
 
 **● errors**: *`Error`[]*
 
-*Defined in [main.ts:32](https://github.com/WSDOT-GIS/grouped-layer-list/blob/7ac8b6c/packages/grouped-layer-list/src/main.ts#L32)*
+*Defined in [main.ts:32](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c2b0772/packages/grouped-layer-list/src/main.ts#L32)*
 
 A collection of errors that were encountered when adding the layer to the map.
 
@@ -52,7 +52,7 @@ ___
 
 *Inherited from [OperationalLayerCommon](operationallayercommon.md).[id](operationallayercommon.md#id)*
 
-*Defined in [main.ts:19](https://github.com/WSDOT-GIS/grouped-layer-list/blob/7ac8b6c/packages/grouped-layer-list/src/main.ts#L19)*
+*Defined in [main.ts:19](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c2b0772/packages/grouped-layer-list/src/main.ts#L19)*
 
 ___
 <a id="layerobject"></a>
@@ -61,7 +61,7 @@ ___
 
 **● layerObject**: *`Layer`*
 
-*Defined in [main.ts:34](https://github.com/WSDOT-GIS/grouped-layer-list/blob/7ac8b6c/packages/grouped-layer-list/src/main.ts#L34)*
+*Defined in [main.ts:34](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c2b0772/packages/grouped-layer-list/src/main.ts#L34)*
 
 "esri/layers/layer" object.
 
@@ -72,7 +72,7 @@ ___
 
 **● layerType**: *`string`*
 
-*Defined in [main.ts:36](https://github.com/WSDOT-GIS/grouped-layer-list/blob/7ac8b6c/packages/grouped-layer-list/src/main.ts#L36)*
+*Defined in [main.ts:36](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c2b0772/packages/grouped-layer-list/src/main.ts#L36)*
 
 The type of layer.
 
@@ -83,7 +83,7 @@ ___
 
 **● resourceInfo**: *`any`*
 
-*Defined in [main.ts:38](https://github.com/WSDOT-GIS/grouped-layer-list/blob/7ac8b6c/packages/grouped-layer-list/src/main.ts#L38)*
+*Defined in [main.ts:38](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c2b0772/packages/grouped-layer-list/src/main.ts#L38)*
 
 Resource information
 
@@ -97,7 +97,7 @@ ___
 
 *Inherited from [OperationalLayerCommon](operationallayercommon.md).[title](operationallayercommon.md#title)*
 
-*Defined in [main.ts:21](https://github.com/WSDOT-GIS/grouped-layer-list/blob/7ac8b6c/packages/grouped-layer-list/src/main.ts#L21)*
+*Defined in [main.ts:21](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c2b0772/packages/grouped-layer-list/src/main.ts#L21)*
 
 Optional The title of the layer.
 
@@ -108,7 +108,7 @@ ___
 
 **● url**: *`string`*
 
-*Defined in [main.ts:40](https://github.com/WSDOT-GIS/grouped-layer-list/blob/7ac8b6c/packages/grouped-layer-list/src/main.ts#L40)*
+*Defined in [main.ts:40](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c2b0772/packages/grouped-layer-list/src/main.ts#L40)*
 
 layer URL
 
@@ -122,7 +122,7 @@ ___
 
 *Inherited from [OperationalLayerCommon](operationallayercommon.md).[visibility](operationallayercommon.md#visibility)*
 
-*Defined in [main.ts:23](https://github.com/WSDOT-GIS/grouped-layer-list/blob/7ac8b6c/packages/grouped-layer-list/src/main.ts#L23)*
+*Defined in [main.ts:23](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c2b0772/packages/grouped-layer-list/src/main.ts#L23)*
 
 Optional Indicates whether to set the default visibility.
 
