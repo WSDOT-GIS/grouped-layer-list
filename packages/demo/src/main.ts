@@ -5,6 +5,7 @@ import GroupedLayerList, {
 } from "@wsdot/grouped-layer-list";
 import arcgisUtils from "esri/arcgis/utils";
 import esriConfig from "esri/config";
+import HomeButton from "esri/dijit/HomeButton";
 import Extent from "esri/geometry/Extent";
 import { createLayerLink, setOperationalLayers } from "./searchUtils";
 
@@ -66,6 +67,19 @@ arcgisUtils
   })
   .then((evt: CreateMapEvent) => {
     const { map, itemInfo, errors } = evt;
+
+    const mapButtonDiv = document.createElement("button");
+    mapButtonDiv.id = "homeButton";
+    map.root.appendChild(mapButtonDiv);
+
+    const homeButton = new HomeButton(
+      {
+        visible: true,
+        map
+      },
+      mapButtonDiv
+    );
+    homeButton.startup();
 
     // get the groupings defined in ArcGIS Online webmap item.
     const groupings = getGroupsFromCreateMapItem(itemInfo) || undefined;

@@ -4,6 +4,12 @@ html, body, #map, #container {
     margin: 0;
   }
 
+.HomeButton {
+    position: relative;
+    top: 85px;
+    left: 20px;
+}
+
 #container {
     display: grid;
     grid-template-columns: 300px auto;
