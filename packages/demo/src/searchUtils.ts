@@ -78,15 +78,51 @@ export function createLayerLink(layerList: LayerList) {
   div.appendChild(a);
 
   layerList.on("toggle", function(this: HTMLDivElement, toggleEvent) {
+    // Enable and turn off copied status.
     div.classList.remove(copiedClass);
     div.classList.remove(disabledClass);
     const { layerIndex, visible, subLayerIndex } = toggleEvent;
+
+    // Get the operational layer from the layer list based on the event's layerIndex.
     const operationalLayer = layerList.layers[
       layerIndex
     ] as LayerListOperationalLayer;
+
+    // Get the URL currently in the link's href attribute.
+    // Store in URL object so that search params can be
+    // easily searched and manipulated.
     const url = new URL(a.href);
 
-    const layerSettings = new LayerSettings(operationalLayer.layer);
+    // Retrieve the current settings store in the URL for this layer.
+    // If there are no settings, the old settings variable will be null.
+    const oldSettingStr = url.searchParams.get(operationalLayer.id!);
+    const oldSettings = oldSettingStr
+      ? LayerSettings.parse(oldSettingStr)
+      : null;
+
+    // Detect if the settings for this layer had sublayers specified.
+    const hadSublayersDefined = oldSettings
+      ? oldSettings.visibleLayers != null
+      : false;
+
+    // Initialize layer settings object.
+    let layerSettings: LayerSettings;
+
+    // Layer settings string for the URL will simply indicate if
+    // the parent layer is on or off except under these conditions:
+    // * Ability to change sublayer visibility is enabled for current layer.
+    // * User changed visibility of sublayer via UI or sublayer visibility
+    //   had been previously set in the URL.
+    if (
+      operationalLayer.showSubLayers &&
+      (hadSublayersDefined || subLayerIndex != null)
+    ) {
+      layerSettings = new LayerSettings(operationalLayer.layer);
+    } else {
+      layerSettings = new LayerSettings({ visible });
+    }
+
+    // Update the URL search parameter for this layer and assign updated URL to link's href.
     url.searchParams.set(operationalLayer.id!, layerSettings.toString());
     a.href = url.toString();
   });

@@ -1,5 +1,6 @@
 import { LayerListOperationalLayer } from "@wsdot/grouped-layer-list";
 import ArcGISDynamicMapServiceLayer from "esri/layers/ArcGISDynamicMapServiceLayer";
+import { makeBooleanRe } from "./reUtils";
 
 /**
  * interface common to an operational layer as well as LayerSettings.
@@ -18,17 +19,25 @@ export class LayerSettings implements ILayerSettings {
    * @param str a value from a URLSearchParams.
    */
   public static parse(str: string): LayerSettings | null {
-    const re = /^((?:true)|(?:false))(?:;([\d,]+))?/;
-    const match = str.match(re);
-    if (!match) {
+    const trueRe = makeBooleanRe(true, true);
+    const falseRe = makeBooleanRe(false, true);
+    const sublayersRe = /^\d+(?:[\s,]\d+)*$/;
+
+    let visible = trueRe.test(str)
+      ? true
+      : falseRe.test(str)
+        ? false
+        : undefined;
+    let visibleLayers: number[] | undefined;
+    if (visible === undefined && sublayersRe.test(str)) {
+      visibleLayers = str.split(/\D+/).map(s => parseInt(s, 10));
+      visible = true;
+    }
+
+    if (visible === null) {
       return null;
     }
 
-    const [, visibleStr, visibleLayersStr] = match;
-    const visible = /(true)/i.test(visibleStr);
-    const visibleLayers = visibleLayersStr
-      ? visibleLayersStr.split(",").map(s => parseInt(s, 10))
-      : undefined;
     return new LayerSettings({
       visible,
       visibleLayers
@@ -84,14 +93,16 @@ export class LayerSettings implements ILayerSettings {
    * Converts to string for use with URLSearchParams
    */
   public toString() {
-    const output = [];
     if (this.visible == null) {
       return "";
     }
-    output.push(`${this.visible}`);
-    if (this.visibleLayers) {
-      output.push(this.visibleLayers.join(","));
+    if (!this.visible) {
+      return "⍻";
     }
-    return output.join(";");
+
+    if (this.visibleLayers) {
+      return this.visibleLayers.join(" ");
+    }
+    return "✓";
   }
 }
