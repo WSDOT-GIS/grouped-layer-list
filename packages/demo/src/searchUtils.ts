@@ -84,7 +84,7 @@ export function createLayerLink(layerList: LayerList) {
     const operationalLayer = layerList.layers[
       layerIndex
     ] as LayerListOperationalLayer;
-    const url = new URL(location.href, location.href.replace(/\?.+$/, ""));
+    const url = new URL(a.href);
 
     const layerSettings = new LayerSettings(operationalLayer.layer);
     url.searchParams.set(operationalLayer.id!, layerSettings.toString());
