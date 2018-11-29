@@ -5,6 +5,7 @@ import GroupedLayerList, {
 } from "@wsdot/grouped-layer-list";
 import arcgisUtils from "esri/arcgis/utils";
 import esriConfig from "esri/config";
+import Extent from "esri/geometry/Extent";
 import { createLayerLink, setOperationalLayers } from "./searchUtils";
 
 esriConfig.defaults.io.httpsDomains.push("wsdot.wa.gov");
@@ -28,13 +29,41 @@ function getMapIDFromUrl() {
   return match[1];
 }
 
+/**
+ * Gets extent from URL if one is defined there.
+ */
+function getExtentFromUrl() {
+  const url = new URL(location.href);
+  const extStr = url.searchParams.get("map-extent");
+  if (!extStr) {
+    return undefined;
+  }
+
+  const [xmin, ymin, xmax, ymax] = extStr
+    .split(/[\s,]/g)
+    .map(s => parseFloat(s));
+
+  const extent = new Extent({
+    xmin,
+    ymin,
+    xmax,
+    ymax,
+    spatialReference: { wkid: 4326 }
+  });
+  return extent;
+}
+
 // Set default map ID.
 // Override default map ID if one is defined in URL search params.
 const mapId = getMapIDFromUrl();
 
 // Create the map using AGOL webmap.
 arcgisUtils
-  .createMap(mapId, "map")
+  .createMap(mapId, "map", {
+    mapOptions: {
+      extent: getExtentFromUrl() || undefined
+    }
+  })
   .then((evt: CreateMapEvent) => {
     const { map, itemInfo, errors } = evt;
 

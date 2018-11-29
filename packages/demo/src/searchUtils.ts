@@ -1,6 +1,7 @@
 import { LayerListOperationalLayer } from "@wsdot/grouped-layer-list";
 import LayerList from "esri/dijit/LayerList";
-import ArcGISDynamicMapServiceLayer from "esri/layers/ArcGISDynamicMapServiceLayer";
+import Extent from "esri/geometry/Extent";
+import webMercatorUtils from "esri/geometry/webMercatorUtils";
 import { LayerSettings } from "./LayerSettings";
 
 /**
@@ -76,6 +77,20 @@ export function createLayerLink(layerList: LayerList) {
   div.classList.add(disabledClass);
 
   div.appendChild(a);
+
+  layerList.map.on("extent-change", ({ extent }) => {
+    extent = webMercatorUtils.webMercatorToGeographic(extent) as Extent;
+    const { xmin, ymin, xmax, ymax } = extent;
+    const searchValue = [xmin, ymin, xmax, ymax]
+      .map(n => {
+        return Math.round(n * 10000) / 10000;
+      })
+      .join(" ");
+    const url = new URL(a.href);
+    url.searchParams.set("map-extent", searchValue);
+    a.href = url.toString();
+    div.classList.remove(disabledClass);
+  });
 
   layerList.on("toggle", function(this: HTMLDivElement, toggleEvent) {
     // Enable and turn off copied status.
