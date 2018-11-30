@@ -38,8 +38,8 @@ html, body, #map, #container {
 .layer-link {
     position: absolute;
     display: block;
-    right: 20px;
-    top: 20px;
+    left: 20px;
+    bottom: 20px;
     background-color: white;
     padding: 0.3rem;
 }
@@ -53,4 +53,16 @@ html, body, #map, #container {
 
 .layer-link-disabled {
     display: none;
+}
+
+.webmapForm {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.webmapForm input {
+    width: 400px;
 }

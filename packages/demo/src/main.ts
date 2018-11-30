@@ -8,12 +8,15 @@ import esriConfig from "esri/config";
 import HomeButton from "esri/dijit/HomeButton";
 import Extent from "esri/geometry/Extent";
 import { createLayerLink, setOperationalLayers } from "./searchUtils";
+import { createWebmapIdForm } from "./WebmapSelector";
 
 esriConfig.defaults.io.httpsDomains.push("wsdot.wa.gov");
 esriConfig.defaults.io.corsEnabledServers.push(
   "wsdot.wa.gov",
   "data.wsdot.wa.gov"
 );
+
+const mapInput = createWebmapIdForm();
 
 /**
  * Gets the map ID from URL search parameter. Returns a default value
@@ -80,6 +83,8 @@ arcgisUtils
       mapButtonDiv
     );
     homeButton.startup();
+
+    map.root.appendChild(mapInput);
 
     // get the groupings defined in ArcGIS Online webmap item.
     const groupings = getGroupsFromCreateMapItem(itemInfo) || undefined;
