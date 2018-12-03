@@ -4,6 +4,16 @@ html, body, #map, #container {
     margin: 0;
   }
 
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+.layer-list-group-start::before {
+    display: block;
+    text-align: center;
+    font-weight: bold;
+}
+
 .HomeButton {
     position: relative;
     top: 85px;
@@ -37,21 +47,36 @@ html, body, #map, #container {
 
 .layer-link {
     position: absolute;
-    display: block;
     left: 20px;
-    bottom: 20px;
-    background-color: white;
-    padding: 0.3rem;
+    top: 125px;
+    width: 30px;
+    height: 30px;
+    background-color: #666;
+    background-color: rgba(102,102,102,0.8);
+    padding: 0.1rem;
+    text-align: center;
+    font-size: 16pt;
+    border-radius: 5px;
 }
 
-.layer-link-copied:before {
-    content: '✓';
-    padding-right: 10px;
-    color: rgb(0, 187, 0);
-    font-weight: bold;
+.layer-link:hover {
+    background-color: #333;
+    background-color: rgba(102,102,102,0.9)
 }
 
-.layer-link-disabled {
+.layer-link--copied {
+    background-color: rgba(0,255,0, 0.8);
+}
+
+.layer-link--copied:hover {
+    background-color: rgba(0,255,0, 0.9);
+}
+
+.layer-link a {
+    text-decoration: none;
+}
+
+.layer-link--disabled {
     display: none;
 }
 
@@ -65,4 +90,20 @@ html, body, #map, #container {
 
 .webmapForm input {
     width: 400px;
+}
+
+.github-link {
+    display: block;
+    position: absolute;
+    bottom: 50px;
+    right: 5px;
+}
+
+/** Show badge image instead of label span text */
+
+.github-link:before {
+    content: url('https://img.shields.io/badge/Source--lightgray.svg?logo=github&style=social')
+}
+.github-link__label {
+    display: none;
 }
