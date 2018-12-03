@@ -1,15 +1,15 @@
 import Portal from "esri/arcgis/Portal";
 
+const wsdotAgolOrgId = "IYrj3otxNjPsrTRD";
+
 /**
  * Queries ArcGIS online for WSDOT webmaps.
  */
 async function getWebMaps() {
-  // https://wsdot.maps.arcgis.com/home/search.html?q=&start=1&sortOrder=desc&sortField=relevance&focus=maps-webmaps&contentstatus=org_authoritative#content
-  // https://wsdot.maps.arcgis.com/sharing/rest/search?num=16&start=1&sortField=&sortOrder=desc&q= orgid:IYrj3otxNjPsrTRD -type:"Code Attachment" -type:"Featured Items" -type:"Symbol Set" -type:"Color Set" -type:"Windows Viewer Add In" -type:"Windows Viewer Configuration" -type:"Map Area" -typekeywords:"MapAreaPackage"&f=json
   const portal = new Portal.Portal("https://www.arcgis.com");
   const queryResults = await portal.queryItems({
     num: 100,
-    q: 'orgid:IYrj3otxNjPsrTRD AND type:"Web Map" AND (owner:"JacobsJ_WSDOT")'
+    q: `orgid:${wsdotAgolOrgId} AND type:("Web Map" NOT "Application") AND tags:"geoportal"`
   });
   const { results } = queryResults as Portal.PortalQueryResult;
   return results as Portal.PortalItem[];
@@ -31,7 +31,7 @@ export function createWebmapIdForm() {
   input.type = "text";
   input.required = true;
   input.placeholder = "ArcGIS webmap id";
-  input.title = "webmap ID";
+  input.title = "value must be hexadecimal webmap ID";
   input.pattern = /^[a-f0-9]+$/.source;
 
   const datalist = document.createElement("datalist");
@@ -51,7 +51,7 @@ export function createWebmapIdForm() {
     results => {
       results.forEach(pi => {
         const option = document.createElement("option");
-        option.textContent = pi.id;
+        option.textContent = option.value = pi.id;
         option.label = pi.title;
         datalist.appendChild(option);
       });
