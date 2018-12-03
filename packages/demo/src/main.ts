@@ -7,6 +7,8 @@ import arcgisUtils from "esri/arcgis/utils";
 import esriConfig from "esri/config";
 import HomeButton from "esri/dijit/HomeButton";
 import Extent from "esri/geometry/Extent";
+import { FormatError } from "./FormatError";
+import { createSourceLink } from "./GithubLink";
 import { createLayerLink, setOperationalLayers } from "./searchUtils";
 import { createWebmapIdForm } from "./WebmapSelector";
 
@@ -129,6 +131,17 @@ arcgisUtils
     }
 
     layerList.startup();
+
+    try {
+      const sourceLink = createSourceLink(
+        "https://www.github.com/wsdot-gis/grouped-layer-list"
+      );
+      map.root.appendChild(sourceLink);
+    } catch (err) {
+      if (!(err instanceof FormatError)) {
+        throw err;
+      }
+    }
   })
   // Handle errors from CreateMap function.
   .catch((err: Error) => {

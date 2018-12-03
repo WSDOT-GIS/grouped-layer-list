@@ -4,6 +4,16 @@ html, body, #map, #container {
     margin: 0;
   }
 
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+.layer-list-group-start::before {
+    display: block;
+    text-align: center;
+    font-weight: bold;
+}
+
 .HomeButton {
     position: relative;
     top: 85px;
@@ -65,4 +75,20 @@ html, body, #map, #container {
 
 .webmapForm input {
     width: 400px;
+}
+
+.github-link {
+    display: block;
+    position: absolute;
+    bottom: 50px;
+    right: 5px;
+}
+
+/** Show badge image instead of label span text */
+
+.github-link:before {
+    content: url('https://img.shields.io/badge/Source--lightgray.svg?logo=github&style=social')
+}
+.github-link__label {
+    display: none;
 }

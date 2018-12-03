@@ -7,10 +7,11 @@ For [ArcGIS API for JavaScript version 3.X], an extension of [LayerList] which w
 - Adds group headings
 - Adds metadata tabs for map service layers that support the [Layer Metadata SOE].
 
-[![GitHub](https://img.shields.io/github/issues/wsdot-gis/grouped-layer-list.svg?style=flat-square)](https://github.com/wsdot-gis/grouped-layer-list/issues)
-[![npm](https://img.shields.io/npm/v/@wsdot/grouped-layer-list.svg?style=flat-square)](https://www.npmjs.org/package/@wsdot/grouped-layer-list)
-[![npm](https://img.shields.io/npm/l/@wsdot/grouped-layer-list.svg?style=flat-square)](https://www.npmjs.org/package/@wsdot/grouped-layer-list)
-[![npm](https://img.shields.io/npm/dm/@wsdot/grouped-layer-list.svg?style=flat-square)](https://www.npmjs.org/package/@wsdot/grouped-layer-list)
+[![Demo](https://img.shields.io/badge/Pages-demo-blue.svg?logo=github&longCache=true)][demo]
+[![Issues on GitHub](https://img.shields.io/github/issues/wsdot-gis/grouped-layer-list.svg?style=flat-square)](https://github.com/wsdot-gis/grouped-layer-list/issues)
+[![npm version](https://img.shields.io/npm/v/@wsdot/grouped-layer-list.svg?style=flat-square)][package]
+[![npm license](https://img.shields.io/npm/l/@wsdot/grouped-layer-list.svg?style=flat-square)][package]
+[![npm downloads](https://img.shields.io/npm/dm/@wsdot/grouped-layer-list.svg?style=flat-square)][package]
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 
 ## Usage
@@ -115,9 +116,11 @@ arcgisUtils.createMap(mapId, "map").then((evt: CreateMapEvent) => {
 
 [arcgis api for javascript version 3.x]: https://developers.arcgis.com/javascript/3
 [applicationProperties.viewing]:https://developers.arcgis.com/web-map-specification/objects/viewing/
+[demo]:https://wsdot-gis.github.io/grouped-layer-list
 [layer metadata soe]: https://github.com/WSDOT-GIS/LayerMetadataSoe
 [layerlist]: https://developers.arcgis.com/javascript/3/jsapi/layerlist-amd.html
 [layerlistv4]: https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-LayerList.html
 [operationalLayer]:https://developers.arcgis.com/web-map-specification/objects/operationalLayers/
+[package]:https://www.npmjs.org/package/@wsdot/grouped-layer-list
 [web map]:https://developers.arcgis.com/web-map-specification/
 [ArcGIS Online Assistant]:https://ago-assistant.esri.com/
