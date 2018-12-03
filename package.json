@@ -3,9 +3,11 @@
   "private": true,
   "scripts": {
     "prepare": "lerna bootstrap",
+    "ghpages": "node scripts/ghpages.js",
     "serve": "serve ./packages/demo"
   },
   "devDependencies": {
+    "gh-pages": "^2.0.1",
     "lerna": "^3.4.3"
   }
 }
