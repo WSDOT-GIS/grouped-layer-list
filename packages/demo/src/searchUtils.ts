@@ -71,8 +71,8 @@ export function createLayerLink(layerList: LayerList) {
   a.target = "_blank";
   a.classList.add("layer-link__anchor");
 
-  const copiedClass = "layer-link-copied";
-  const disabledClass = "layer-link-disabled";
+  const copiedClass = "layer-link--copied";
+  const disabledClass = "layer-link--disabled";
 
   div.classList.add(disabledClass);
 
@@ -90,6 +90,7 @@ export function createLayerLink(layerList: LayerList) {
     url.searchParams.set("map-extent", searchValue);
     a.href = url.toString();
     div.classList.remove(disabledClass);
+    div.classList.remove(copiedClass);
   });
 
   layerList.on("toggle", function(this: HTMLDivElement, toggleEvent) {
