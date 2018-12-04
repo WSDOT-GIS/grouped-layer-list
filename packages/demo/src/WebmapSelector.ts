@@ -17,44 +17,63 @@ async function getWebMaps() {
 
 /**
  * Creates a form from which a user can reload the application with a different webmap.
+ * @param inputType Specify "select" (default) to use a select element or "input" to use an input element with a datalist of options.
+ * @returns a form with controls that allows the user to change the webmap.
  */
-export function createWebmapIdForm() {
+export function createWebmapIdForm(inputType: "select" | "input" = "select") {
   const queryPomise = getWebMaps();
 
   const form = document.createElement("form");
   form.action = ".";
   form.classList.add("webmapForm");
 
-  const input = document.createElement("input");
-  input.name = "webmap";
-  input.id = "webmapInput";
-  input.type = "text";
-  input.required = true;
-  input.placeholder = "ArcGIS webmap id";
-  input.title = "value must be hexadecimal webmap ID";
-  input.pattern = /^[a-f0-9]+$/.source;
+  const progress = document.createElement("progress");
+  form.appendChild(progress);
 
-  const datalist = document.createElement("datalist");
-  datalist.id = "webmapList";
+  let select: HTMLSelectElement | undefined;
+  let input: HTMLInputElement | undefined;
+  let datalist: HTMLDataListElement | undefined;
 
-  input.setAttribute("list", datalist.id);
+  if (inputType === "select") {
+    select = document.createElement("select");
+    select.disabled = true;
+    select.innerHTML = "<option disabled selected>change map</option>";
+    select.name = "webmap";
+    form.appendChild(select);
+  } else {
+    input = document.createElement("input");
+    input.name = "webmap";
+    input.id = "webmapInput";
+    input.type = "text";
+    input.required = true;
+    input.placeholder = "ArcGIS webmap id";
+    input.title = "value must be hexadecimal webmap ID";
+    input.pattern = /^[a-f0-9]+$/.source;
+
+    datalist = document.createElement("datalist");
+    datalist.id = "webmapList";
+
+    form.appendChild(input);
+    form.appendChild(datalist);
+
+    input.setAttribute("list", datalist.id);
+  }
 
   const button = document.createElement("button");
   button.type = "submit";
   button.textContent = "change map";
-
-  form.appendChild(input);
-  form.appendChild(datalist);
   form.appendChild(button);
 
   queryPomise.then(
     results => {
+      (select || input)!.disabled = false;
       results.forEach(pi => {
         const option = document.createElement("option");
         option.textContent = option.value = pi.id;
         option.label = pi.title;
-        datalist.appendChild(option);
+        (select || datalist)!.appendChild(option);
       });
+      form.removeChild(progress);
     },
     error => {
       console.error("AGOL query error", error);
@@ -62,6 +81,7 @@ export function createWebmapIdForm() {
         detail: { error }
       });
       form.dispatchEvent(customEvent);
+      form.removeChild(progress);
     }
   );
 
