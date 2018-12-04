@@ -9,12 +9,17 @@
     <link rel="stylesheet" href="https://js.arcgis.com/3.26/dijit/themes/claro/claro.css">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default,Promise,Array.prototype.find,Array.prototype.includes,Array.prototype.forEach,fetch"></script>
 </head>
 
 <body class="claro">
     <div id="container">
-        <div id="layerList"></div>
-        <div id="map"></div>
+        <div id="layerListContainer">
+            <div id="layerList"></div>
+        </div>
+        <div id="mapContainer">
+            <div id="map"></div>
+        </div>
     </div>
     <script>
         (function (root) {
