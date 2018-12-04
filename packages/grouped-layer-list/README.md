@@ -114,6 +114,40 @@ arcgisUtils.createMap(mapId, "map").then((evt: CreateMapEvent) => {
   });
 ```
 
+### Polyfills for older browsers
+
+In order to work on older browsers (e.g., if you still need to support IE 11), you will need to use polyfills. The following features will need to be supported. (Polyfills should not be required with modern browsers.)
+
+* [Promise](https://caniuse.com/#feat=promises)
+* [fetch](https://caniuse.com/#feat=fetch)
+* [Array.prototype.find](https://caniuse.com/#feat=array-find)
+* [Array.prototype.includes](https://caniuse.com/#feat=array-includes)
+* [Array.prototype.forEach](https://kangax.github.io/compat-table/es5/#test-Array.prototype.forEach)
+
+#### Example: using Polyfill.io
+
+Add to the `<head>` of your HTML page: https://cdn.polyfill.io/v2/polyfill.min.js?features=default,Promise,Array.prototype.find,Array.prototype.includes,Array.prototype.forEach,fetch
+
+```html
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- ... -->
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default,Promise,Array.prototype.find,Array.prototype.includes,Array.prototype.forEach,fetch"></script>
+</head>
+
+<body class="claro">
+  <!-- ... -->
+</body>
+
+</html>
+```
+`https://cdn.polyfill.io/v2/polyfill.min.js?features=default,Promise,Array.prototype.find,Array.prototype.includes,Array.prototype.forEach,fetch`
+
+
 [arcgis api for javascript version 3.x]: https://developers.arcgis.com/javascript/3
 [applicationProperties.viewing]:https://developers.arcgis.com/web-map-specification/objects/viewing/
 [demo]:https://wsdot-gis.github.io/grouped-layer-list
