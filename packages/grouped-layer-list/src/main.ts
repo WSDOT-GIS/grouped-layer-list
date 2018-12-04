@@ -12,6 +12,8 @@ import Layer from "esri/layers/layer";
 import EsriMap from "esri/map";
 import { addMetadataTabs } from "./metadataUtils";
 
+export * from "./searchUtils";
+
 /**
  * Properties that operational layers have in common.
  */

@@ -1,8 +1,8 @@
-import { LayerListOperationalLayer } from "@wsdot/grouped-layer-list";
 import LayerList from "esri/dijit/LayerList";
 import Extent from "esri/geometry/Extent";
 import webMercatorUtils from "esri/geometry/webMercatorUtils";
 import { LayerSettings } from "./LayerSettings";
+import { LayerListOperationalLayer } from "./main";
 
 /**
  * Updates the layers' settings to match those from URL search parameters.

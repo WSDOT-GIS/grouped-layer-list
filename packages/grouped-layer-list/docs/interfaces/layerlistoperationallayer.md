@@ -36,7 +36,7 @@ Defines a map layer for a layer list.
 **● button**: * `Node` &#124; `string`
 *
 
-*Defined in [main.ts:48](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c2b0772/packages/grouped-layer-list/src/main.ts#L48)*
+*Defined in [main.ts:50](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/main.ts#L50)*
 
 Optional Custom button node that will appear within the layer title.
 
@@ -48,7 +48,7 @@ ___
 **● content**: * `Node` &#124; `string`
 *
 
-*Defined in [main.ts:50](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c2b0772/packages/grouped-layer-list/src/main.ts#L50)*
+*Defined in [main.ts:52](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/main.ts#L52)*
 
 Optional Custom node to insert the content. It displays below the title.
 
@@ -59,7 +59,7 @@ ___
 
 **● featureCollection**: *`Layer`*
 
-*Defined in [main.ts:52](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c2b0772/packages/grouped-layer-list/src/main.ts#L52)*
+*Defined in [main.ts:54](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/main.ts#L54)*
 
 Required Layer's feature collection. This is required if a layer is not specified.
 
@@ -73,7 +73,7 @@ ___
 
 *Overrides [OperationalLayerCommon](operationallayercommon.md).[id](operationallayercommon.md#id)*
 
-*Defined in [main.ts:54](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c2b0772/packages/grouped-layer-list/src/main.ts#L54)*
+*Defined in [main.ts:56](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/main.ts#L56)*
 
 Optional The layers id.
 
@@ -84,7 +84,7 @@ ___
 
 **● layer**: *`Layer`*
 
-*Defined in [main.ts:56](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c2b0772/packages/grouped-layer-list/src/main.ts#L56)*
+*Defined in [main.ts:58](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/main.ts#L58)*
 
 Required The layer object. This is required unless using a feature collection.
 
@@ -96,7 +96,7 @@ ___
 **● showLegend**: * `undefined` &#124; `false` &#124; `true`
 *
 
-*Defined in [main.ts:58](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c2b0772/packages/grouped-layer-list/src/main.ts#L58)*
+*Defined in [main.ts:60](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/main.ts#L60)*
 
 Optional Indicates whether to display a legend for the layer items.
 
@@ -108,7 +108,7 @@ ___
 **● showOpacitySlider**: * `undefined` &#124; `false` &#124; `true`
 *
 
-*Defined in [main.ts:60](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c2b0772/packages/grouped-layer-list/src/main.ts#L60)*
+*Defined in [main.ts:62](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/main.ts#L62)*
 
 Optional Indicates whether to display the opacity slider.
 
@@ -120,7 +120,7 @@ ___
 **● showSubLayers**: * `undefined` &#124; `false` &#124; `true`
 *
 
-*Defined in [main.ts:62](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c2b0772/packages/grouped-layer-list/src/main.ts#L62)*
+*Defined in [main.ts:64](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/main.ts#L64)*
 
 Optional Indicates whether to show sublayers for this layer. Prior to version 3.15, this was named sublayers.
 
@@ -134,7 +134,7 @@ ___
 
 *Inherited from [OperationalLayerCommon](operationallayercommon.md).[title](operationallayercommon.md#title)*
 
-*Defined in [main.ts:21](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c2b0772/packages/grouped-layer-list/src/main.ts#L21)*
+*Defined in [main.ts:23](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/main.ts#L23)*
 
 Optional The title of the layer.
 
@@ -148,7 +148,7 @@ ___
 
 *Inherited from [OperationalLayerCommon](operationallayercommon.md).[visibility](operationallayercommon.md#visibility)*
 
-*Defined in [main.ts:23](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c2b0772/packages/grouped-layer-list/src/main.ts#L23)*
+*Defined in [main.ts:25](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/main.ts#L25)*
 
 Optional Indicates whether to set the default visibility.
 

@@ -47,7 +47,7 @@ An extension of esri/dijit/LayerList that supports grouping.
 
 *Overrides LayerList.__constructor*
 
-*Defined in [main.ts:317](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c2b0772/packages/grouped-layer-list/src/main.ts#L317)*
+*Defined in [main.ts:319](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/main.ts#L319)*
 
 **Parameters:**
 

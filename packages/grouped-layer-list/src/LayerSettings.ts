@@ -1,10 +1,11 @@
-import { LayerListOperationalLayer } from "@wsdot/grouped-layer-list";
 import ArcGISDynamicMapServiceLayer from "esri/layers/ArcGISDynamicMapServiceLayer";
+import { LayerListOperationalLayer } from "./main";
 import { makeBooleanRe } from "./reUtils";
 
 /**
  * interface common to an operational layer as well as LayerSettings.
  */
+// tslint:disable-next-line:interface-name
 export interface ILayerSettings {
   visible?: boolean;
   visibleLayers?: number[];

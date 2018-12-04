@@ -1,7 +1,9 @@
 import GroupedLayerList, {
   convertLayer,
+  createLayerLink,
   CreateMapEvent,
-  getGroupsFromCreateMapItem
+  getGroupsFromCreateMapItem,
+  setOperationalLayers
 } from "@wsdot/grouped-layer-list";
 import arcgisUtils from "esri/arcgis/utils";
 import esriConfig from "esri/config";
@@ -9,7 +11,6 @@ import HomeButton from "esri/dijit/HomeButton";
 import Extent from "esri/geometry/Extent";
 import { FormatError } from "./FormatError";
 import { createSourceLink } from "./GithubLink";
-import { createLayerLink, setOperationalLayers } from "./searchUtils";
 import { createWebmapIdForm } from "./WebmapSelector";
 
 esriConfig.defaults.io.httpsDomains.push("wsdot.wa.gov");
