@@ -13,11 +13,10 @@
   "author": "",
   "private": true,
   "license": "Unlicense",
-  "dependencies": {
-    "@wsdot/grouped-layer-list": "0.0.5"
-  },
   "devDependencies": {
-    "@types/arcgis-js-api": "3",
+    "@types/arcgis-js-api": "^3",
+    "@types/dojo": "^1.9.41",
+    "@wsdot/grouped-layer-list": "0.0.5",
     "source-map": "^0.7.3",
     "ts-loader": "^5.3.1",
     "typescript": "^3.2.1",

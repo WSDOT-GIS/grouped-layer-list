@@ -20,14 +20,14 @@ body {
     left: 20px;
 }
 
-#container {
+/* #container {
     display: grid;
     grid-template-columns: 300px auto;
 }
 
 #container > div:first-child {
     overflow: auto;
-}
+} */
 
 .metadata-panel {
     overflow: auto;
@@ -51,6 +51,7 @@ body {
     top: 125px;
     width: 30px;
     height: 30px;
+    color: white;
     background-color: #666;
     background-color: rgba(102,102,102,0.8);
     padding: 0.1rem;

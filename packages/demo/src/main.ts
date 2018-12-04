@@ -5,6 +5,8 @@ import GroupedLayerList, {
   getGroupsFromCreateMapItem,
   setOperationalLayers
 } from "@wsdot/grouped-layer-list";
+import BorderContainer from "dijit/layout/BorderContainer";
+import ContentPane from "dijit/layout/ContentPane";
 import arcgisUtils from "esri/arcgis/utils";
 import esriConfig from "esri/config";
 import HomeButton from "esri/dijit/HomeButton";
@@ -18,6 +20,22 @@ esriConfig.defaults.io.corsEnabledServers.push(
   "wsdot.wa.gov",
   "data.wsdot.wa.gov"
 );
+
+const borderContainer = new BorderContainer(
+  { liveSplitters: true },
+  "container"
+);
+const layerListPane = new ContentPane(
+  { region: "left", style: "width: 300px; padding: 0", splitter: true },
+  "layerListContainer"
+);
+const mapPane = new ContentPane(
+  { region: "center", style: "padding: 0" },
+  "mapContainer"
+);
+borderContainer.addChild(layerListPane);
+borderContainer.addChild(mapPane);
+borderContainer.startup();
 
 const mapInput = createWebmapIdForm();
 

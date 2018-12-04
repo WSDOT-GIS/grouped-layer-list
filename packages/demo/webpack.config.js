@@ -25,7 +25,7 @@ const config = {
       '.js'
     ]
   },
-  externals: /^esri/i
+  externals: /^(esri)|(dijit)/i
 }
 
 module.exports = config;

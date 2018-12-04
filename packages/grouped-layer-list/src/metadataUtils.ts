@@ -48,7 +48,7 @@ export function addMetadataTabs(
     );
 
     // Setup an event to occur the first time layer's checkbox is clicked.
-    checkboxes.forEach(cb => {
+    Array.from(checkboxes, cb => {
       cb.addEventListener(
         "click",
         function(this, ev) {

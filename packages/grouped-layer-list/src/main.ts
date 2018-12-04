@@ -288,7 +288,7 @@ function addGroupHeadings(srcNode: Node | string, groups: LayerPropGroups) {
 
   // Assign CSS classes to the <li>s corresponding to the first layer in a group.
   // For each such item, add item to the class-to-group mapping.
-  listItems.forEach(li => {
+  Array.from(listItems, li => {
     const label = li.querySelector("label");
     if (label) {
       const title = label.textContent!;
