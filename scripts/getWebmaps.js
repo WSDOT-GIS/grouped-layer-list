@@ -22,14 +22,22 @@ function getItemUrl(itemId) {
 async function getItemData(item) {
   const { id } = item;
   const dataUrl = getItemUrl(id);
-  const itemResponse = await fetch(dataUrl);
-  const itemData = await itemResponse.json();
+  let itemResponse = null;
+  let itemData = null;
+  try {
+    itemResponse = await fetch(dataUrl);
+    itemData = await itemResponse.json();
+  } catch (error) {
+    console.warn("error getting item data", error);
+    return { error, itemData, item };
+  }
   return { item, itemData };
 }
 
 /**
  * Gets webmaps in a group.
  * @param {string} groupId Group ID
+ * @returns {Promise.<Object[]>}
  */
 async function getWebmaps(groupId) {
   const url = `https://www.arcgis.com/sharing/rest/content/groups/${groupId}?f=json&num=100`;
