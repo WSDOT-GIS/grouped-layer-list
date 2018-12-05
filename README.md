@@ -5,11 +5,12 @@ For [ArcGIS API for JavaScript version 3.X], an extension of [LayerList] which w
 
 For details see package's [README](packages/grouped-layer-list/README.md).
 
-[![npm](https://img.shields.io/npm/v/@wsdot/grouped-layer-list.svg?style=flat-square)](https://www.npmjs.org/package/@wsdot/grouped-layer-list)
-[![npm](https://img.shields.io/npm/l/@wsdot/grouped-layer-list.svg?style=flat-square)](https://www.npmjs.org/package/@wsdot/grouped-layer-list)
-[![npm](https://img.shields.io/npm/dm/@wsdot/grouped-layer-list.svg?style=flat-square)](https://www.npmjs.org/package/@wsdot/grouped-layer-list)
+[![npm](https://img.shields.io/npm/v/@wsdot/grouped-layer-list.svg?style=flat-square)][package]
+[![npm](https://img.shields.io/npm/l/@wsdot/grouped-layer-list.svg?style=flat-square)][package]
+[![npm](https://img.shields.io/npm/dm/@wsdot/grouped-layer-list.svg?style=flat-square)][package]
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 
 [ArcGIS API for JavaScript version 3.X]:https://developers.arcgis.com/javascript/3
 [LayerList]:https://developers.arcgis.com/javascript/3/jsapi/layerlist-amd.html
 [LayerListV4]:https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-LayerList.html
+[package]:https://www.npmjs.org/package/@wsdot/grouped-layer-list

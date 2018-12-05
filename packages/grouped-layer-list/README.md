@@ -8,7 +8,7 @@ For [ArcGIS API for JavaScript version 3.X], an extension of [LayerList] which w
 - Adds metadata tabs for map service layers that support the [Layer Metadata SOE].
 
 [![Demo](https://img.shields.io/badge/Pages-demo-blue.svg?logo=github&longCache=true)][demo]
-[![Issues on GitHub](https://img.shields.io/github/issues/wsdot-gis/grouped-layer-list.svg?style=flat-square)](https://github.com/wsdot-gis/grouped-layer-list/issues)
+[![Issues on GitHub](https://img.shields.io/github/issues/wsdot-gis/grouped-layer-list.svg?style=flat-square)][issues]
 [![npm version](https://img.shields.io/npm/v/@wsdot/grouped-layer-list.svg?style=flat-square)][package]
 [![npm license](https://img.shields.io/npm/l/@wsdot/grouped-layer-list.svg?style=flat-square)][package]
 [![npm downloads](https://img.shields.io/npm/dm/@wsdot/grouped-layer-list.svg?style=flat-square)][package]
@@ -151,6 +151,7 @@ Add to the `<head>` of your HTML page: https://cdn.polyfill.io/v2/polyfill.min.j
 [arcgis api for javascript version 3.x]: https://developers.arcgis.com/javascript/3
 [applicationProperties.viewing]:https://developers.arcgis.com/web-map-specification/objects/viewing/
 [demo]:https://wsdot-gis.github.io/grouped-layer-list
+[issues]:https://github.com/wsdot-gis/grouped-layer-list/issues
 [layer metadata soe]: https://github.com/WSDOT-GIS/LayerMetadataSoe
 [layerlist]: https://developers.arcgis.com/javascript/3/jsapi/layerlist-amd.html
 [layerlistv4]: https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-LayerList.html
