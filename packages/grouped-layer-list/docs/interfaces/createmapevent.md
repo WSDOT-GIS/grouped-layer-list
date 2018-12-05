@@ -29,7 +29,7 @@
 **● clickEventHandle**: * `Handle` &#124; `undefined`
 *
 
-*Defined in [main.ts:131](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/main.ts#L131)*
+*Defined in [main.ts:131](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/main.ts#L131)*
 
 ___
 <a id="clickeventlistener"></a>
@@ -38,7 +38,7 @@ ___
 
 **● clickEventListener**: *`function`*
 
-*Defined in [main.ts:132](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/main.ts#L132)*
+*Defined in [main.ts:132](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/main.ts#L132)*
 
 #### Type declaration
 ▸(...args: *`any`[]*):  `any` &#124; `undefined`
@@ -58,7 +58,7 @@ ___
 
 **● errors**: *`Error`[]*
 
-*Defined in [main.ts:133](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/main.ts#L133)*
+*Defined in [main.ts:133](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/main.ts#L133)*
 
 ___
 <a id="iteminfo"></a>
@@ -67,7 +67,7 @@ ___
 
 **● itemInfo**: *[ItemInfo](iteminfo.md)*
 
-*Defined in [main.ts:134](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/main.ts#L134)*
+*Defined in [main.ts:134](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/main.ts#L134)*
 
 ___
 <a id="map"></a>
@@ -76,7 +76,7 @@ ___
 
 **● map**: *`EsriMap`*
 
-*Defined in [main.ts:135](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/main.ts#L135)*
+*Defined in [main.ts:135](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/main.ts#L135)*
 
 ___
 

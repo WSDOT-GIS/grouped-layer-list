@@ -39,7 +39,7 @@ Stores settings for individual layers.
 
 ⊕ **new LayerSettings**(options?: *[ILayerSettings](../interfaces/ilayersettings.md)*): [LayerSettings](layersettings.md)
 
-*Defined in [LayerSettings.ts:50](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/LayerSettings.ts#L50)*
+*Defined in [LayerSettings.ts:50](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/LayerSettings.ts#L50)*
 
 Creates a new instance
 
@@ -64,7 +64,7 @@ ___
 
 *Implementation of [ILayerSettings](../interfaces/ilayersettings.md).[visible](../interfaces/ilayersettings.md#visible)*
 
-*Defined in [LayerSettings.ts:48](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/LayerSettings.ts#L48)*
+*Defined in [LayerSettings.ts:48](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/LayerSettings.ts#L48)*
 
 is the layer visible
 
@@ -77,7 +77,7 @@ ___
 
 *Implementation of [ILayerSettings](../interfaces/ilayersettings.md).[visibleLayers](../interfaces/ilayersettings.md#visiblelayers)*
 
-*Defined in [LayerSettings.ts:50](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/LayerSettings.ts#L50)*
+*Defined in [LayerSettings.ts:50](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/LayerSettings.ts#L50)*
 
 which sublayers are turned on
 
@@ -91,7 +91,7 @@ ___
 
 ▸ **apply**(operationalLayer: *[LayerListOperationalLayer](../interfaces/layerlistoperationallayer.md)*): `void`
 
-*Defined in [LayerSettings.ts:66](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/LayerSettings.ts#L66)*
+*Defined in [LayerSettings.ts:66](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/LayerSettings.ts#L66)*
 
 Applies the settings to an operational layer.
 
@@ -110,7 +110,7 @@ ___
 
 ▸ **toString**(): `string`
 
-*Defined in [LayerSettings.ts:96](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/LayerSettings.ts#L96)*
+*Defined in [LayerSettings.ts:96](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/LayerSettings.ts#L96)*
 
 Converts to string for use with URLSearchParams
 
@@ -123,7 +123,7 @@ ___
 
 ▸ **parse**(str: *`string`*):  [LayerSettings](layersettings.md) &#124; `null`
 
-*Defined in [LayerSettings.ts:22](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/LayerSettings.ts#L22)*
+*Defined in [LayerSettings.ts:22](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/LayerSettings.ts#L22)*
 
 Converts a string from a URLSearchParams value into a LayerSettings.
 

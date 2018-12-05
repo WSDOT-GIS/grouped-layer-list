@@ -53,7 +53,7 @@
 
 **● defaultFormatterPage**: *"https://wsdot-gis.github.io/geospatial-metadata"* = "https://wsdot-gis.github.io/geospatial-metadata"
 
-*Defined in [metadataUtils.ts:8](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/metadataUtils.ts#L8)*
+*Defined in [metadataUtils.ts:8](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/metadataUtils.ts#L8)*
 
 ___
 <a id="falsestrings"></a>
@@ -62,7 +62,7 @@ ___
 
 **● falseStrings**: *`string`[]* =  ["false", "off", "⍻", "X"]
 
-*Defined in [reUtils.ts:2](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/reUtils.ts#L2)*
+*Defined in [reUtils.ts:2](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/reUtils.ts#L2)*
 
 ___
 <a id="truestrings"></a>
@@ -71,7 +71,7 @@ ___
 
 **● trueStrings**: *`string`[]* =  ["true", "on", "✓", "✔", "🗸", "🗹", "☑", "✅"]
 
-*Defined in [reUtils.ts:1](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/reUtils.ts#L1)*
+*Defined in [reUtils.ts:1](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/reUtils.ts#L1)*
 
 ___
 
@@ -83,7 +83,7 @@ ___
 
 ▸ **addGroupHeadings**(srcNode: * `Node` &#124; `string`*, groups: *[LayerPropGroups](interfaces/layerpropgroups.md)*): `string`
 
-*Defined in [main.ts:267](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/main.ts#L267)*
+*Defined in [main.ts:267](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/main.ts#L267)*
 
 Adds group headings above the list item corresponding to the first layer in a group.
 
@@ -104,7 +104,7 @@ ___
 
 ▸ **addMetadataTab**(tabContainer: *`Element`*, operationalLayer: *[LayerListOperationalLayer](interfaces/layerlistoperationallayer.md)*, layerIndex: *`number`*, formatterPageUrl: *`string`*): `Promise`<`void`>
 
-*Defined in [metadataUtils.ts:110](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/metadataUtils.ts#L110)*
+*Defined in [metadataUtils.ts:110](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/metadataUtils.ts#L110)*
 
 Adds the metadata tab to a layer's tab container after checking to see if the layer in question supports the LayerMetadata SOE.
 
@@ -126,7 +126,7 @@ ___
 
 ▸ **addMetadataTabs**(layerList: *`LayerList`*, formatterPageUrl?: *`string`*): `void`
 
-*Defined in [metadataUtils.ts:37](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/metadataUtils.ts#L37)*
+*Defined in [metadataUtils.ts:37](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/metadataUtils.ts#L37)*
 
 Adds a "load" event handler to a layer list. When the layer list has loaded, A metadata tab will be added to each layers list item after its checkbox is clicked for the first time.
 
@@ -148,7 +148,7 @@ ___
 
 ▸ **convertLayer**(opLayer: *[CreateMapOperationalLayer](interfaces/createmapoperationallayer.md)*): [LayerListOperationalLayer](interfaces/layerlistoperationallayer.md)
 
-*Defined in [main.ts:185](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/main.ts#L185)*
+*Defined in [main.ts:185](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/main.ts#L185)*
 
 Converts the operational layer format returned from arcgis/utils.createMap to the operation layer format expected by the LayerList constructor.
 
@@ -168,7 +168,7 @@ ___
 
 ▸ **createLayerLink**(layerList: *`LayerList`*): `void`
 
-*Defined in [searchUtils.ts:53](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/searchUtils.ts#L53)*
+*Defined in [searchUtils.ts:53](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/searchUtils.ts#L53)*
 
 Creates a link on the map that will, when clicked, copy the URL of the page with URL search parameters
 
@@ -187,7 +187,7 @@ ___
 
 ▸ **createTitleToGroupMapping**(groups: *[LayerPropGroups](interfaces/layerpropgroups.md)*): `Map`<`string`, `string`>
 
-*Defined in [main.ts:249](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/main.ts#L249)*
+*Defined in [main.ts:249](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/main.ts#L249)*
 
 Creates a mapping of layer titles to group names.
 
@@ -206,7 +206,7 @@ ___
 
 ▸ **enumerateLayersInGroupOrder**(titleGroups: *[LayerPropGroups](interfaces/layerpropgroups.md)*, layers: *[LayerListOperationalLayer](interfaces/layerlistoperationallayer.md)[]*, propertyName?: *`string`*, throwOnValueNotFound?: * `undefined` &#124; `false` &#124; `true`*): `IterableIterator`<[LayerListOperationalLayer](interfaces/layerlistoperationallayer.md)>
 
-*Defined in [main.ts:219](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/main.ts#L219)*
+*Defined in [main.ts:219](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/main.ts#L219)*
 
 Enumerate through the layers in the order presented in the grouping object.
 *__throws__*: ReferenceError thrown if titleGroups contains a value that has no corresponding layer when throwOnValueNotFound is true.
@@ -231,7 +231,7 @@ ___
 
 ▸ **getGroupsFromCreateMapItem**(itemInfo: *[ItemInfo](interfaces/iteminfo.md)*):  `null` &#124; [LayerPropGroups](interfaces/layerpropgroups.md)
 
-*Defined in [main.ts:111](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/main.ts#L111)*
+*Defined in [main.ts:111](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/main.ts#L111)*
 
 Gets layer group definition (if present) from a web map.
 
@@ -250,7 +250,7 @@ ___
 
 ▸ **getTabContainerFromCheckbox**(checkbox: *`HTMLInputElement`*): `Element`
 
-*Defined in [metadataUtils.ts:96](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/metadataUtils.ts#L96)*
+*Defined in [metadataUtils.ts:96](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/metadataUtils.ts#L96)*
 
 Gets the tab container for the layer corresponding to the given checkbox
 
@@ -269,7 +269,7 @@ ___
 
 ▸ **makeBooleanRe**(matchOnly?: * `boolean` &#124; `null`*, exclusive?: * `undefined` &#124; `false` &#124; `true`*): `RegExp`
 
-*Defined in [reUtils.ts:32](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/reUtils.ts#L32)*
+*Defined in [reUtils.ts:32](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/reUtils.ts#L32)*
 
 Creates a RegExp that will match boolean values.
 
@@ -289,7 +289,7 @@ ___
 
 ▸ **makeReGroup**(strings: *`string`[]*, exclusive?: * `undefined` &#124; `false` &#124; `true`*): `RegExp`
 
-*Defined in [reUtils.ts:17](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/reUtils.ts#L17)*
+*Defined in [reUtils.ts:17](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/reUtils.ts#L17)*
 
 Creates a regular expression that will match if tested against a string containing any of the strings in the input array.
 *__example__*: const trueStrings = \["true", "on", "1", "✓", "✔", "🗸", "🗹", "☑", "✅"\]; const falseStrings = \["false", "off", "0", "⍻", "X"\]; const trueRe = makeReGroup(trueStrings); // /(?:true)|(?:on)|(?:1)|(?:✓)|(?:✔)|(?:🗸)|(?:🗹)|(?:☑)|(?:✅)/ const falseRe = makeReGroup(falseStrings); // /(?:false)|(?:off)|(?:0)|(?:⍻)|(?:X)/
@@ -310,7 +310,7 @@ ___
 
 ▸ **setOperationalLayers**(search: *`URLSearchParams`*, layerList: *`LayerList`*): `void`
 
-*Defined in [searchUtils.ts:12](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/searchUtils.ts#L12)*
+*Defined in [searchUtils.ts:12](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/searchUtils.ts#L12)*
 
 Updates the layers' settings to match those from URL search parameters.
 
@@ -330,7 +330,7 @@ ___
 
 ▸ **wrapUrlWithFormatterPage**(metadataUrl: *`string`*, formatterPageUrl?: *`string`*): `string`
 
-*Defined in [metadataUtils.ts:15](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/metadataUtils.ts#L15)*
+*Defined in [metadataUtils.ts:15](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/metadataUtils.ts#L15)*
 
 Creates a URL for a page that formats a metadata URL's XML into HTML.
 

@@ -14,7 +14,7 @@
   "private": true,
   "license": "Unlicense",
   "devDependencies": {
-    "@types/arcgis-js-api": "^3",
+    "@types/arcgis-js-api": "^3.26.0",
     "@types/dojo": "^1.9.41",
     "@wsdot/grouped-layer-list": "0.0.5",
     "source-map": "^0.7.3",

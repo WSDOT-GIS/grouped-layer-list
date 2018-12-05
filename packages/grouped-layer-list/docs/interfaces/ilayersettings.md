@@ -30,7 +30,7 @@ interface common to an operational layer as well as LayerSettings.
 **● visible**: * `undefined` &#124; `false` &#124; `true`
 *
 
-*Defined in [LayerSettings.ts:10](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/LayerSettings.ts#L10)*
+*Defined in [LayerSettings.ts:10](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/LayerSettings.ts#L10)*
 
 ___
 <a id="visiblelayers"></a>
@@ -39,7 +39,7 @@ ___
 
 **● visibleLayers**: *`number`[]*
 
-*Defined in [LayerSettings.ts:11](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/LayerSettings.ts#L11)*
+*Defined in [LayerSettings.ts:11](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/LayerSettings.ts#L11)*
 
 ___
 

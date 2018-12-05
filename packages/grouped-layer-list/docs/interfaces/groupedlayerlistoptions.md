@@ -39,7 +39,7 @@ Options for the GroupedLayerList constructor
 **● groupProperty**: * "id" &#124; "title"
 *
 
-*Defined in [main.ts:164](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/main.ts#L164)*
+*Defined in [main.ts:164](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/main.ts#L164)*
 
 Which property do the arrays in "groups" correpsond to: "id" or "title"?
 
@@ -50,7 +50,7 @@ ___
 
 **● groups**: *[LayerPropGroups](layerpropgroups.md)*
 
-*Defined in [main.ts:160](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/main.ts#L160)*
+*Defined in [main.ts:160](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/main.ts#L160)*
 
 Defines how layers are grouped. Property names are group names. Values correspond to either the title or id properties of operational layers.
 
@@ -63,7 +63,7 @@ ___
 
 *Inherited from LayerListOptions.layers*
 
-*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/packages/grouped-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:1325*
+*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:1325*
 
 An array of operational layers.
 
@@ -76,7 +76,7 @@ ___
 
 *Inherited from LayerListOptions.map*
 
-*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/packages/grouped-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:1327*
+*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:1327*
 
 Reference to the map.
 
@@ -88,7 +88,7 @@ ___
 **● metadata**: * `undefined` &#124; `false` &#124; `true`
 *
 
-*Defined in [main.ts:172](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/main.ts#L172)*
+*Defined in [main.ts:172](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/main.ts#L172)*
 
 Set to true to add the metadata tab to layers, false otherwise.
 
@@ -100,7 +100,7 @@ ___
 **● metadataFormatterPage**: * `string` &#124; `null`
 *
 
-*Defined in [main.ts:176](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/main.ts#L176)*
+*Defined in [main.ts:176](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/main.ts#L176)*
 
 Specify the metadata formatter page. Set to null to instead show unformatted metadata.
 
@@ -114,7 +114,7 @@ ___
 
 *Inherited from LayerListOptions.removeUnderscores*
 
-*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/packages/grouped-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:1329*
+*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:1329*
 
 Indicates whether to remove underscores from the layer title.
 
@@ -128,7 +128,7 @@ ___
 
 *Inherited from LayerListOptions.showLegend*
 
-*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/packages/grouped-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:1331*
+*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:1331*
 
 Indicates whether to display a legend for the layer items.
 
@@ -142,7 +142,7 @@ ___
 
 *Inherited from LayerListOptions.showOpacitySlider*
 
-*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/packages/grouped-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:1333*
+*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:1333*
 
 Indicates whether to display the opacity slider.
 
@@ -156,7 +156,7 @@ ___
 
 *Inherited from LayerListOptions.showSubLayers*
 
-*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/packages/grouped-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:1335*
+*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:1335*
 
 Indicates whether to show sublayers in the list of layers.
 
@@ -170,7 +170,7 @@ ___
 
 *Inherited from LayerListOptions.theme*
 
-*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/packages/grouped-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:1337*
+*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:1337*
 
 The CSS class selector used to uniquely style the widget.
 
@@ -182,7 +182,7 @@ ___
 **● throwOnGroupNotFound**: * `undefined` &#124; `false` &#124; `true`
 *
 
-*Defined in [main.ts:168](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/main.ts#L168)*
+*Defined in [main.ts:168](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/main.ts#L168)*
 
 Set to true if you want to throw an exception when a referenced group cannot be found.
 
@@ -196,7 +196,7 @@ ___
 
 *Inherited from LayerListOptions.visible*
 
-*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/packages/grouped-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:1339*
+*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:1339*
 
 Indicates whether to show the LayerList widget.
 

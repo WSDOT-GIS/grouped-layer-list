@@ -47,7 +47,7 @@ An extension of esri/dijit/LayerList that supports grouping.
 
 *Overrides LayerList.__constructor*
 
-*Defined in [main.ts:319](https://github.com/WSDOT-GIS/grouped-layer-list/blob/1ae99b6/packages/grouped-layer-list/src/main.ts#L319)*
+*Defined in [main.ts:319](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/main.ts#L319)*
 
 **Parameters:**
 
@@ -70,7 +70,7 @@ ___
 
 *Inherited from LayerList.layers*
 
-*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/packages/grouped-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:4779*
+*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:4779*
 
 An array of operational layers.
 
@@ -83,7 +83,7 @@ ___
 
 *Inherited from LayerList.loaded*
 
-*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/packages/grouped-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:4781*
+*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:4781*
 
 Indicates whether the widget has been loaded.
 
@@ -96,7 +96,7 @@ ___
 
 *Inherited from LayerList.map*
 
-*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/packages/grouped-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:4783*
+*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:4783*
 
 Reference to the map.
 
@@ -109,7 +109,7 @@ ___
 
 *Inherited from LayerList.removeUnderscores*
 
-*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/packages/grouped-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:4785*
+*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:4785*
 
 Indicates whether to remove underscores from the layer title
 
@@ -122,7 +122,7 @@ ___
 
 *Inherited from LayerList.showLegend*
 
-*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/packages/grouped-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:4787*
+*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:4787*
 
 Indicates whether to display a legend for the layer items.
 
@@ -135,7 +135,7 @@ ___
 
 *Inherited from LayerList.showOpacitySlider*
 
-*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/packages/grouped-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:4789*
+*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:4789*
 
 Indicates whether to display the opacity slider.
 
@@ -148,7 +148,7 @@ ___
 
 *Inherited from LayerList.showSubLayers*
 
-*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/packages/grouped-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:4791*
+*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:4791*
 
 Indicates whether to show sublayers in the list of layers.
 
@@ -161,7 +161,7 @@ ___
 
 *Inherited from LayerList.theme*
 
-*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/packages/grouped-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:4793*
+*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:4793*
 
 CSS Class for uniquely styling the widget.
 
@@ -174,7 +174,7 @@ ___
 
 *Inherited from LayerList.visible*
 
-*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/packages/grouped-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:4795*
+*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:4795*
 
 Indicates whether to show the widget.
 
@@ -190,7 +190,7 @@ ___
 
 *Inherited from LayerList.destroy*
 
-*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/packages/grouped-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:4803*
+*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:4803*
 
 Destroy the LayerList widget.
 
@@ -211,7 +211,7 @@ ___
 
 *Inherited from LayerList.on*
 
-*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/packages/grouped-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:4809*
+*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:4809*
 
 Fired when the LayerList widget has fully loaded.
 
@@ -226,7 +226,7 @@ Fired when the LayerList widget has fully loaded.
 
 *Inherited from LayerList.on*
 
-*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/packages/grouped-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:4811*
+*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:4811*
 
 Fired when refresh() is called on the widget.
 
@@ -241,7 +241,7 @@ Fired when refresh() is called on the widget.
 
 *Inherited from LayerList.on*
 
-*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/packages/grouped-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:4813*
+*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:4813*
 
 Fired when the layer is toggled on/off within the widget.
 
@@ -256,7 +256,7 @@ Fired when the layer is toggled on/off within the widget.
 
 *Inherited from LayerList.on*
 
-*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/packages/grouped-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:4814*
+*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:4814*
 
 **Parameters:**
 
@@ -276,7 +276,7 @@ ___
 
 *Inherited from LayerList.refresh*
 
-*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/packages/grouped-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:4805*
+*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:4805*
 
 Reloads all layers and properties that may have changed.
 
@@ -291,7 +291,7 @@ ___
 
 *Inherited from LayerList.startup*
 
-*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/packages/grouped-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:4807*
+*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:4807*
 
 Finalizes the creation of the LayerList widget.
 
