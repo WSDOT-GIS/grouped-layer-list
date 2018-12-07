@@ -21,6 +21,9 @@ export interface ConfigLayer {
     | ArcGISTiledMapServiceLayerOptions;
 }
 
+/**
+ * The value of each property of this object is an array of layer definitions.
+ */
 export interface ConfigLayerGroups {
   [groupName: string]: ConfigLayer[];
 }
@@ -52,6 +55,10 @@ function configLayerToOpLayer(configLayer: ConfigLayer) {
   return opLayer;
 }
 
+/**
+ * Creates operational layers and group definition from GeoPortal config "layers" section.
+ * @param configLayers "layers" value from GeoPortal config.
+ */
 export function convertLayersConfigToOp(configLayers: ConfigLayerGroups) {
   const layers = new Array<LayerListOperationalLayer>();
   const groups: LayerPropGroups = {};
