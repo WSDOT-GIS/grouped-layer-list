@@ -8,10 +8,16 @@ body {
     font-family: 'Lato', sans-serif;
 }
 
+.layer-list-group-start .esriTitleContainer {
+    border-top: none;
+}
+
 .layer-list-group-start::before {
+    background: rgb(114, 114, 114);
+    color: white;
     display: block;
     text-align: center;
-    font-weight: bold;
+    padding: 3px 0;
 }
 
 .HomeButton {

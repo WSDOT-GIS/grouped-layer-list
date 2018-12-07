@@ -9,7 +9,6 @@
   ],
   "scripts": {
     "docs": "typedoc --theme markdown --out docs --readme none --excludePrivate --mode file",
-    "prepublish": "npm run docs",
     "prepare": "tsc",
     "watch": "tsc -w",
     "test": "echo \"Error: no test specified\" && exit 1"

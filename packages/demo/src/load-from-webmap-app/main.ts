@@ -11,9 +11,9 @@ import arcgisUtils from "esri/arcgis/utils";
 import esriConfig from "esri/config";
 import HomeButton from "esri/dijit/HomeButton";
 import Extent from "esri/geometry/Extent";
-import { FormatError } from "./FormatError";
-import { createSourceLink } from "./GithubLink";
-import { createWebmapIdForm } from "./WebmapSelector";
+import { FormatError } from "../FormatError";
+import { createSourceLink } from "../GithubLink";
+import { createWebmapIdForm } from "../WebmapSelector";
 
 esriConfig.defaults.io.httpsDomains.push("wsdot.wa.gov");
 esriConfig.defaults.io.corsEnabledServers.push(
