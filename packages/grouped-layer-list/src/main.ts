@@ -13,6 +13,7 @@ import EsriMap from "esri/map";
 import { addMetadataTabs } from "./metadataUtils";
 
 export * from "./searchUtils";
+export * from "./conversionUtils";
 
 /**
  * Properties that operational layers have in common.

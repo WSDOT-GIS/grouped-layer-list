@@ -1,14 +1,11 @@
 import {
-  LayerListOperationalLayer,
-  LayerPropGroups
-} from "@wsdot/grouped-layer-list";
-import {
   ArcGISDynamicMapServiceLayerOptions,
   ArcGISTiledMapServiceLayerOptions
 } from "esri";
 
 import ArcGISDynamicMapServiceLayer from "esri/layers/ArcGISDynamicMapServiceLayer";
 import ArcGISTiledMapServiceLayer from "esri/layers/ArcGISTiledMapServiceLayer";
+import { LayerListOperationalLayer, LayerPropGroups } from "./main";
 
 /**
  * A layer as defined by the GeoPortal application.
@@ -59,7 +56,7 @@ function configLayerToOpLayer(configLayer: ConfigLayer) {
  * Creates operational layers and group definition from GeoPortal config "layers" section.
  * @param configLayers "layers" value from GeoPortal config.
  */
-export function convertLayersConfigToOp(configLayers: ConfigLayerGroups) {
+export function fromGeoportalLayers(configLayers: ConfigLayerGroups) {
   const layers = new Array<LayerListOperationalLayer>();
   const groups: LayerPropGroups = {};
 

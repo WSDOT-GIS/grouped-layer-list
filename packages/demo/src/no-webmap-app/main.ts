@@ -2,6 +2,7 @@ import GroupedLayerList, {
   convertLayer,
   createLayerLink,
   CreateMapEvent,
+  fromGeoportalLayers,
   getGroupsFromCreateMapItem,
   setOperationalLayers
 } from "@wsdot/grouped-layer-list";
@@ -15,7 +16,6 @@ import EsriMap from "esri/map";
 import { FormatError } from "../FormatError";
 import { createSourceLink } from "../GithubLink";
 import { layers as configLayers } from "./config.json";
-import { convertLayersConfigToOp } from "./conversionUtils";
 
 console.log("config", configLayers);
 
@@ -76,7 +76,7 @@ const waExtent = new Extent({
   ymax: 49.05
 });
 
-const { groups, layers } = convertLayersConfigToOp(configLayers);
+const { groups, layers } = fromGeoportalLayers(configLayers);
 
 const map = new EsriMap("map", {
   basemap: "dark-gray-vector",
