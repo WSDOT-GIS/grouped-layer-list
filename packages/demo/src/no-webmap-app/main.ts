@@ -1,9 +1,6 @@
 import GroupedLayerList, {
-  convertLayer,
   createLayerLink,
-  CreateMapEvent,
   fromGeoportalLayers,
-  getGroupsFromCreateMapItem,
   setOperationalLayers
 } from "@wsdot/grouped-layer-list";
 import BorderContainer from "dijit/layout/BorderContainer";

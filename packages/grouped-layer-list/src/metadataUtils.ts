@@ -57,7 +57,9 @@ export function addMetadataTabs(
             return;
           }
           const layerIndex = parseInt(this.dataset.layerIndex!, 10);
-          const opLayer = layerList.layers[layerIndex!];
+          const opLayer = layerList.layers[
+            layerIndex!
+          ] as LayerListOperationalLayer;
           let tabContainer: Element | undefined;
           try {
             tabContainer = getTabContainerFromCheckbox(this);
@@ -97,6 +99,39 @@ function getTabContainerFromCheckbox(checkbox: HTMLInputElement) {
   const tabContainer = checkbox.parentElement!.parentElement!
     .nextElementSibling!;
   return tabContainer;
+}
+
+/**
+ * Parses a metadata source name into its component parts: database, schema, and table,
+ * returning a document fragment with a corresponding span element for each.
+ * @param dataSourceName The name of a metadata source.
+ * @returns Returns a DocumentFragment containing span elements corresponding to database,
+ * schema, and table parts of the metadata source name. If name can't be parsed, a
+ * Text node with the input string is instead returned.
+ */
+function createFCNameSpans(dataSourceName: string) {
+  const nameRe = /^([^\.]+)\.([^\.]+)\.([^\.]+)$/i;
+  const match = dataSourceName.match(nameRe);
+  if (match) {
+    // Get the parts of the table name.
+    const [, db, schema, table] = match;
+    const dbSpan = document.createElement("span");
+    const schemaSpan = document.createElement("span");
+    const tableSpan = document.createElement("span");
+    dbSpan.textContent = db;
+    schemaSpan.textContent = schema;
+    tableSpan.textContent = table;
+    dbSpan.classList.add("metadata-source-name__db");
+    schemaSpan.classList.add("metadata-source-name__schema");
+    tableSpan.classList.add("metadata-source-name__table");
+    const docFrag = document.createDocumentFragment();
+    [dbSpan, schemaSpan, tableSpan].forEach(s => {
+      docFrag.appendChild(s);
+    });
+
+    return docFrag;
+  }
+  return document.createTextNode(dataSourceName);
 }
 
 /**
@@ -164,7 +199,7 @@ async function addMetadataTab(
       const a = document.createElement("a");
       a.target = "wsdot-metadata";
       a.href = wrapUrlWithFormatterPage(mdUrl, formatterPageUrl);
-      a.textContent = name;
+      a.appendChild(createFCNameSpans(name));
       const li = document.createElement("li");
       li.appendChild(a);
       ul.appendChild(li);

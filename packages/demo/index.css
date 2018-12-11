@@ -114,3 +114,8 @@ body {
 .github-link__label {
     display: none;
 }
+
+
+.metadata-source-name__schema::before, .metadata-source-name__schema::after {
+    content: ' . ';
+}
