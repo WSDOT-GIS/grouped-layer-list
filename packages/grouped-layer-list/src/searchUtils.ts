@@ -1,3 +1,4 @@
+import { Handle } from "esri";
 import LayerList from "esri/dijit/LayerList";
 import Extent from "esri/geometry/Extent";
 import webMercatorUtils from "esri/geometry/webMercatorUtils";
@@ -46,6 +47,24 @@ export function setOperationalLayers(
 }
 
 /**
+ * Result of a createLayerLink function.
+ */
+export interface CreateLayerLinkResult {
+  /**
+   * The event handler added to the map's "extent-change" event.
+   */
+  extentChangeHandle: Handle;
+  /**
+   * LayerList "toggle" event handle.
+   */
+  layerToggleHandle: Handle;
+  /**
+   * The HTML element that contains the control.
+   */
+  root: HTMLDivElement;
+}
+
+/**
  * Creates a link on the map that will, when clicked, copy the URL of the page with
  * URL search parameters.
  *
@@ -59,9 +78,9 @@ export function setOperationalLayers(
  * .layer-link__anchor   | this class is applied to the anchor element.
  *
  * @param layerList A layer list control
- * @returns An HTMLDivElement containing an HTMLAnchorElement.
+ * @returns An object that contains the "root" HTML element control and the event handlers used to update the URL to match the map's state.
  */
-export function createLayerLink(layerList: LayerList) {
+export function createLayerLink(layerList: LayerList): CreateLayerLinkResult {
   const urlSupported = window.URL && window.URLSearchParams && window.history;
   if (!urlSupported) {
     throw new Error(
@@ -89,7 +108,8 @@ export function createLayerLink(layerList: LayerList) {
 
   div.appendChild(a);
 
-  layerList.map.on("extent-change", ({ extent }) => {
+  // Setup event to update the "map-extent" URL search parameter when the map's extent is changed.
+  const extentChangeHandle = layerList.map.on("extent-change", ({ extent }) => {
     extent = webMercatorUtils.webMercatorToGeographic(extent) as Extent;
     // Get the coordinates of the new extent.
     const { xmin, ymin, xmax, ymax } = extent;
@@ -110,7 +130,11 @@ export function createLayerLink(layerList: LayerList) {
     div.classList.remove(copiedClass);
   });
 
-  layerList.on("toggle", function(this: HTMLDivElement, toggleEvent) {
+  // Setup event handler to update URL when map layers are toggled on or off.
+  const layerToggleHandle = layerList.on("toggle", function(
+    this: HTMLDivElement,
+    toggleEvent
+  ) {
     // Enable and turn off copied status.
     div.classList.remove(copiedClass);
     div.classList.remove(disabledClass);
@@ -135,7 +159,7 @@ export function createLayerLink(layerList: LayerList) {
 
     // Detect if the settings for this layer had sublayers specified.
     const hadSublayersDefined = oldSettings
-      ? oldSettings.visibleLayers != null
+      ? !!oldSettings.visibleLayers
       : false;
 
     // Initialize layer settings object.
@@ -189,5 +213,5 @@ export function createLayerLink(layerList: LayerList) {
 
   mapRoot.appendChild(div);
 
-  return div;
+  return { layerToggleHandle, extentChangeHandle, root: div };
 }

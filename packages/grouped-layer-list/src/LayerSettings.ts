@@ -20,9 +20,9 @@ export class LayerSettings implements ILayerSettings {
    * @param str a value from a URLSearchParams.
    */
   public static parse(str: string): LayerSettings | null {
-    const trueRe = makeBooleanRe(true, true);
-    const falseRe = makeBooleanRe(false, true);
-    const sublayersRe = /\d+/g; // matches all instances of integers in a string.
+    const trueRe = makeBooleanRe(true, false);
+    const falseRe = makeBooleanRe(false, false);
+    const sublayersRe = /\-?\d+/g; // matches all instances of integers in a string.
 
     let visible = trueRe.test(str)
       ? true
@@ -101,16 +101,23 @@ export class LayerSettings implements ILayerSettings {
    * Converts to string for use with URLSearchParams
    */
   public toString() {
-    if (this.visible == null) {
-      return "";
-    }
-    if (!this.visible) {
-      return "⍻";
-    }
+    const checked = "✓";
+    const unchecked = "⍻";
+
+    const checkedState =
+      this.visible == null ? "" : this.visible ? checked : unchecked;
+
+    // const visibleLayers = this.visibleLayers
+    //   ? this.visibleLayers.join(" ")
+    //   : "";
+
+    // return visibleLayers ? `${checkedState} ${visibleLayers}`
 
     if (this.visibleLayers) {
-      return this.visibleLayers.join(" ");
+      return [checkedState]
+        .concat(this.visibleLayers.map(n => n.toString(10)))
+        .join(" ");
     }
-    return "✓";
+    return checkedState;
   }
 }
