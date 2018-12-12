@@ -122,6 +122,16 @@ arcgisUtils
     // const layers = arcgisUtils.getLayerList(evt) as LayerListOperationalLayer[];
     const layers = itemInfo.itemData.operationalLayers.map(convertLayer);
 
+    const urlSupported = window.URL && window.URLSearchParams && window.history;
+
+    if (urlSupported) {
+      const url = new URL(location.href);
+      const { searchParams } = url;
+      if (searchParams) {
+        setOperationalLayers(searchParams, layers);
+      }
+    }
+
     // Create the layer list.
     const layerList = new GroupedLayerList(
       {
@@ -136,18 +146,6 @@ arcgisUtils
     );
 
     createLayerLink(layerList);
-
-    const urlSupported = window.URL && window.URLSearchParams && window.history;
-
-    if (urlSupported) {
-      layerList.on("load", () => {
-        const url = new URL(location.href);
-        const { searchParams } = url;
-        if (searchParams) {
-          setOperationalLayers(searchParams, layerList);
-        }
-      });
-    }
 
     layerList.startup();
 

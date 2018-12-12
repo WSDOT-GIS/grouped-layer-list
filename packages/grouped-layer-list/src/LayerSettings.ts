@@ -22,16 +22,19 @@ export class LayerSettings implements ILayerSettings {
   public static parse(str: string): LayerSettings | null {
     const trueRe = makeBooleanRe(true, true);
     const falseRe = makeBooleanRe(false, true);
-    const sublayersRe = /^\d+(?:[\s,]\d+)*$/;
+    const sublayersRe = /\d+/g; // matches all instances of integers in a string.
 
     let visible = trueRe.test(str)
       ? true
       : falseRe.test(str)
-        ? false
-        : undefined;
+      ? false
+      : undefined;
     let visibleLayers: number[] | undefined;
-    if (visible === undefined && sublayersRe.test(str)) {
-      visibleLayers = str.split(/\D+/).map(s => parseInt(s, 10));
+    const sublayersMatch = str.match(sublayersRe);
+    if (sublayersMatch) {
+      visibleLayers = sublayersMatch.map(s => parseInt(s, 10));
+    }
+    if (visible === undefined && visibleLayers) {
       visible = true;
     }
 
@@ -39,10 +42,12 @@ export class LayerSettings implements ILayerSettings {
       return null;
     }
 
-    return new LayerSettings({
+    const layerSettings = new LayerSettings({
       visible,
       visibleLayers
     });
+
+    return layerSettings;
   }
   /** is the layer visible */
   public visible?: boolean;
@@ -70,8 +75,11 @@ export class LayerSettings implements ILayerSettings {
       return;
     }
 
+    // TypeScript cast to more specific type to allow check for
+    // suspend and resume functions.
     const refreshAbleLayer = layer as ArcGISDynamicMapServiceLayer;
 
+    // Suspend drawing operations until all layer properties are set.
     if (refreshAbleLayer.suspend) {
       refreshAbleLayer.suspend();
     }
@@ -80,12 +88,11 @@ export class LayerSettings implements ILayerSettings {
       operationalLayer.visibility = this.visible;
       layer.setVisibility(this.visible);
     }
-    if (operationalLayer.showSubLayers && this.visibleLayers) {
-      (layer as ArcGISDynamicMapServiceLayer).setVisibleLayers(
-        this.visibleLayers
-      );
+    if (operationalLayer.showSubLayers !== false && this.visibleLayers) {
+      refreshAbleLayer.setVisibleLayers(this.visibleLayers);
     }
 
+    // Resume layer drawing.
     if (refreshAbleLayer.resume) {
       refreshAbleLayer.resume();
     }

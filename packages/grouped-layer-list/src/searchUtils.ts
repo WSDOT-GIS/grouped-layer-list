@@ -2,7 +2,7 @@ import LayerList from "esri/dijit/LayerList";
 import Extent from "esri/geometry/Extent";
 import webMercatorUtils from "esri/geometry/webMercatorUtils";
 import { LayerSettings } from "./LayerSettings";
-import { LayerListOperationalLayer } from "./main";
+import GroupedLayerList, { LayerListOperationalLayer } from "./main";
 
 /**
  * Updates the layers' settings to match those from URL search parameters.
@@ -11,13 +11,11 @@ import { LayerListOperationalLayer } from "./main";
  */
 export function setOperationalLayers(
   search: URLSearchParams,
-  layerList: LayerList
+  opLayers: LayerListOperationalLayer[]
 ) {
   if (!search || !window.URLSearchParams) {
     return;
   }
-
-  const opLayers = layerList.layers as LayerListOperationalLayer[];
 
   for (const opLayer of opLayers) {
     // Skip if layer has no corresponding entry in URLSearchParams.

@@ -93,10 +93,21 @@ const homeButton = new HomeButton(
 );
 homeButton.startup();
 
+// Create the layer list.
+
+const urlSupported = window.URL && window.URLSearchParams && window.history;
+
+if (urlSupported) {
+  const url = new URL(location.href);
+  const { searchParams } = url;
+  if (searchParams) {
+    setOperationalLayers(searchParams, layers);
+  }
+}
+
 // Add the operational layers' layers to the map.
 map.addLayers(layers.map(opLayer => opLayer.layer!));
 
-// Create the layer list.
 const layerList = new GroupedLayerList(
   {
     groups,
@@ -112,21 +123,11 @@ const layerList = new GroupedLayerList(
   "layerList"
 );
 
-const urlSupported = window.URL && window.URLSearchParams && window.history;
+layerList.startup();
 
 if (urlSupported) {
   createLayerLink(layerList);
-
-  layerList.on("load", () => {
-    const url = new URL(location.href);
-    const { searchParams } = url;
-    if (searchParams) {
-      setOperationalLayers(searchParams, layerList);
-    }
-  });
 }
-
-layerList.startup();
 
 try {
   const sourceLink = createSourceLink(
