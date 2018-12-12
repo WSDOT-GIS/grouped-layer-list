@@ -2,10 +2,12 @@ import LayerList from "esri/dijit/LayerList";
 import Extent from "esri/geometry/Extent";
 import webMercatorUtils from "esri/geometry/webMercatorUtils";
 import { LayerSettings } from "./LayerSettings";
-import GroupedLayerList, { LayerListOperationalLayer } from "./main";
+import { LayerListOperationalLayer } from "./main";
 
 /**
  * Updates the layers' settings to match those from URL search parameters.
+ * This function should be run on the operational layers **before** they are added
+ * to a LayerList.
  * @param search URL search string
  * @param opLayers Operational layers
  */
@@ -45,8 +47,19 @@ export function setOperationalLayers(
 
 /**
  * Creates a link on the map that will, when clicked, copy the URL of the page with
- * URL search parameters
- * @param layerList
+ * URL search parameters.
+ *
+ * CSS classes of output elements:
+ *
+ *  class name           | description
+ *  ------------------   | -----------
+ * .layer-link           | this class will be applied to the div element that contains the link.
+ * .layer-link--copied   | This class will be added to the div after the user has clicked the link and successfully copied the URL to the clipboard. Removed after user changes the state of the map and the URL is updated.
+ * .layer-link--disabled | This class is applied initially to the div and is removed once the user has changed the map in a way that updates the link's URL.
+ * .layer-link__anchor   | this class is applied to the anchor element.
+ *
+ * @param layerList A layer list control
+ * @returns An HTMLDivElement containing an HTMLAnchorElement.
  */
 export function createLayerLink(layerList: LayerList) {
   const urlSupported = window.URL && window.URLSearchParams && window.history;
@@ -78,15 +91,21 @@ export function createLayerLink(layerList: LayerList) {
 
   layerList.map.on("extent-change", ({ extent }) => {
     extent = webMercatorUtils.webMercatorToGeographic(extent) as Extent;
+    // Get the coordinates of the new extent.
     const { xmin, ymin, xmax, ymax } = extent;
+    // round to 4 dec. places and concatenate into space-separated string.
     const searchValue = [xmin, ymin, xmax, ymax]
       .map(n => {
         return Math.round(n * 10000) / 10000;
       })
       .join(" ");
+    // Add or update the "map-extent" property with the coordinates string,
+    // then set the anchor's href to this new URL.
     const url = new URL(a.href);
     url.searchParams.set("map-extent", searchValue);
     a.href = url.toString();
+    // remove the disabled and copied classes to indicate to the user that the link href has been updated
+    // since they last copied.
     div.classList.remove(disabledClass);
     div.classList.remove(copiedClass);
   });
@@ -169,4 +188,6 @@ export function createLayerLink(layerList: LayerList) {
   const mapRoot = layerList.map.root as HTMLElement;
 
   mapRoot.appendChild(div);
+
+  return div;
 }
