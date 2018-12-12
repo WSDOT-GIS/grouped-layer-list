@@ -2,6 +2,7 @@ import { Handle } from "esri";
 import LayerList from "esri/dijit/LayerList";
 import Extent from "esri/geometry/Extent";
 import webMercatorUtils from "esri/geometry/webMercatorUtils";
+import ArcGISDynamicMapServiceLayer from "esri/layers/ArcGISDynamicMapServiceLayer";
 import { LayerSettings } from "./LayerSettings";
 import { LayerListOperationalLayer } from "./main";
 
@@ -135,10 +136,15 @@ export function createLayerLink(layerList: LayerList): CreateLayerLinkResult {
     this: HTMLDivElement,
     toggleEvent
   ) {
+    console.group("LayerList toggle event");
+
     // Enable and turn off copied status.
     div.classList.remove(copiedClass);
     div.classList.remove(disabledClass);
     const { layerIndex, visible, subLayerIndex } = toggleEvent;
+    console.debug(
+      `layer: ${layerIndex}, sublayer ${subLayerIndex}, visible: ${visible}`
+    );
 
     // Get the operational layer from the layer list based on the event's layerIndex.
     const operationalLayer = layerList.layers[
@@ -162,22 +168,28 @@ export function createLayerLink(layerList: LayerList): CreateLayerLinkResult {
       ? !!oldSettings.visibleLayers
       : false;
 
+    const layerSettings = new LayerSettings({
+      visible: operationalLayer.visibility,
+      visibleLayers: (operationalLayer.layer as ArcGISDynamicMapServiceLayer)
+        .visibleLayers
+    });
+
     // Initialize layer settings object.
-    let layerSettings: LayerSettings;
+    // let layerSettings: LayerSettings;
 
     // Layer settings string for the URL will simply indicate if
     // the parent layer is on or off except under these conditions:
     // * Ability to change sublayer visibility is enabled for current layer.
     // * User changed visibility of sublayer via UI or sublayer visibility
     //   had been previously set in the URL.
-    if (
-      operationalLayer.showSubLayers &&
-      (hadSublayersDefined || subLayerIndex != null)
-    ) {
-      layerSettings = new LayerSettings(operationalLayer.layer);
-    } else {
-      layerSettings = new LayerSettings({ visible });
-    }
+    // if (
+    //   operationalLayer.showSubLayers &&
+    //   (hadSublayersDefined || subLayerIndex != null)
+    // ) {
+    //   layerSettings = new LayerSettings(operationalLayer.layer);
+    // } else {
+    //   layerSettings = new LayerSettings({ visible });
+    // }
 
     // Update the URL search parameter for this layer and assign updated URL to link's href.
     url.searchParams.set(operationalLayer.id!, layerSettings.toString());
