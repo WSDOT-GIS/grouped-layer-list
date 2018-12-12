@@ -1,6 +1,6 @@
 {
   "name": "@wsdot/grouped-layer-list",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "ArcGIS API v3 Layer List with added categorization ability",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
