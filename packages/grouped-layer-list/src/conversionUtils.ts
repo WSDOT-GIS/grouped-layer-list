@@ -56,9 +56,19 @@ function configLayerToOpLayer(configLayer: ConfigLayer) {
  * Creates operational layers and group definition from GeoPortal config "layers" section.
  * @param configLayers "layers" value from GeoPortal config.
  */
-export function fromGeoportalLayers(configLayers: ConfigLayerGroups) {
-  const layers = new Array<LayerListOperationalLayer>();
-  const groups: LayerPropGroups = {};
+export function fromGeoportalLayers(
+  configLayers: ConfigLayerGroups | ConfigLayer[]
+) {
+  let layers: LayerListOperationalLayer[];
+  let groups: LayerPropGroups | undefined;
+
+  if (Array.isArray(configLayers)) {
+    layers = configLayers.map(configLayerToOpLayer);
+    return { groups, layers };
+  }
+
+  layers = new Array<LayerListOperationalLayer>();
+  groups = {};
 
   for (const groupName in configLayers) {
     if (configLayers.hasOwnProperty(groupName)) {

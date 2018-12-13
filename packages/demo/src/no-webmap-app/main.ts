@@ -12,9 +12,10 @@ import Extent from "esri/geometry/Extent";
 import EsriMap from "esri/map";
 import { FormatError } from "../FormatError";
 import { createSourceLink } from "../GithubLink";
-import { layers as configLayers } from "./config.json";
+import configs, { getConfigLayers } from "./config/main";
+import { createConfigSelector } from "./configSelector";
 
-console.log("config", configLayers);
+const urlSupported = window.URL && window.URLSearchParams && window.history;
 
 esriConfig.defaults.io.httpsDomains.push("wsdot.wa.gov");
 esriConfig.defaults.io.corsEnabledServers.push(
@@ -73,6 +74,13 @@ const waExtent = new Extent({
   ymax: 49.05
 });
 
+const searchParams = urlSupported ? new URLSearchParams(location.search) : null;
+const configLayers = searchParams
+  ? searchParams.has("config")
+    ? getConfigLayers(searchParams.get("config")!).layers
+    : configs.config.layers
+  : configs.config.layers;
+
 const { groups, layers } = fromGeoportalLayers(configLayers);
 
 const map = new EsriMap("map", {
@@ -95,14 +103,8 @@ homeButton.startup();
 
 // Create the layer list.
 
-const urlSupported = window.URL && window.URLSearchParams && window.history;
-
-if (urlSupported) {
-  const url = new URL(location.href);
-  const { searchParams } = url;
-  if (searchParams) {
-    setOperationalLayers(searchParams, layers);
-  }
+if (searchParams) {
+  setOperationalLayers(searchParams, layers);
 }
 
 // Add the operational layers' layers to the map.
@@ -139,3 +141,7 @@ try {
     throw err;
   }
 }
+
+const configSelector = createConfigSelector();
+configSelector.id = "configSelect";
+map.root.appendChild(configSelector);
