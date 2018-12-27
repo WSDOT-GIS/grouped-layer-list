@@ -74,7 +74,7 @@ export interface CreateLayerLinkResult {
  *  class name           | description
  *  ------------------   | -----------
  * .layer-link           | this class will be applied to the div element that contains the link.
- * .layer-link--copied   | This class will be added to the div after the user has clicked the link and successfully copied the URL to the clipboard. Removed after user changes the state of the map and the URL is updated.
+ * .layer-link--copied   | This class will be added to the div after the user has clicked the link and successfully updated the browsers URL via History API. Removed after user changes the state of the map and the URL is updated.
  * .layer-link--disabled | This class is applied initially to the div and is removed once the user has changed the map in a way that updates the link's URL.
  * .layer-link__anchor   | this class is applied to the anchor element.
  *
@@ -97,8 +97,8 @@ export function createLayerLink(layerList: LayerList): CreateLayerLinkResult {
     location.href,
     location.href.replace(/\?.+$/, "")
   ).toString();
-  a.textContent = "📋";
-  a.title = "copy URL with layer settings to clipboard";
+  a.textContent = "🔗";
+  a.title = "Click to update URL with layer and extent paramters.";
   a.target = "_blank";
   a.classList.add("layer-link__anchor");
 
@@ -196,29 +196,13 @@ export function createLayerLink(layerList: LayerList): CreateLayerLinkResult {
     a.href = url.toString();
   });
 
-  // Setup link click event. When link is clicked
+  // Setup link click event. When link is clicked, URL will be updated.
   a.onclick = function(this, e) {
-    const unsupportedMessage =
-      "Could not copy to clipboard. Right-click link and use context menu to copy link.";
-
-    const clipboard: any = (navigator as any).clipboard;
-    // If browser doesn't support clipboard, show an alert.
-    if (!(clipboard && clipboard.writeText)) {
-      alert(unsupportedMessage);
+    if (window.history) {
+      history.replaceState(undefined, document.title, a.href);
+      div.classList.add(copiedClass);
       return false;
     }
-    // Copy link's href value to clipboard.
-    // If successful, add a class for CSS to style to indicate success.
-    // If copy fails, show an alert.
-    clipboard.writeText(a.href).then(
-      () => {
-        div.classList.add(copiedClass);
-      },
-      (clipErr: Error) => {
-        alert(unsupportedMessage);
-      }
-    );
-    return false;
   };
 
   const mapRoot = layerList.map.root as HTMLElement;
