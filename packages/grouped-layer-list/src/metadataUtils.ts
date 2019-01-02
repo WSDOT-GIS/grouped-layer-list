@@ -47,46 +47,49 @@ export function addMetadataTabs(
       ".esriTitleContainer > input[type=checkbox]"
     );
 
+    function setupMetadataTab(checkbox: HTMLInputElement) {
+      if (!checkbox.dataset.layerIndex) {
+        return;
+      }
+      const layerIndex = parseInt(checkbox.dataset.layerIndex!, 10);
+      const opLayer = layerList.layers[
+        layerIndex!
+      ] as LayerListOperationalLayer;
+      let tabContainer: Element | undefined;
+      try {
+        tabContainer = getTabContainerFromCheckbox(checkbox);
+      } catch (err) {
+        // If its one of the sublayer checkboxes, a TypeError
+        // with be thrown.
+        // TODO: modify the querySelectorAll statement to be
+        // more specific so that only the parent level checkboxes
+        // are returned.
+        if (!(err instanceof TypeError)) {
+          throw err;
+        }
+      }
+      if (tabContainer) {
+        addMetadataTab(tabContainer, opLayer, layerIndex!, formatterPageUrl);
+      }
+    }
+
     // Setup an event to occur the first time layer's checkbox is clicked.
     Array.from(checkboxes, cb => {
-      cb.addEventListener(
-        "click",
-        function(this, ev) {
-          // "this" is the checkbox that was clicked.
-          if (!this.dataset.layerIndex) {
-            return;
+      if (cb.checked) {
+        setupMetadataTab(cb);
+      } else {
+        cb.addEventListener(
+          "click",
+          function(this, ev) {
+            // "this" is the checkbox that was clicked.
+            setupMetadataTab(this);
+          },
+          {
+            once: true,
+            passive: true
           }
-          const layerIndex = parseInt(this.dataset.layerIndex!, 10);
-          const opLayer = layerList.layers[
-            layerIndex!
-          ] as LayerListOperationalLayer;
-          let tabContainer: Element | undefined;
-          try {
-            tabContainer = getTabContainerFromCheckbox(this);
-          } catch (err) {
-            // If its one of the sublayer checkboxes, a TypeError
-            // with be thrown.
-            // TODO: modify the querySelectorAll statement to be
-            // more specific so that only the parent level checkboxes
-            // are returned.
-            if (!(err instanceof TypeError)) {
-              throw err;
-            }
-          }
-          if (tabContainer) {
-            addMetadataTab(
-              tabContainer,
-              opLayer,
-              layerIndex!,
-              formatterPageUrl
-            );
-          }
-        },
-        {
-          once: true,
-          passive: true
-        }
-      );
+        );
+      }
     });
   });
 }
