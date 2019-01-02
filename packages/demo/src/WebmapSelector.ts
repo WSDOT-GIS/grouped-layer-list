@@ -69,8 +69,8 @@ export function createWebmapIdForm(inputType: "select" | "input" = "select") {
       (select || input)!.disabled = false;
       results.forEach(pi => {
         const option = document.createElement("option");
-        option.textContent = option.value = pi.id;
-        option.label = pi.title;
+        option.value = pi.id;
+        option.textContent = option.label = pi.title;
         (select || datalist)!.appendChild(option);
       });
       form.removeChild(progress);
