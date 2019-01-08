@@ -8,10 +8,16 @@ body {
     font-family: 'Lato', sans-serif;
 }
 
+.layer-list-group-start .esriTitleContainer {
+    border-top: none;
+}
+
 .layer-list-group-start::before {
+    background: rgb(114, 114, 114);
+    color: white;
     display: block;
     text-align: center;
-    font-weight: bold;
+    padding: 3px 0;
 }
 
 .HomeButton {
@@ -52,6 +58,7 @@ body {
     width: 30px;
     height: 30px;
     color: white;
+    text-shadow: 0 0 5px white;
     background-color: #666;
     background-color: rgba(102,102,102,0.8);
     padding: 0.1rem;
@@ -107,4 +114,15 @@ body {
 }
 .github-link__label {
     display: none;
+}
+
+
+.metadata-source-name__schema::before, .metadata-source-name__schema::after {
+    content: ' . ';
+}
+
+.config-select {
+    position: absolute;
+    top: 20px;
+    right: 20px;
 }
