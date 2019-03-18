@@ -18,9 +18,9 @@
     "@types/dojo": "^1.9.41",
     "@wsdot/grouped-layer-list": "^0.0.12",
     "source-map": "^0.7.3",
-    "ts-loader": "^5.3.2",
-    "typescript": "^3.2.2",
-    "webpack": "^4.28.3",
-    "webpack-cli": "^3.1.2"
+    "ts-loader": "^5.3.3",
+    "typescript": "^3.3.3333",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
   }
 }

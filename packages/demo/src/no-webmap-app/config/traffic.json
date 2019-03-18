@@ -223,7 +223,11 @@
       "url": "https://data.wsdot.wa.gov/arcgis/rest/services/Shared/CityLimits/MapServer",
       "options": {
         "id": "City Limits",
-        "opacity": 0.4
+        "opacity": 0.4,
+        "imageParameters": {
+          "layerIds": [ 0,1 ],
+          "layerOption": "hide"
+        }
       }
     }
   ]

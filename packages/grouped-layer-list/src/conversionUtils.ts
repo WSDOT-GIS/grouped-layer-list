@@ -36,10 +36,11 @@ function configLayerToOpLayer(configLayer: ConfigLayer) {
   // Replace non-alphanumeric characters with underscore.
   const id = title.replace(/[^a-z0-9]+/gi, "_");
   const visible = configLayer.options.visible || false;
+  const opacity = configLayer.options.opacity;
   // Create layer object matching layerType string.
   const layer = /Tiled/i.test(layerType)
-    ? new ArcGISTiledMapServiceLayer(url, { id, visible })
-    : new ArcGISDynamicMapServiceLayer(url, { id, visible });
+    ? new ArcGISTiledMapServiceLayer(url, { id, visible, opacity })
+    : new ArcGISDynamicMapServiceLayer(url, { id, visible, opacity });
 
   const opLayer: LayerListOperationalLayer = {
     id,
