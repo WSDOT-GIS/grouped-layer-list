@@ -1,6 +1,6 @@
 {
   "name": "demo",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "demo",
   "main": "main.js",
   "scripts": {
@@ -16,7 +16,7 @@
   "devDependencies": {
     "@types/arcgis-js-api": "^3.28.0",
     "@types/dojo": "^1.9.41",
-    "@wsdot/grouped-layer-list": "^0.0.13",
+    "@wsdot/grouped-layer-list": "^0.0.14",
     "source-map": "^0.7.3",
     "ts-loader": "^5.3.3",
     "typescript": "^3.4.1",
