@@ -34,15 +34,15 @@
     "access": "public"
   },
   "devDependencies": {
-    "@types/arcgis-js-api": "^3.27.0",
-    "@types/node": "^11.11.3",
+    "@types/arcgis-js-api": "^3.28.0",
+    "@types/node": "^11.13.0",
     "prettier": "^1.16.4",
     "tslint": "^5.14.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-plugin-prettier": "^2.0.1",
     "typedoc": "^0.14.2",
     "typedoc-plugin-markdown": "^1.1.27",
-    "typescript": "^3.3.3333"
+    "typescript": "^3.4.1"
   },
   "dependencies": {
     "@wsdot/layer-metadata-soe-client": "^3.0.0",
