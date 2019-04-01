@@ -88,7 +88,11 @@ export class LayerSettings implements ILayerSettings {
       operationalLayer.visibility = this.visible;
       layer.setVisibility(this.visible);
     }
-    if (operationalLayer.showSubLayers !== false && this.visibleLayers) {
+    if (
+      operationalLayer.showSubLayers !== false &&
+      this.visibleLayers &&
+      refreshAbleLayer.setVisibleLayers
+    ) {
       refreshAbleLayer.setVisibleLayers(this.visibleLayers);
     }
 
