@@ -6,9 +6,9 @@
   "scripts": {
     "prepare": "npm run build-prod",
     "clean": "rm dist/main.js",
-    "watch": "webpack -p --mode production --watch",
-    "build-dev": "webpack -d --mode development",
-    "build-prod": "webpack -p --mode production"
+    "watch": "webpack --mode production --watch",
+    "build-dev": "webpack --mode development",
+    "build-prod": "webpack --mode production"
   },
   "author": "",
   "private": true,
