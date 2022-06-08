@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "ghpages": "node scripts/ghpages.js",
-    "serve": "serve ./packages/demo"
+    "serve": "dotnet serve"
   },
   "devDependencies": {
     "gh-pages": "^4.0.0",
