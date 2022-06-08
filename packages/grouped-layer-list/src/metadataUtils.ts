@@ -3,6 +3,8 @@ import {
   getMetadataLinks
 } from "@wsdot/layer-metadata-soe-client";
 import LayerList from "esri/dijit/LayerList";
+import Layer from "esri/layers/layer";
+import { IMapServiceLayersInfo } from "./IMapServiceLayersInfo";
 import { LayerListOperationalLayer } from "./main";
 
 const defaultFormatterPage = "https://wsdot-gis.github.io/geospatial-metadata";
@@ -80,7 +82,7 @@ export function addMetadataTabs(
       } else {
         cb.addEventListener(
           "click",
-          function(this, ev) {
+          function (this, ev) {
             // "this" is the checkbox that was clicked.
             setupMetadataTab(this);
           },
@@ -138,6 +140,69 @@ function createFCNameSpans(dataSourceName: string) {
 }
 
 /**
+ * Detects if the current layer supports metadata.
+ * @param layer an operational layer
+ * @returns True if built-in metadata is supported. False to fallback on SOE if available.
+ */
+async function getBuiltInMetadataUrls(layer: LayerListOperationalLayer) {
+  console.group("Begin getBuiltInMetadataUrls");
+  console.debug("layer", layer);
+  // Exit if layer URL is underfined.
+  let layerUrl = layer.layer?.url;
+  if (!layerUrl) {
+    console.groupEnd();
+    return null;
+  }
+
+  console.debug("layerUrl", layerUrl);
+
+  const serviceRootRe = /(?:(?:Map)|(?:Feature))Server(\/?)$/g;
+  const serviceRootMatch = layerUrl.match(serviceRootRe);
+
+  console.debug("serviceRootMatch", serviceRootMatch)
+
+  if (!serviceRootMatch) {
+    // Exit if not a supported URL type.
+    console.groupEnd();
+    return null;
+  } else if (!serviceRootMatch[1]) {
+    // Append trailing slash to URL if not present.
+    console.debug(`Appending trailing slash to ${layerUrl}`);
+    layerUrl += "/"
+  }
+
+
+  const metadataUrl = `${layerUrl}info/metadata`;
+  const layersUrl = `${layerUrl}layers?f=json`;
+
+  console.debug("urls", {
+    layerUrl,
+    metadataUrl,
+    layersUrl
+  });
+
+  const response = await fetch(layersUrl);
+  const layerInfo: IMapServiceLayersInfo = await response.json();
+
+  console.debug("layer info response", layerInfo);
+
+  let mdLinks: {[key: string]: string} = {
+    [`${layer.title || "Service"}`]: metadataUrl
+  }
+
+
+  const metadataUrls: Array<[string, string]> = layerInfo.layers.filter(l => l.hasMetadata).map(l => [l.name, `${layerUrl}${l.id}/metadata/`]);
+  
+  for (const [name, url] of metadataUrls) {
+    mdLinks[name] = url
+  }
+
+  console.debug("metadata urls", metadataUrls);
+
+  return mdLinks;
+}
+
+/**
  * Adds the metadata tab to a layer's tab container after checking to see
  * if the layer in question supports the LayerMetadata SOE.
  * @param tabContainer
@@ -153,22 +218,26 @@ async function addMetadataTab(
 ) {
   // Exit early if there is no layer URL.
   if (
-    !(operationalLayer && operationalLayer.layer && operationalLayer.layer.url)
+    !(operationalLayer?.layer?.url)
   ) {
     return;
   }
 
-  const url = operationalLayer.layer.url;
+  let mdLinks = await getBuiltInMetadataUrls(operationalLayer);
 
-  // Check to see if metadata SOE is supported by the operational layer's service.
-  // If it is not supported, exit the function without adding the metadata tab.
-  const metadataSupported = await detectLayerMetadataSupport(url);
-  if (!metadataSupported) {
-    return;
+
+  if (!mdLinks) {
+    const url = operationalLayer.layer.url;
+    // Check to see if metadata SOE is supported by the operational layer's service.
+    // If it is not supported, exit the function without adding the metadata tab.
+    const soeMetadataSupported = await detectLayerMetadataSupport(url);
+    if (!soeMetadataSupported) {
+      return;
+    }
+
+    // Get metadata URLs.
+    mdLinks = await getMetadataLinks(url);
   }
-
-  // Get metadata URLs.
-  const mdLinks = await getMetadataLinks(url);
 
   // Create the list item that will act as the tab that the user clicks on
   const tabId = "metadata";
