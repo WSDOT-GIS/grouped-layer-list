@@ -3,11 +3,10 @@ import {
   getMetadataLinks
 } from "@wsdot/layer-metadata-soe-client";
 import LayerList from "esri/dijit/LayerList";
-import Layer from "esri/layers/layer";
 import { IMapServiceLayersInfo } from "./IMapServiceLayersInfo";
 import { LayerListOperationalLayer } from "./main";
 
-const defaultFormatterPage = "https://wsdot-gis.github.io/geospatial-metadata";
+export const defaultFormatterPage = "https://wsdot-gis.github.io/geospatial-metadata";
 
 /**
  * Creates a URL for a page that formats a metadata URL's XML into HTML.
@@ -16,13 +15,12 @@ const defaultFormatterPage = "https://wsdot-gis.github.io/geospatial-metadata";
  */
 function wrapUrlWithFormatterPage(
   metadataUrl: string,
-  formatterPageUrl = defaultFormatterPage
+  formatterPageUrl?: string
 ) {
   if (!formatterPageUrl) {
     return metadataUrl;
   }
-  const xmlUrl = metadataUrl + "?f=xml";
-  const formatterSearch = `url=${encodeURIComponent(xmlUrl)}`;
+  const formatterSearch = `url=${encodeURIComponent(metadataUrl)}`;
   const outUrl = `${formatterPageUrl}?${formatterSearch}`;
   return outUrl;
 }
@@ -38,7 +36,8 @@ function wrapUrlWithFormatterPage(
  */
 export function addMetadataTabs(
   layerList: LayerList,
-  formatterPageUrl = defaultFormatterPage
+  formatterPageUrl?: string,
+  metadataFormat?: MetadataFormat
 ) {
   layerList.on("load", ({ target }) => {
     // Get the DOM node of the layer list
@@ -46,7 +45,7 @@ export function addMetadataTabs(
 
     // Get the checkboxes for each layer.
     const checkboxes = node.querySelectorAll<HTMLInputElement>(
-      ".esriTitleContainer > input[type=checkbox]"
+      ".esriTitleContainer > input[type=checkbox]:not([data-sublayer-index])"
     );
 
     function setupMetadataTab(checkbox: HTMLInputElement) {
@@ -54,24 +53,19 @@ export function addMetadataTabs(
         return;
       }
       const layerIndex = parseInt(checkbox.dataset.layerIndex!, 10);
-      const opLayer = layerList.layers[
-        layerIndex!
-      ] as LayerListOperationalLayer;
+      const opLayer = layerList.layers[layerIndex] as LayerListOperationalLayer;
       let tabContainer: Element | undefined;
       try {
         tabContainer = getTabContainerFromCheckbox(checkbox);
       } catch (err) {
         // If its one of the sublayer checkboxes, a TypeError
         // with be thrown.
-        // TODO: modify the querySelectorAll statement to be
-        // more specific so that only the parent level checkboxes
-        // are returned.
         if (!(err instanceof TypeError)) {
           throw err;
         }
       }
       if (tabContainer) {
-        addMetadataTab(tabContainer, opLayer, layerIndex!, formatterPageUrl);
+        addMetadataTab(tabContainer, opLayer, layerIndex!, formatterPageUrl, metadataFormat);
       }
     }
 
@@ -140,64 +134,78 @@ function createFCNameSpans(dataSourceName: string) {
 }
 
 /**
+ * Valid metadata format specifiers.
+ * @see {@link https://developers.arcgis.com/rest/services-reference/enterprise/metadata.htm#GUID-0F468AF6-56B1-4100-9F2D-CEEE5A61EAA6}
+ */
+export type MetadataFormat = "fgdc"|"iso19139";
+
+/**
+ * Valid metadata format specifiers.
+ * @see {@link https://developers.arcgis.com/rest/services-reference/enterprise/metadata.htm#GUID-0F468AF6-56B1-4100-9F2D-CEEE5A61EAA6}
+ */
+export type MetadataOutput = "html";
+
+/**
  * Detects if the current layer supports metadata.
  * @param layer an operational layer
- * @returns True if built-in metadata is supported. False to fallback on SOE if available.
+ * @param metadataFormat Specify a metadata format.
+ * @param metadataOutput Specify the metadata output format.
+ * @returns Returns an object which has properties named after layer names and these properties' values are the metadata URLs.
  */
-async function getBuiltInMetadataUrls(layer: LayerListOperationalLayer) {
-  console.group("Begin getBuiltInMetadataUrls");
-  console.debug("layer", layer);
+async function getBuiltInMetadataUrls(layer: LayerListOperationalLayer, metadataFormat?: MetadataFormat, metadataOutput: MetadataOutput = "html"): Promise<{ [key: string]: string; } | null> {
   // Exit if layer URL is underfined.
   let layerUrl = layer.layer?.url;
   if (!layerUrl) {
-    console.groupEnd();
     return null;
   }
-
-  console.debug("layerUrl", layerUrl);
-
   const serviceRootRe = /(?:(?:Map)|(?:Feature))Server(\/?)$/g;
   const serviceRootMatch = layerUrl.match(serviceRootRe);
 
-  console.debug("serviceRootMatch", serviceRootMatch)
-
   if (!serviceRootMatch) {
     // Exit if not a supported URL type.
-    console.groupEnd();
     return null;
   } else if (!serviceRootMatch[1]) {
     // Append trailing slash to URL if not present.
-    console.debug(`Appending trailing slash to ${layerUrl}`);
     layerUrl += "/"
   }
 
+  function appendParameters(url: URL) {
+    if (metadataFormat) {
+      url.searchParams.set("format", metadataFormat);
+    }
+    if (metadataOutput) {
+      if (!metadataFormat) {
+        console.warn(`Metadata "output" parameter has been set to "${metadataOutput}", but no value was given for the corresponding "format" parameter.`)
+      }
+      url.searchParams.set("output", metadataOutput);
+    }
+  }
 
-  const metadataUrl = `${layerUrl}info/metadata`;
-  const layersUrl = `${layerUrl}layers?f=json`;
-
-  console.debug("urls", {
-    layerUrl,
-    metadataUrl,
-    layersUrl
-  });
+  const metadataUrl = new URL(`${layerUrl}info/metadata`);
+  appendParameters(metadataUrl);
+  const layersUrl = new URL(`${layerUrl}layers?f=json`);
 
   const response = await fetch(layersUrl);
   const layerInfo: IMapServiceLayersInfo = await response.json();
 
-  console.debug("layer info response", layerInfo);
+  // console.debug("layer info response", layerInfo);
 
   let mdLinks: {[key: string]: string} = {
-    [`${layer.title || "Service"}`]: metadataUrl
+    [`${layer.title || "Service"}`]: metadataUrl.href
   }
 
 
-  const metadataUrls: Array<[string, string]> = layerInfo.layers.filter(l => l.hasMetadata).map(l => [l.name, `${layerUrl}${l.id}/metadata/`]);
+  const metadataUrls: Array<[string, string]> = layerInfo.layers.filter(l => l.hasMetadata).map(l => {
+    const url = new URL(`${layerUrl}${l.id}/metadata/`);
+    appendParameters(url);
+    return [l.name, url.href];
+  });
   
   for (const [name, url] of metadataUrls) {
     mdLinks[name] = url
   }
 
-  console.debug("metadata urls", metadataUrls);
+  // console.debug("metadata urls", metadataUrls);
 
   return mdLinks;
 }
@@ -209,12 +217,14 @@ async function getBuiltInMetadataUrls(layer: LayerListOperationalLayer) {
  * @param operationalLayer
  * @param layerIndex
  * @param formatterPageUrl
+ * @param metadataFormat
  */
 async function addMetadataTab(
   tabContainer: Element,
   operationalLayer: LayerListOperationalLayer,
   layerIndex: number,
-  formatterPageUrl: string
+  formatterPageUrl?: string,
+  metadataFormat?: MetadataFormat
 ) {
   // Exit early if there is no layer URL.
   if (
@@ -223,9 +233,11 @@ async function addMetadataTab(
     return;
   }
 
-  let mdLinks = await getBuiltInMetadataUrls(operationalLayer);
+  // Get metadata links using built-in functionality of ArcGIS Server if supported by the service.
+  let mdLinks = await getBuiltInMetadataUrls(operationalLayer, metadataFormat);
 
 
+  // Fall back to WSDOT custom SOE for metadata for older services without built-in metadata support.
   if (!mdLinks) {
     const url = operationalLayer.layer.url;
     // Check to see if metadata SOE is supported by the operational layer's service.
@@ -270,7 +282,7 @@ async function addMetadataTab(
       const mdUrl = mdLinks[name];
       const a = document.createElement("a");
       a.target = "wsdot-metadata";
-      a.href = wrapUrlWithFormatterPage(mdUrl, formatterPageUrl);
+      a.href = formatterPageUrl ? wrapUrlWithFormatterPage(mdUrl, formatterPageUrl) : mdUrl;
       a.appendChild(createFCNameSpans(name));
       const li = document.createElement("li");
       li.appendChild(a);

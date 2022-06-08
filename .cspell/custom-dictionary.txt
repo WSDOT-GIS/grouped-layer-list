@@ -1,3 +1,11 @@
 # Custom Dictionary Words
+AGOL
+dijit
+fgdc
 sublayer
 sublayers
+wkid
+xmax
+xmin
+ymax
+ymin

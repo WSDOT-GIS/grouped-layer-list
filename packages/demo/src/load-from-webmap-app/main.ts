@@ -140,7 +140,8 @@ arcgisUtils
         map,
         metadata: true,
         layers,
-        throwOnGroupNotFound: false
+        throwOnGroupNotFound: false,
+        metadataFormat: "iso19139"
       },
       "layerList"
     );
