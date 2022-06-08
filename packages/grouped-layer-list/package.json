@@ -1,6 +1,6 @@
 {
   "name": "@wsdot/grouped-layer-list",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "ArcGIS API v3 Layer List with added categorization ability",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
@@ -51,5 +51,8 @@
   "bugs": {
     "url": "https://github.com/WSDOT-GIS/grouped-layer-list/issues"
   },
-  "homepage": "https://github.com/WSDOT-GIS/grouped-layer-list#readme"
+  "homepage": "https://github.com/WSDOT-GIS/grouped-layer-list#readme",
+  "directories": {
+    "doc": "docs"
+  }
 }
