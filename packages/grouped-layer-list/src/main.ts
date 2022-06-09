@@ -10,7 +10,7 @@ import LayerList from "esri/dijit/LayerList";
 import ArcGISDynamicMapServiceLayer from "esri/layers/ArcGISDynamicMapServiceLayer";
 import Layer from "esri/layers/layer";
 import EsriMap from "esri/map";
-import { addMetadataTabs, MetadataFormat } from "./metadataUtils";
+import { addMetadataTabs } from "./metadataUtils";
 
 export * from "./searchUtils";
 export * from "./conversionUtils";
@@ -171,10 +171,6 @@ export interface GroupedLayerListOptions extends LayerListOptions {
    * Set to true to add the metadata tab to layers, false otherwise.
    */
   metadata?: boolean;
-  /**
-   * Specifies the metadata format.
-   */
-  metadataFormat?: MetadataFormat | null;
   /**
    * Specify the metadata formatter page. Set to null to instead show unformatted metadata.
    */
@@ -381,7 +377,7 @@ export default class GroupedLayerList extends LayerList {
       });
     }
     if (options.metadata) {
-      addMetadataTabs(this, options.metadataFormatterPage || undefined, options.metadataFormat || undefined);
+      addMetadataTabs(this, options.metadataFormatterPage || undefined);
     }
   }
 }

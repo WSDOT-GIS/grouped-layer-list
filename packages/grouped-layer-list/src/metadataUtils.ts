@@ -5,6 +5,7 @@ import {
 import LayerList from "esri/dijit/LayerList";
 import { IMapServiceLayersInfo } from "./IMapServiceLayersInfo";
 import { LayerListOperationalLayer } from "./main";
+import { MetadataFormat, MetadataOutput } from "./types";
 
 export const defaultFormatterPage = "https://wsdot-gis.github.io/geospatial-metadata";
 
@@ -47,8 +48,7 @@ function wrapUrlWithFormatterPage(
  */
 export function addMetadataTabs(
   layerList: LayerList,
-  formatterPageUrl?: string,
-  metadataFormat?: MetadataFormat
+  formatterPageUrl?: string
 ) {
   layerList.on("load", ({ target }) => {
     // Get the DOM node of the layer list
@@ -76,7 +76,7 @@ export function addMetadataTabs(
         }
       }
       if (tabContainer) {
-        addMetadataTab(tabContainer, opLayer, layerIndex!, formatterPageUrl, metadataFormat);
+        addMetadataTab(tabContainer, opLayer, layerIndex!, formatterPageUrl);
       }
     }
 
@@ -143,18 +143,6 @@ function createFCNameSpans(dataSourceName: string) {
   }
   return document.createTextNode(dataSourceName);
 }
-
-/**
- * Valid metadata format specifiers.
- * @see {@link https://developers.arcgis.com/rest/services-reference/enterprise/metadata.htm#GUID-0F468AF6-56B1-4100-9F2D-CEEE5A61EAA6}
- */
-export type MetadataFormat = "fgdc"|"iso19139";
-
-/**
- * Valid metadata format specifiers.
- * @see {@link https://developers.arcgis.com/rest/services-reference/enterprise/metadata.htm#GUID-0F468AF6-56B1-4100-9F2D-CEEE5A61EAA6}
- */
-export type MetadataOutput = "html";
 
 /**
  * Detects if the current layer supports metadata.
