@@ -8,6 +8,17 @@ import { LayerListOperationalLayer } from "./main";
 
 export const defaultFormatterPage = "https://wsdot-gis.github.io/geospatial-metadata";
 
+
+/**
+ * Detects if a metadata URL is a WSDOT custom LayerMetadata SOE URL.
+ * @param url metadata URL
+ * @returns Returns true if URL contains "exts/LayerMetadata", false otherwise.
+ */
+export function isSoeMetadataUrl(url: string | URL): boolean {
+  const re = /\bexts\/LayerMetadata\b/gi;
+  return re.test(url instanceof URL ? url.href : url);
+}
+
 /**
  * Creates a URL for a page that formats a metadata URL's XML into HTML.
  * @param metadataUrl Metadata URL.
