@@ -1,7 +1,10 @@
 # Custom Dictionary Words
 AGOL
+brotli
 dijit
 fgdc
+ghpages
+orgid
 sublayer
 sublayers
 wkid
