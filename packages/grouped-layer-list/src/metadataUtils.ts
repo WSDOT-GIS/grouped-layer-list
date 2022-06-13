@@ -8,6 +8,18 @@ import { LayerListOperationalLayer } from "./main";
 
 export const defaultFormatterPage = "https://wsdot-gis.github.io/geospatial-metadata";
 
+export enum MetadataSourceEnum {
+  None = 0,
+  BuiltIn = 1,
+  Soe = 2,
+  Both = 3 // BuiltIn | Soe
+}
+export interface IMetadataOptions {
+  format?: MetadataFormat;
+  output?: MetadataOutput;
+  formatterPageUrl?: string;
+  whatToFormat?: MetadataSourceEnum
+}
 
 /**
  * Detects if a metadata URL is a WSDOT custom LayerMetadata SOE URL.
@@ -22,19 +34,88 @@ export function isSoeMetadataUrl(url: string | URL): boolean {
 /**
  * Creates a URL for a page that formats a metadata URL's XML into HTML.
  * @param metadataUrl Metadata URL.
- * @param formatterPageUrl Formatter page URL.
+ * @param options Controls how the metadata will be formatted.
+ * @returns output URL
  */
 function wrapUrlWithFormatterPage(
-  metadataUrl: string,
-  formatterPageUrl?: string
+  metadataUrl: string | URL,
+  options: IMetadataOptions
 ) {
-  if (!formatterPageUrl) {
-    return metadataUrl;
+  let { formatterPageUrl, format, output, whatToFormat } = options;
+
+  const isSoe = isSoeMetadataUrl(metadataUrl);
+
+  if (!(metadataUrl instanceof URL)) {
+    metadataUrl = new URL(metadataUrl);
   }
-  const formatterSearch = `url=${encodeURIComponent(metadataUrl)}`;
-  const outUrl = `${formatterPageUrl}?${formatterSearch}`;
+
+  function shouldWrap(): boolean {
+    if (!(formatterPageUrl && whatToFormat)) {
+      return false;
+    }
+
+    if (isSoe) {
+      return (whatToFormat & MetadataSourceEnum.Soe) === MetadataSourceEnum.Soe;
+    } else {
+      return (whatToFormat & MetadataSourceEnum.BuiltIn) === MetadataSourceEnum.BuiltIn;
+    }
+  }
+
+
+  let outUrl: URL;
+  if (shouldWrap() && formatterPageUrl) {
+    outUrl = new URL(formatterPageUrl);
+    let paramUrl = new URL(metadataUrl);
+    if (!isSoe) {
+      // For the wrapper page, the output will need to be XML, so remove "output" parameter
+      paramUrl.searchParams.delete("output");
+      if (format) {
+        paramUrl.searchParams.set("format", format);
+      }
+      outUrl.searchParams.set("url", paramUrl.href);
+    }
+  } else { // Unwrapped
+    outUrl = new URL(metadataUrl);
+    if (!isSoe) {
+      if (output) {
+        outUrl.searchParams.set("output", output);
+      }
+      if (format) {
+        outUrl.searchParams.set("format", format);
+      }
+    } else if (output !== "html") {
+      outUrl.searchParams.set("f", "xml");
+    }
+  }
+
   return outUrl;
 }
+
+export class MetadataOptions implements IMetadataOptions {
+  format?: MetadataFormat;
+  output?: MetadataOutput;
+  formatterPageUrl?: string;
+  whatToFormat?: MetadataSourceEnum;
+
+  /**
+   * Creates a new instance
+   * @param options options
+   */
+  constructor({ format, output, formatterPageUrl, whatToFormat }: IMetadataOptions) {
+    this.format = format || "fgdc";
+    this.output = output || "html";
+    this.formatterPageUrl = formatterPageUrl || defaultFormatterPage;
+    this.whatToFormat = whatToFormat || MetadataSourceEnum.Soe;
+  }
+
+  public wrapMetadataUrl(url: string | URL) {
+    return wrapUrlWithFormatterPage(url, this);
+  }
+}
+
+
+
+
 
 /**
  * Adds a "load" event handler to a layer list. When the layer list has loaded,
@@ -47,8 +128,12 @@ function wrapUrlWithFormatterPage(
  */
 export function addMetadataTabs(
   layerList: LayerList,
-  formatterPageUrl?: string,
-  metadataFormat?: MetadataFormat
+  options: IMetadataOptions = {
+    format: "fgdc",
+    output: "html",
+    formatterPageUrl: defaultFormatterPage,
+    whatToFormat: MetadataSourceEnum.Soe
+  }
 ) {
   layerList.on("load", ({ target }) => {
     // Get the DOM node of the layer list
@@ -76,7 +161,7 @@ export function addMetadataTabs(
         }
       }
       if (tabContainer) {
-        addMetadataTab(tabContainer, opLayer, layerIndex!, formatterPageUrl, metadataFormat);
+        addMetadataTab(tabContainer, opLayer, layerIndex, options);
       }
     }
 
@@ -148,7 +233,7 @@ function createFCNameSpans(dataSourceName: string) {
  * Valid metadata format specifiers.
  * @see {@link https://developers.arcgis.com/rest/services-reference/enterprise/metadata.htm#GUID-0F468AF6-56B1-4100-9F2D-CEEE5A61EAA6}
  */
-export type MetadataFormat = "fgdc"|"iso19139";
+export type MetadataFormat = "fgdc" | "iso19139";
 
 /**
  * Valid metadata format specifiers.
@@ -192,6 +277,7 @@ async function getBuiltInMetadataUrls(layer: LayerListOperationalLayer, metadata
     }
   }
 
+
   const metadataUrl = new URL(`${layerUrl}info/metadata`);
   appendParameters(metadataUrl);
   const layersUrl = new URL(`${layerUrl}layers?f=json`);
@@ -199,9 +285,7 @@ async function getBuiltInMetadataUrls(layer: LayerListOperationalLayer, metadata
   const response = await fetch(layersUrl);
   const layerInfo: IMapServiceLayersInfo = await response.json();
 
-  // console.debug("layer info response", layerInfo);
-
-  let mdLinks: {[key: string]: string} = {
+  let mdLinks: { [key: string]: string } = {
     [`${layer.title || "Service"}`]: metadataUrl.href
   }
 
@@ -211,12 +295,10 @@ async function getBuiltInMetadataUrls(layer: LayerListOperationalLayer, metadata
     appendParameters(url);
     return [l.name, url.href];
   });
-  
+
   for (const [name, url] of metadataUrls) {
     mdLinks[name] = url
   }
-
-  // console.debug("metadata urls", metadataUrls);
 
   return mdLinks;
 }
@@ -227,15 +309,13 @@ async function getBuiltInMetadataUrls(layer: LayerListOperationalLayer, metadata
  * @param tabContainer
  * @param operationalLayer
  * @param layerIndex
- * @param formatterPageUrl
- * @param metadataFormat
+ * @param options
  */
 async function addMetadataTab(
   tabContainer: Element,
   operationalLayer: LayerListOperationalLayer,
   layerIndex: number,
-  formatterPageUrl?: string,
-  metadataFormat?: MetadataFormat
+  options: IMetadataOptions
 ) {
   // Exit early if there is no layer URL.
   if (
@@ -244,12 +324,27 @@ async function addMetadataTab(
     return;
   }
 
-  // Get metadata links using built-in functionality of ArcGIS Server if supported by the service.
-  let mdLinks = await getBuiltInMetadataUrls(operationalLayer, metadataFormat);
+  function* enumerateMetadataUrls(mdLinks: { [key: string]: string } | null) {
+    if (!mdLinks) return;
 
+    for (const key in mdLinks) {
+      if (Object.prototype.hasOwnProperty.call(mdLinks, key)) {
+        const url = mdLinks[key];
+        yield [key, url] as [string, string];
+      }
+    }
+  }
+
+  const {format} = options;
+
+  // Get metadata links using built-in functionality of ArcGIS Server if supported by the service.
+  let mdLinks = await getBuiltInMetadataUrls(operationalLayer, format);
+
+  // Create an array of the links so that we can count them.
+  let mdLinkArray = [...enumerateMetadataUrls(mdLinks)];
 
   // Fall back to WSDOT custom SOE for metadata for older services without built-in metadata support.
-  if (!mdLinks) {
+  if (mdLinkArray.length <= 1) {
     const url = operationalLayer.layer.url;
     // Check to see if metadata SOE is supported by the operational layer's service.
     // If it is not supported, exit the function without adding the metadata tab.
@@ -293,7 +388,7 @@ async function addMetadataTab(
       const mdUrl = mdLinks[name];
       const a = document.createElement("a");
       a.target = "wsdot-metadata";
-      a.href = formatterPageUrl ? wrapUrlWithFormatterPage(mdUrl, formatterPageUrl) : mdUrl;
+      a.href = wrapUrlWithFormatterPage(mdUrl, options).href;
       a.appendChild(createFCNameSpans(name));
       const li = document.createElement("li");
       li.appendChild(a);

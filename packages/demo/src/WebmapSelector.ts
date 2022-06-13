@@ -21,7 +21,7 @@ async function getWebMaps() {
  * @returns a form with controls that allows the user to change the webmap.
  */
 export function createWebmapIdForm(inputType: "select" | "input" = "select") {
-  const queryPomise = getWebMaps();
+  const queryPromise = getWebMaps();
 
   const form = document.createElement("form");
   form.action = ".";
@@ -64,7 +64,7 @@ export function createWebmapIdForm(inputType: "select" | "input" = "select") {
   button.textContent = "change map";
   form.appendChild(button);
 
-  queryPomise.then(
+  queryPromise.then(
     results => {
       (select || input)!.disabled = false;
       results.forEach(pi => {

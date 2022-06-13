@@ -141,7 +141,9 @@ arcgisUtils
         metadata: true,
         layers,
         throwOnGroupNotFound: false,
-        metadataFormat: "fgdc"
+        metadataOptions: {
+          format: "fgdc"
+        }
       },
       "layerList"
     );
