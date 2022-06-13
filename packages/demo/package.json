@@ -1,6 +1,6 @@
 {
   "name": "demo",
-  "version": "0.0.14",
+  "version": "1.0.0",
   "description": "demo",
   "main": "main.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "build-dev": "webpack --mode development",
     "build-prod": "webpack --mode production"
   },
-  "author": "",
+  "author": "Jeff Jacobson",
   "private": true,
   "license": "Unlicense",
   "devDependencies": {
