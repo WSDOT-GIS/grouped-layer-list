@@ -42,9 +42,7 @@ function wrapUrlWithFormatterPage(
   metadataUrl: string | URL,
   options: IMetadataOptions
 ) {
-  console.group("wrapUrlWithFormatterPage", { metadataUrl, options });
   let { formatterPageUrl, format, output, whatToFormat } = options;
-
   const isSoe = isSoeMetadataUrl(metadataUrl);
 
   if (!(metadataUrl instanceof URL)) {
@@ -52,16 +50,16 @@ function wrapUrlWithFormatterPage(
   }
 
   function shouldWrap(): boolean {
-    console.group("shouldWrap function", { metadataUrl, options });
+
     if (!formatterPageUrl) {
-      console.debug("formatterPageUrl not defined. Should not wrap.", options);
+
       console.groupEnd();
       return false;
     }
 
     // Set whatToFormat to None if undefined.
     if (whatToFormat == null) {
-      console.debug("whatToFormat not defined. Setting default to None.", options);
+
       whatToFormat = MetadataSourceEnum.None;
     }
 
@@ -72,7 +70,7 @@ function wrapUrlWithFormatterPage(
       console.debug(`Current URL is an SOE. Should wrap? ${shouldWrap}`)
     } else {
       shouldWrap = (whatToFormat & MetadataSourceEnum.BuiltIn) === MetadataSourceEnum.BuiltIn;
-      console.debug(`Current URL is not an SOE. Should wrap? ${shouldWrap}`);
+
     }
     console.groupEnd();
     return shouldWrap;
@@ -81,11 +79,8 @@ function wrapUrlWithFormatterPage(
 
   let outUrl: URL;
   if (shouldWrap() && formatterPageUrl) {
-    console.debug(`Wrapping with ${formatterPageUrl}`);
     outUrl = new URL(formatterPageUrl);
-    console.debug(`outUrl set to ${outUrl}`);
     let paramUrl = new URL(metadataUrl);
-    console.debug(`paramUrl set to ${paramUrl}`);
 
     if (!isSoe) {
       // For the wrapper page, the output will need to be XML, so remove "output" parameter
@@ -96,26 +91,21 @@ function wrapUrlWithFormatterPage(
     } else {
       paramUrl.searchParams.set("f", "xml");
     }
-    console.debug(`paramUrl set to ${paramUrl}`);
     outUrl.searchParams.set("url", paramUrl.href);
-    console.debug(`outUrl set to ${outUrl}`);
+
   } else { // Unwrapped
     outUrl = new URL(metadataUrl);
-    console.debug(`outUrl set to ${outUrl}`);
+
     if (!isSoe) {
       console.debug("is not an SOE")
       if (output) {
-        console.debug(`output is defined: ${output}`, output);
         outUrl.searchParams.set("output", output);
       }
       if (format) {
-        console.debug(`format is defined: ${format}`);
         outUrl.searchParams.set("format", format);
       }
     } else if (output !== "html") {
-      console.debug(`output is not "html": ${output}`);
       outUrl.searchParams.set("f", "xml");
-      console.debug(`outUrl set to ${outUrl}`);
     }
   }
 
@@ -144,10 +134,6 @@ export class MetadataOptions implements IMetadataOptions {
     return wrapUrlWithFormatterPage(url, this);
   }
 }
-
-
-
-
 
 /**
  * Adds a "load" event handler to a layer list. When the layer list has loaded,
