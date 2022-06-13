@@ -1,54 +1,51 @@
-[@wsdot/grouped-layer-list](../README.md) > [ItemInfo](../interfaces/iteminfo.md)
+[@wsdot/grouped-layer-list](../README.md) / ItemInfo
 
 # Interface: ItemInfo
 
 Item data retrieved from ArcGIS Online (or other portal).
 
-## Hierarchy
-
-**ItemInfo**
-
-## Index
+## Table of contents
 
 ### Properties
 
-* [item](iteminfo.md#item)
-* [itemData](iteminfo.md#itemdata)
-
----
+- [item](ItemInfo.md#item)
+- [itemData](ItemInfo.md#itemdata)
 
 ## Properties
 
-<a id="item"></a>
+### item
 
-###  item
-
-**● item**: *`any`*
-
-*Defined in [main.ts:95](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/main.ts#L95)*
+• **item**: `any`
 
 ArcGIS Online item
-*__see__*: [https://developers.arcgis.com/rest/users-groups-and-items/item.htm](https://developers.arcgis.com/rest/users-groups-and-items/item.htm)
+
+**`see`** https://developers.arcgis.com/rest/users-groups-and-items/item.htm
+
+#### Defined in
+
+[packages/grouped-layer-list/src/main.ts:99](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c240d2b/packages/grouped-layer-list/src/main.ts#L99)
 
 ___
-<a id="itemdata"></a>
 
-###  itemData
+### itemData
 
-**● itemData**: *`object`*
-
-*Defined in [main.ts:100](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/main.ts#L100)*
+• **itemData**: `Object`
 
 ArcGIS Online webmap
-*__see__*: [https://developers.arcgis.com/web-map-specification/](https://developers.arcgis.com/web-map-specification/)
+
+**`see`** https://developers.arcgis.com/web-map-specification/
+
+#### Index signature
+
+▪ [key: `string`]: `any`
 
 #### Type declaration
 
-[key: `string`]: `any`
+| Name | Type |
+| :------ | :------ |
+| `applicationProperties?` | [`ApplicationProperties`](ApplicationProperties.md) |
+| `operationalLayers` | [`CreateMapOperationalLayer`](CreateMapOperationalLayer.md)[] |
 
-`Optional`  applicationProperties: [ApplicationProperties](applicationproperties.md)
+#### Defined in
 
- operationalLayers: [CreateMapOperationalLayer](createmapoperationallayer.md)[]
-
-___
-
+[packages/grouped-layer-list/src/main.ts:104](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c240d2b/packages/grouped-layer-list/src/main.ts#L104)

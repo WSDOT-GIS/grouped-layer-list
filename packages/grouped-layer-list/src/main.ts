@@ -1,5 +1,6 @@
 /**
  * Exposes GroupLayerList class and related functions.
+ * @module
  */
 
 /**
@@ -10,10 +11,12 @@ import LayerList from "esri/dijit/LayerList";
 import ArcGISDynamicMapServiceLayer from "esri/layers/ArcGISDynamicMapServiceLayer";
 import Layer from "esri/layers/layer";
 import EsriMap from "esri/map";
-import { addMetadataTabs, IMetadataOptions, MetadataOptions } from "./metadataUtils";
+import { addMetadataTabs, IMetadataOptions } from "./metadataUtils";
 
 export * from "./searchUtils";
 export * from "./conversionUtils";
+export * from "./metadataUtils"
+export * from "./types"
 
 /**
  * Properties that operational layers have in common.

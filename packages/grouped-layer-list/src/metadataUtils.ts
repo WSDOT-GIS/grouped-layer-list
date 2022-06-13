@@ -15,10 +15,19 @@ export enum MetadataSourceEnum {
   Soe = 2,
   Both = 3 // BuiltIn | Soe
 }
+/**
+ * Metadata options
+ */
 export interface IMetadataOptions {
+  /**
+   * Metadata format
+   */
   format?: MetadataFormat;
+  /** Metadata output */
   output?: MetadataOutput;
+  /** formatter page URL */
   formatterPageUrl?: string;
+  /** what to format */
   whatToFormat?: MetadataSourceEnum
 }
 

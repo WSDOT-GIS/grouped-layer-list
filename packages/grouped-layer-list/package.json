@@ -8,7 +8,7 @@
     "dist/*"
   ],
   "scripts": {
-    "docs": "typedoc --theme markdown --out docs --readme none --excludePrivate --mode file",
+    "docs": "typedoc",
     "prepare": "tsc",
     "watch": "tsc -w",
     "test": "echo \"Error: no test specified\" && exit 1"
