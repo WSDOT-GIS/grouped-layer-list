@@ -250,11 +250,10 @@ function createFCNameSpans(dataSourceName: string) {
 /**
  * Detects if the current layer supports metadata.
  * @param layer an operational layer
- * @param metadataFormat Specify a metadata format.
- * @param metadataOutput Specify the metadata output format.
+ * @param metadataOptions Specify the metadata output format.
  * @returns Returns an object which has properties named after layer names and these properties' values are the metadata URLs.
  */
-async function getBuiltInMetadataUrls(layer: LayerListOperationalLayer, metadataFormat?: MetadataFormat, metadataOutput: MetadataOutput = "html"): Promise<{ [key: string]: string; } | null> {
+async function getBuiltInMetadataUrls(layer: LayerListOperationalLayer, metadataOptions: IMetadataOptions): Promise<{ [key: string]: string; } | null> {
   // Exit if layer URL is underfined.
   let layerUrl = layer.layer?.url;
   if (!layerUrl) {
@@ -262,6 +261,8 @@ async function getBuiltInMetadataUrls(layer: LayerListOperationalLayer, metadata
   }
   const serviceRootRe = /(?:(?:Map)|(?:Feature))Server(\/?)$/g;
   const serviceRootMatch = layerUrl.match(serviceRootRe);
+
+  const {format, output } = metadataOptions;
 
   if (!serviceRootMatch) {
     // Exit if not a supported URL type.
@@ -272,14 +273,14 @@ async function getBuiltInMetadataUrls(layer: LayerListOperationalLayer, metadata
   }
 
   function appendParameters(url: URL) {
-    if (metadataFormat) {
-      url.searchParams.set("format", metadataFormat);
+    if (format) {
+      url.searchParams.set("format", format);
     }
-    if (metadataOutput) {
-      if (!metadataFormat) {
-        console.warn(`Metadata "output" parameter has been set to "${metadataOutput}", but no value was given for the corresponding "format" parameter.`)
+    if (output) {
+      if (!format) {
+        console.warn(`Metadata "output" parameter has been set to "${output}", but no value was given for the corresponding "format" parameter.`)
       }
-      url.searchParams.set("output", metadataOutput);
+      url.searchParams.set("output", output);
     }
   }
 
@@ -344,7 +345,7 @@ async function addMetadataTab(
   const { format } = options;
 
   // Get metadata links using built-in functionality of ArcGIS Server if supported by the service.
-  let mdLinks = await getBuiltInMetadataUrls(operationalLayer, format);
+  let mdLinks = await getBuiltInMetadataUrls(operationalLayer, options);
 
   // Create an array of the links so that we can count them.
   let mdLinkArray = [...enumerateMetadataUrls(mdLinks)];
