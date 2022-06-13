@@ -1,4 +1,4 @@
-[@wsdot/grouped-layer-list](../README.md) > [OperationalLayerCommon](../interfaces/operationallayercommon.md)
+[@wsdot/grouped-layer-list](../README.md) / OperationalLayerCommon
 
 # Interface: OperationalLayerCommon
 
@@ -6,56 +6,50 @@ Properties that operational layers have in common.
 
 ## Hierarchy
 
-**OperationalLayerCommon**
+- **`OperationalLayerCommon`**
 
-↳  [CreateMapOperationalLayer](createmapoperationallayer.md)
+  ↳ [`CreateMapOperationalLayer`](CreateMapOperationalLayer.md)
 
-↳  [LayerListOperationalLayer](layerlistoperationallayer.md)
+  ↳ [`LayerListOperationalLayer`](LayerListOperationalLayer.md)
 
-## Index
+## Table of contents
 
 ### Properties
 
-* [id](operationallayercommon.md#id)
-* [title](operationallayercommon.md#title)
-* [visibility](operationallayercommon.md#visibility)
-
----
+- [id](OperationalLayerCommon.md#id)
+- [title](OperationalLayerCommon.md#title)
+- [visibility](OperationalLayerCommon.md#visibility)
 
 ## Properties
 
-<a id="id"></a>
+### id
 
-### `<Optional>` id
+• `Optional` **id**: `string`
 
-**● id**: * `undefined` &#124; `string`
-*
+#### Defined in
 
-*Defined in [main.ts:21](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/main.ts#L21)*
-
-___
-<a id="title"></a>
-
-### `<Optional>` title
-
-**● title**: * `undefined` &#124; `string`
-*
-
-*Defined in [main.ts:23](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/main.ts#L23)*
-
-Optional The title of the layer.
-
-___
-<a id="visibility"></a>
-
-### `<Optional>` visibility
-
-**● visibility**: * `undefined` &#124; `false` &#124; `true`
-*
-
-*Defined in [main.ts:25](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/main.ts#L25)*
-
-Optional Indicates whether to set the default visibility.
+[packages/grouped-layer-list/src/main.ts:25](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c240d2b/packages/grouped-layer-list/src/main.ts#L25)
 
 ___
 
+### title
+
+• `Optional` **title**: `string`
+
+Optional 	The title of the layer.
+
+#### Defined in
+
+[packages/grouped-layer-list/src/main.ts:27](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c240d2b/packages/grouped-layer-list/src/main.ts#L27)
+
+___
+
+### visibility
+
+• `Optional` **visibility**: `boolean`
+
+Optional 	Indicates whether to set the default visibility.
+
+#### Defined in
+
+[packages/grouped-layer-list/src/main.ts:29](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c240d2b/packages/grouped-layer-list/src/main.ts#L29)

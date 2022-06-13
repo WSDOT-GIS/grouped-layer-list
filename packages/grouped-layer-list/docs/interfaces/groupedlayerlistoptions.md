@@ -1,4 +1,4 @@
-[@wsdot/grouped-layer-list](../README.md) > [GroupedLayerListOptions](../interfaces/groupedlayerlistoptions.md)
+[@wsdot/grouped-layer-list](../README.md) / GroupedLayerListOptions
 
 # Interface: GroupedLayerListOptions
 
@@ -6,199 +6,213 @@ Options for the GroupedLayerList constructor
 
 ## Hierarchy
 
- `LayerListOptions`
+- `LayerListOptions`
 
-**↳ GroupedLayerListOptions**
+  ↳ **`GroupedLayerListOptions`**
 
-## Index
+## Table of contents
 
 ### Properties
 
-* [groupProperty](groupedlayerlistoptions.md#groupproperty)
-* [groups](groupedlayerlistoptions.md#groups)
-* [layers](groupedlayerlistoptions.md#layers)
-* [map](groupedlayerlistoptions.md#map)
-* [metadata](groupedlayerlistoptions.md#metadata)
-* [metadataFormatterPage](groupedlayerlistoptions.md#metadataformatterpage)
-* [removeUnderscores](groupedlayerlistoptions.md#removeunderscores)
-* [showLegend](groupedlayerlistoptions.md#showlegend)
-* [showOpacitySlider](groupedlayerlistoptions.md#showopacityslider)
-* [showSubLayers](groupedlayerlistoptions.md#showsublayers)
-* [theme](groupedlayerlistoptions.md#theme)
-* [throwOnGroupNotFound](groupedlayerlistoptions.md#throwongroupnotfound)
-* [visible](groupedlayerlistoptions.md#visible)
-
----
+- [groupProperty](GroupedLayerListOptions.md#groupproperty)
+- [groups](GroupedLayerListOptions.md#groups)
+- [layers](GroupedLayerListOptions.md#layers)
+- [map](GroupedLayerListOptions.md#map)
+- [metadata](GroupedLayerListOptions.md#metadata)
+- [metadataOptions](GroupedLayerListOptions.md#metadataoptions)
+- [removeUnderscores](GroupedLayerListOptions.md#removeunderscores)
+- [showLegend](GroupedLayerListOptions.md#showlegend)
+- [showOpacitySlider](GroupedLayerListOptions.md#showopacityslider)
+- [showSubLayers](GroupedLayerListOptions.md#showsublayers)
+- [theme](GroupedLayerListOptions.md#theme)
+- [throwOnGroupNotFound](GroupedLayerListOptions.md#throwongroupnotfound)
+- [visible](GroupedLayerListOptions.md#visible)
 
 ## Properties
 
-<a id="groupproperty"></a>
+### groupProperty
 
-### `<Optional>` groupProperty
+• `Optional` **groupProperty**: ``"id"`` \| ``"title"``
 
-**● groupProperty**: * "id" &#124; "title"
-*
+Which property do the arrays in "groups" correspond to: "id" or "title"?
 
-*Defined in [main.ts:164](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/main.ts#L164)*
+#### Defined in
 
-Which property do the arrays in "groups" correpsond to: "id" or "title"?
-
-___
-<a id="groups"></a>
-
-### `<Optional>` groups
-
-**● groups**: *[LayerPropGroups](layerpropgroups.md)*
-
-*Defined in [main.ts:160](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/main.ts#L160)*
-
-Defines how layers are grouped. Property names are group names. Values correspond to either the title or id properties of operational layers.
+[packages/grouped-layer-list/src/main.ts:168](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c240d2b/packages/grouped-layer-list/src/main.ts#L168)
 
 ___
-<a id="layers"></a>
 
-###  layers
+### groups
 
-**● layers**: *`any`[]*
+• `Optional` **groups**: [`LayerPropGroups`](LayerPropGroups.md)
 
-*Inherited from LayerListOptions.layers*
+Defines how layers are grouped. Property names are group names.
+Values correspond to either the title or id properties of operational layers.
 
-*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:1325*
+#### Defined in
+
+[packages/grouped-layer-list/src/main.ts:164](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c240d2b/packages/grouped-layer-list/src/main.ts#L164)
+
+___
+
+### layers
+
+• **layers**: `any`[]
 
 An array of operational layers.
 
+#### Inherited from
+
+LayerListOptions.layers
+
+#### Defined in
+
+node_modules/@types/arcgis-js-api/index.d.ts:1327
+
 ___
-<a id="map"></a>
 
-###  map
+### map
 
-**● map**: *`Map`*
-
-*Inherited from LayerListOptions.map*
-
-*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:1327*
+• **map**: `Map`
 
 Reference to the map.
 
+#### Inherited from
+
+LayerListOptions.map
+
+#### Defined in
+
+node_modules/@types/arcgis-js-api/index.d.ts:1329
+
 ___
-<a id="metadata"></a>
 
-### `<Optional>` metadata
+### metadata
 
-**● metadata**: * `undefined` &#124; `false` &#124; `true`
-*
-
-*Defined in [main.ts:172](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/main.ts#L172)*
+• `Optional` **metadata**: `boolean`
 
 Set to true to add the metadata tab to layers, false otherwise.
 
-___
-<a id="metadataformatterpage"></a>
+#### Defined in
 
-### `<Optional>` metadataFormatterPage
-
-**● metadataFormatterPage**: * `string` &#124; `null`
-*
-
-*Defined in [main.ts:176](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/main.ts#L176)*
-
-Specify the metadata formatter page. Set to null to instead show unformatted metadata.
+[packages/grouped-layer-list/src/main.ts:176](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c240d2b/packages/grouped-layer-list/src/main.ts#L176)
 
 ___
-<a id="removeunderscores"></a>
 
-### `<Optional>` removeUnderscores
+### metadataOptions
 
-**● removeUnderscores**: * `undefined` &#124; `false` &#124; `true`
-*
+• `Optional` **metadataOptions**: [`IMetadataOptions`](IMetadataOptions.md)
 
-*Inherited from LayerListOptions.removeUnderscores*
+Specifies the metadata format.
 
-*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:1329*
+#### Defined in
+
+[packages/grouped-layer-list/src/main.ts:180](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c240d2b/packages/grouped-layer-list/src/main.ts#L180)
+
+___
+
+### removeUnderscores
+
+• `Optional` **removeUnderscores**: `boolean`
 
 Indicates whether to remove underscores from the layer title.
 
+#### Inherited from
+
+LayerListOptions.removeUnderscores
+
+#### Defined in
+
+node_modules/@types/arcgis-js-api/index.d.ts:1331
+
 ___
-<a id="showlegend"></a>
 
-### `<Optional>` showLegend
+### showLegend
 
-**● showLegend**: * `undefined` &#124; `false` &#124; `true`
-*
-
-*Inherited from LayerListOptions.showLegend*
-
-*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:1331*
+• `Optional` **showLegend**: `boolean`
 
 Indicates whether to display a legend for the layer items.
 
+#### Inherited from
+
+LayerListOptions.showLegend
+
+#### Defined in
+
+node_modules/@types/arcgis-js-api/index.d.ts:1333
+
 ___
-<a id="showopacityslider"></a>
 
-### `<Optional>` showOpacitySlider
+### showOpacitySlider
 
-**● showOpacitySlider**: * `undefined` &#124; `false` &#124; `true`
-*
-
-*Inherited from LayerListOptions.showOpacitySlider*
-
-*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:1333*
+• `Optional` **showOpacitySlider**: `boolean`
 
 Indicates whether to display the opacity slider.
 
+#### Inherited from
+
+LayerListOptions.showOpacitySlider
+
+#### Defined in
+
+node_modules/@types/arcgis-js-api/index.d.ts:1335
+
 ___
-<a id="showsublayers"></a>
 
-### `<Optional>` showSubLayers
+### showSubLayers
 
-**● showSubLayers**: * `undefined` &#124; `false` &#124; `true`
-*
-
-*Inherited from LayerListOptions.showSubLayers*
-
-*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:1335*
+• `Optional` **showSubLayers**: `boolean`
 
 Indicates whether to show sublayers in the list of layers.
 
+#### Inherited from
+
+LayerListOptions.showSubLayers
+
+#### Defined in
+
+node_modules/@types/arcgis-js-api/index.d.ts:1337
+
 ___
-<a id="theme"></a>
 
-### `<Optional>` theme
+### theme
 
-**● theme**: * `undefined` &#124; `string`
-*
-
-*Inherited from LayerListOptions.theme*
-
-*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:1337*
+• `Optional` **theme**: `string`
 
 The CSS class selector used to uniquely style the widget.
 
+#### Inherited from
+
+LayerListOptions.theme
+
+#### Defined in
+
+node_modules/@types/arcgis-js-api/index.d.ts:1339
+
 ___
-<a id="throwongroupnotfound"></a>
 
-### `<Optional>` throwOnGroupNotFound
+### throwOnGroupNotFound
 
-**● throwOnGroupNotFound**: * `undefined` &#124; `false` &#124; `true`
-*
-
-*Defined in [main.ts:168](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/main.ts#L168)*
+• `Optional` **throwOnGroupNotFound**: `boolean`
 
 Set to true if you want to throw an exception when a referenced group cannot be found.
 
+#### Defined in
+
+[packages/grouped-layer-list/src/main.ts:172](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c240d2b/packages/grouped-layer-list/src/main.ts#L172)
+
 ___
-<a id="visible"></a>
 
-### `<Optional>` visible
+### visible
 
-**● visible**: * `undefined` &#124; `false` &#124; `true`
-*
-
-*Inherited from LayerListOptions.visible*
-
-*Defined in C:/Users/jacobsj/Documents/GitHub/categorized-layer-list/node_modules/@types/arcgis-js-api/index.d.ts:1339*
+• `Optional` **visible**: `boolean`
 
 Indicates whether to show the LayerList widget.
 
-___
+#### Inherited from
 
+LayerListOptions.visible
+
+#### Defined in
+
+node_modules/@types/arcgis-js-api/index.d.ts:1341

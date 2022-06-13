@@ -1,19 +1,9 @@
-[@wsdot/grouped-layer-list](../README.md) > [LayerGroups](../interfaces/layergroups.md)
+[@wsdot/grouped-layer-list](../README.md) / LayerGroups
 
 # Interface: LayerGroups
 
 Arrays of layers grouped by category names.
 
-## Hierarchy
-
-**LayerGroups**
-
 ## Indexable
 
-\[groupName: `string`\]:&nbsp;`Layer`[]
-Arrays of layers grouped by category names.
-
-## Index
-
----
-
+▪ [groupName: `string`]: `Layer`[]

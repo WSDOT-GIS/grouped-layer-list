@@ -1,5 +1,6 @@
 /**
  * Exposes GroupLayerList class and related functions.
+ * @module
  */
 
 /**
@@ -10,10 +11,12 @@ import LayerList from "esri/dijit/LayerList";
 import ArcGISDynamicMapServiceLayer from "esri/layers/ArcGISDynamicMapServiceLayer";
 import Layer from "esri/layers/layer";
 import EsriMap from "esri/map";
-import { addMetadataTabs } from "./metadataUtils";
+import { addMetadataTabs, IMetadataOptions } from "./metadataUtils";
 
 export * from "./searchUtils";
 export * from "./conversionUtils";
+export * from "./metadataUtils"
+export * from "./types"
 
 /**
  * Properties that operational layers have in common.
@@ -160,7 +163,7 @@ export interface GroupedLayerListOptions extends LayerListOptions {
    */
   groups?: LayerPropGroups;
   /**
-   * Which property do the arrays in "groups" correpsond to: "id" or "title"?
+   * Which property do the arrays in "groups" correspond to: "id" or "title"?
    */
   groupProperty?: "id" | "title";
   /**
@@ -172,9 +175,9 @@ export interface GroupedLayerListOptions extends LayerListOptions {
    */
   metadata?: boolean;
   /**
-   * Specify the metadata formatter page. Set to null to instead show unformatted metadata.
+   * Specifies the metadata format.
    */
-  metadataFormatterPage?: string | null;
+  metadataOptions?: IMetadataOptions
 }
 
 /**
@@ -377,7 +380,7 @@ export default class GroupedLayerList extends LayerList {
       });
     }
     if (options.metadata) {
-      addMetadataTabs(this, options.metadataFormatterPage || undefined);
+      addMetadataTabs(this, options.metadataOptions);
     }
   }
 }

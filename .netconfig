@@ -1,0 +1,9 @@
+# .netconfig is awesome: https://dotnetconfig.org
+
+[serve]
+	directory = .\\packages\\demo\\
+	open-browser = true
+	tls = true
+	gzip = true
+	brotli = true
+	cors = true

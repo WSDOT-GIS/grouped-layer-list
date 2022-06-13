@@ -1,46 +1,41 @@
-[@wsdot/grouped-layer-list](../README.md) > [ApplicationProperties](../interfaces/applicationproperties.md)
+[@wsdot/grouped-layer-list](../README.md) / ApplicationProperties
 
 # Interface: ApplicationProperties
 
 Application properties section of an ArcGIS Online webmap.
-*__see__*: [https://developers.arcgis.com/web-map-specification/objects/applicationProperties/](https://developers.arcgis.com/web-map-specification/objects/applicationProperties/)
 
-## Hierarchy
-
-**ApplicationProperties**
+**`see`** https://developers.arcgis.com/web-map-specification/objects/applicationProperties/
 
 ## Indexable
 
-\[key: `string`\]:&nbsp;`any`
-Application properties section of an ArcGIS Online webmap.
+▪ [key: `string`]: `any`
 
-## Index
+## Table of contents
 
 ### Properties
 
-* [viewing](applicationproperties.md#viewing)
-
----
+- [viewing](ApplicationProperties.md#viewing)
 
 ## Properties
 
-<a id="viewing"></a>
+### viewing
 
-###  viewing
-
-**● viewing**: *`object`*
-
-*Defined in [main.ts:74](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/main.ts#L74)*
+• **viewing**: `Object`
 
 properties related to viewing (as opposed to editing, etc.)
 
+#### Index signature
+
+▪ [key: `string`]: `any`
+
 #### Type declaration
 
-[key: `string`]: `any`
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `layerGrouping?` | { `enabled`: `boolean` ; `groups`: [`LayerPropGroups`](LayerPropGroups.md)  } | layer grouping property created for use with the GroupedLayerList. This is not part of Esri's standard |
+| `layerGrouping.enabled` | `boolean` | - |
+| `layerGrouping.groups` | [`LayerPropGroups`](LayerPropGroups.md) | - |
 
-`Optional`  layerGrouping:  `undefined` &#124; `object`
+#### Defined in
 
-layer grouping property created for use with the GroupedLayerList. This is not part of Esri's standard
-
-___
-
+[packages/grouped-layer-list/src/main.ts:78](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c240d2b/packages/grouped-layer-list/src/main.ts#L78)
