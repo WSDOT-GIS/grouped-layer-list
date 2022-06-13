@@ -1,4 +1,4 @@
-[@wsdot/grouped-layer-list](../README.md) > [CreateMapOperationalLayer](../interfaces/createmapoperationallayer.md)
+[@wsdot/grouped-layer-list](../README.md) / CreateMapOperationalLayer
 
 # Interface: CreateMapOperationalLayer
 
@@ -6,125 +6,129 @@ Operational layer property from the returned object of a createMap operation.
 
 ## Hierarchy
 
- [OperationalLayerCommon](operationallayercommon.md)
+- [`OperationalLayerCommon`](OperationalLayerCommon.md)
 
-**↳ CreateMapOperationalLayer**
+  ↳ **`CreateMapOperationalLayer`**
 
 ## Indexable
 
-\[key: `string`\]:&nbsp;`any`
-Operational layer property from the returned object of a createMap operation.
+▪ [key: `string`]: `any`
 
-## Index
+## Table of contents
 
 ### Properties
 
-* [errors](createmapoperationallayer.md#errors)
-* [id](createmapoperationallayer.md#id)
-* [layerObject](createmapoperationallayer.md#layerobject)
-* [layerType](createmapoperationallayer.md#layertype)
-* [resourceInfo](createmapoperationallayer.md#resourceinfo)
-* [title](createmapoperationallayer.md#title)
-* [url](createmapoperationallayer.md#url)
-* [visibility](createmapoperationallayer.md#visibility)
-
----
+- [errors](CreateMapOperationalLayer.md#errors)
+- [id](CreateMapOperationalLayer.md#id)
+- [layerObject](CreateMapOperationalLayer.md#layerobject)
+- [layerType](CreateMapOperationalLayer.md#layertype)
+- [resourceInfo](CreateMapOperationalLayer.md#resourceinfo)
+- [title](CreateMapOperationalLayer.md#title)
+- [url](CreateMapOperationalLayer.md#url)
+- [visibility](CreateMapOperationalLayer.md#visibility)
 
 ## Properties
 
-<a id="errors"></a>
+### errors
 
-###  errors
-
-**● errors**: *`Error`[]*
-
-*Defined in [main.ts:34](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/main.ts#L34)*
+• **errors**: `Error`[]
 
 A collection of errors that were encountered when adding the layer to the map.
 
-___
-<a id="id"></a>
+#### Defined in
 
-### `<Optional>` id
-
-**● id**: * `undefined` &#124; `string`
-*
-
-*Inherited from [OperationalLayerCommon](operationallayercommon.md).[id](operationallayercommon.md#id)*
-
-*Defined in [main.ts:21](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/main.ts#L21)*
+[packages/grouped-layer-list/src/main.ts:38](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c240d2b/packages/grouped-layer-list/src/main.ts#L38)
 
 ___
-<a id="layerobject"></a>
 
-###  layerObject
+### id
 
-**● layerObject**: *`Layer`*
+• `Optional` **id**: `string`
 
-*Defined in [main.ts:36](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/main.ts#L36)*
+#### Inherited from
+
+[OperationalLayerCommon](OperationalLayerCommon.md).[id](OperationalLayerCommon.md#id)
+
+#### Defined in
+
+[packages/grouped-layer-list/src/main.ts:25](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c240d2b/packages/grouped-layer-list/src/main.ts#L25)
+
+___
+
+### layerObject
+
+• **layerObject**: `Layer`
 
 "esri/layers/layer" object.
 
+#### Defined in
+
+[packages/grouped-layer-list/src/main.ts:40](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c240d2b/packages/grouped-layer-list/src/main.ts#L40)
+
 ___
-<a id="layertype"></a>
 
-###  layerType
+### layerType
 
-**● layerType**: *`string`*
-
-*Defined in [main.ts:38](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/main.ts#L38)*
+• **layerType**: `string`
 
 The type of layer.
 
+#### Defined in
+
+[packages/grouped-layer-list/src/main.ts:42](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c240d2b/packages/grouped-layer-list/src/main.ts#L42)
+
 ___
-<a id="resourceinfo"></a>
 
-###  resourceInfo
+### resourceInfo
 
-**● resourceInfo**: *`any`*
-
-*Defined in [main.ts:40](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/main.ts#L40)*
+• **resourceInfo**: `any`
 
 Resource information
 
-___
-<a id="title"></a>
+#### Defined in
 
-### `<Optional>` title
-
-**● title**: * `undefined` &#124; `string`
-*
-
-*Inherited from [OperationalLayerCommon](operationallayercommon.md).[title](operationallayercommon.md#title)*
-
-*Defined in [main.ts:23](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/main.ts#L23)*
-
-Optional The title of the layer.
+[packages/grouped-layer-list/src/main.ts:44](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c240d2b/packages/grouped-layer-list/src/main.ts#L44)
 
 ___
-<a id="url"></a>
 
-###  url
+### title
 
-**● url**: *`string`*
+• `Optional` **title**: `string`
 
-*Defined in [main.ts:42](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/main.ts#L42)*
+Optional 	The title of the layer.
+
+#### Inherited from
+
+[OperationalLayerCommon](OperationalLayerCommon.md).[title](OperationalLayerCommon.md#title)
+
+#### Defined in
+
+[packages/grouped-layer-list/src/main.ts:27](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c240d2b/packages/grouped-layer-list/src/main.ts#L27)
+
+___
+
+### url
+
+• **url**: `string`
 
 layer URL
 
-___
-<a id="visibility"></a>
+#### Defined in
 
-### `<Optional>` visibility
-
-**● visibility**: * `undefined` &#124; `false` &#124; `true`
-*
-
-*Inherited from [OperationalLayerCommon](operationallayercommon.md).[visibility](operationallayercommon.md#visibility)*
-
-*Defined in [main.ts:25](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/main.ts#L25)*
-
-Optional Indicates whether to set the default visibility.
+[packages/grouped-layer-list/src/main.ts:46](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c240d2b/packages/grouped-layer-list/src/main.ts#L46)
 
 ___
 
+### visibility
+
+• `Optional` **visibility**: `boolean`
+
+Optional 	Indicates whether to set the default visibility.
+
+#### Inherited from
+
+[OperationalLayerCommon](OperationalLayerCommon.md).[visibility](OperationalLayerCommon.md#visibility)
+
+#### Defined in
+
+[packages/grouped-layer-list/src/main.ts:29](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c240d2b/packages/grouped-layer-list/src/main.ts#L29)

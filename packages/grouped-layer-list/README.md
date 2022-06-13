@@ -12,7 +12,6 @@ For [ArcGIS API for JavaScript version 3.X], an extension of [LayerList] which w
 [![npm version](https://img.shields.io/npm/v/@wsdot/grouped-layer-list.svg?style=flat-square)][package]
 [![npm license](https://img.shields.io/npm/l/@wsdot/grouped-layer-list.svg?style=flat-square)][package]
 [![npm downloads](https://img.shields.io/npm/dm/@wsdot/grouped-layer-list.svg?style=flat-square)][package]
-[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 
 ## Usage
 

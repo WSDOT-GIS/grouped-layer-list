@@ -1,82 +1,78 @@
-[@wsdot/grouped-layer-list](../README.md) > [CreateMapEvent](../interfaces/createmapevent.md)
+[@wsdot/grouped-layer-list](../README.md) / CreateMapEvent
 
 # Interface: CreateMapEvent
 
-*__see__*: [https://developers.arcgis.com/javascript/3/jsapi/esri.arcgis.utils-amd.html#createmap](https://developers.arcgis.com/javascript/3/jsapi/esri.arcgis.utils-amd.html#createmap)
+**`see`** https://developers.arcgis.com/javascript/3/jsapi/esri.arcgis.utils-amd.html#createmap
 
-## Hierarchy
-
-**CreateMapEvent**
-
-## Index
+## Table of contents
 
 ### Properties
 
-* [clickEventHandle](createmapevent.md#clickeventhandle)
-* [clickEventListener](createmapevent.md#clickeventlistener)
-* [errors](createmapevent.md#errors)
-* [itemInfo](createmapevent.md#iteminfo)
-* [map](createmapevent.md#map)
+- [clickEventHandle](CreateMapEvent.md#clickeventhandle)
+- [errors](CreateMapEvent.md#errors)
+- [itemInfo](CreateMapEvent.md#iteminfo)
+- [map](CreateMapEvent.md#map)
 
----
+### Methods
+
+- [clickEventListener](CreateMapEvent.md#clickeventlistener)
 
 ## Properties
 
-<a id="clickeventhandle"></a>
+### clickEventHandle
 
-###  clickEventHandle
+• **clickEventHandle**: `undefined` \| `Handle`
 
-**● clickEventHandle**: * `Handle` &#124; `undefined`
-*
+#### Defined in
 
-*Defined in [main.ts:131](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/main.ts#L131)*
+[packages/grouped-layer-list/src/main.ts:135](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c240d2b/packages/grouped-layer-list/src/main.ts#L135)
 
 ___
-<a id="clickeventlistener"></a>
 
-###  clickEventListener
+### errors
 
-**● clickEventListener**: *`function`*
+• **errors**: `Error`[]
 
-*Defined in [main.ts:132](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/main.ts#L132)*
+#### Defined in
 
-#### Type declaration
-▸(...args: *`any`[]*):  `any` &#124; `undefined`
+[packages/grouped-layer-list/src/main.ts:137](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c240d2b/packages/grouped-layer-list/src/main.ts#L137)
 
-**Parameters:**
+___
+
+### itemInfo
+
+• **itemInfo**: [`ItemInfo`](ItemInfo.md)
+
+#### Defined in
+
+[packages/grouped-layer-list/src/main.ts:138](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c240d2b/packages/grouped-layer-list/src/main.ts#L138)
+
+___
+
+### map
+
+• **map**: `Map`
+
+#### Defined in
+
+[packages/grouped-layer-list/src/main.ts:139](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c240d2b/packages/grouped-layer-list/src/main.ts#L139)
+
+## Methods
+
+### clickEventListener
+
+▸ **clickEventListener**(...`args`): `any`
+
+#### Parameters
 
 | Name | Type |
-| ------ | ------ |
-| `Rest` args | `any`[] |
+| :------ | :------ |
+| `...args` | `any`[] |
 
-**Returns:**  `any` &#124; `undefined`
+#### Returns
 
-___
-<a id="errors"></a>
+`any`
 
-###  errors
+#### Defined in
 
-**● errors**: *`Error`[]*
-
-*Defined in [main.ts:133](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/main.ts#L133)*
-
-___
-<a id="iteminfo"></a>
-
-###  itemInfo
-
-**● itemInfo**: *[ItemInfo](iteminfo.md)*
-
-*Defined in [main.ts:134](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/main.ts#L134)*
-
-___
-<a id="map"></a>
-
-###  map
-
-**● map**: *`EsriMap`*
-
-*Defined in [main.ts:135](https://github.com/WSDOT-GIS/grouped-layer-list/blob/0b4c79f/packages/grouped-layer-list/src/main.ts#L135)*
-
-___
-
+[packages/grouped-layer-list/src/main.ts:136](https://github.com/WSDOT-GIS/grouped-layer-list/blob/c240d2b/packages/grouped-layer-list/src/main.ts#L136)

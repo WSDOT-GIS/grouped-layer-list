@@ -6,21 +6,29 @@
   "scripts": {
     "prepare": "npm run build-prod",
     "clean": "rm dist/main.js",
-    "watch": "webpack -p --mode production --watch",
-    "build-dev": "webpack -d --mode development",
-    "build-prod": "webpack -p --mode production"
+    "watch": "webpack --mode production --watch",
+    "build-dev": "webpack --mode development",
+    "build-prod": "webpack --mode production"
   },
   "author": "",
   "private": true,
   "license": "Unlicense",
   "devDependencies": {
-    "@types/arcgis-js-api": "^3.28.0",
-    "@types/dojo": "^1.9.41",
-    "@wsdot/grouped-layer-list": "0.0.14",
-    "source-map": "^0.7.3",
-    "ts-loader": "^5.3.3",
-    "typescript": "^3.4.1",
-    "webpack": "^4.29.6",
-    "webpack-cli": "^3.3.0"
-  }
+    "@types/arcgis-js-api": "<4",
+    "@types/dojo": "^1.9.43",
+    "@wsdot/grouped-layer-list": "0.0.15",
+    "source-map": "^0.7.4",
+    "ts-loader": "^9.3.0",
+    "typescript": "^4.7.3",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.9.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WSDOT-GIS/grouped-layer-list.git"
+  },
+  "bugs": {
+    "url": "https://github.com/WSDOT-GIS/grouped-layer-list/issues"
+  },
+  "homepage": "https://github.com/WSDOT-GIS/grouped-layer-list#readme"
 }
