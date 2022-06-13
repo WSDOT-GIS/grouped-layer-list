@@ -140,10 +140,7 @@ arcgisUtils
         map,
         metadata: true,
         layers,
-        throwOnGroupNotFound: false,
-        metadataOptions: {
-          format: "fgdc"
-        }
+        throwOnGroupNotFound: false
       },
       "layerList"
     );

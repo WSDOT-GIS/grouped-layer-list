@@ -10,7 +10,7 @@ import LayerList from "esri/dijit/LayerList";
 import ArcGISDynamicMapServiceLayer from "esri/layers/ArcGISDynamicMapServiceLayer";
 import Layer from "esri/layers/layer";
 import EsriMap from "esri/map";
-import { addMetadataTabs, MetadataOptions } from "./metadataUtils";
+import { addMetadataTabs, IMetadataOptions, MetadataOptions } from "./metadataUtils";
 
 export * from "./searchUtils";
 export * from "./conversionUtils";
@@ -174,7 +174,7 @@ export interface GroupedLayerListOptions extends LayerListOptions {
   /**
    * Specifies the metadata format.
    */
-  metadataOptions?: MetadataOptions
+  metadataOptions?: IMetadataOptions
 }
 
 /**
