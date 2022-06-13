@@ -16,7 +16,7 @@
   "devDependencies": {
     "@types/arcgis-js-api": "<4",
     "@types/dojo": "^1.9.43",
-    "@wsdot/grouped-layer-list": "0.0.15",
+    "@wsdot/grouped-layer-list": "^1.0.0",
     "source-map": "^0.7.4",
     "ts-loader": "^9.3.0",
     "typescript": "^4.7.3",
