@@ -6,7 +6,7 @@
     "serve": "dotnet serve"
   },
   "devDependencies": {
-    "gh-pages": "^4.0.0",
+    "gh-pages": "^5.0.0",
     "isomorphic-fetch": "^3.0.0"
   },
   "workspaces": [
